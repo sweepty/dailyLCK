@@ -11,7 +11,6 @@ import UIKit
 class TeamList: NSObject {
     
     enum Teams: String{
-        
         case SKT = "SKT T1",
         KSV = "KSV",
         KZ = "KING-ZONE",

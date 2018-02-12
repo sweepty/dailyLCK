@@ -14,28 +14,28 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let myURLString = "http://www.ticketlink.co.kr/product/22645"
-        guard let myURL = URL(string: myURLString) else {
-            print("Error: \(myURLString) doesn't seem to be a valid URL")
-            return
-        }
-        
-        do {
-            let myHTMLString = try String(contentsOf: myURL, encoding: .utf8)
-            let dayofOpen = myHTMLString.range(of: "예매오픈 : ", options: NSString.CompareOptions.literal, range: myHTMLString.startIndex..<myHTMLString.endIndex, locale: nil)
-            let endofIndex = myHTMLString.range(of: "</p><p>예매매수", options: NSString.CompareOptions.literal, range: myHTMLString.startIndex..<myHTMLString.endIndex, locale: nil)
-            
-            if let range = dayofOpen, let range2 = endofIndex {
-                let start = range.lowerBound
-                let end = range2.lowerBound
-                let result = myHTMLString[start..<end]
-                print(result)
-            
-            }
-
-        } catch let error {
-            print("Error: \(error)")
-        }
+//        let myURLString = "http://www.ticketlink.co.kr/product/22645"
+//        guard let myURL = URL(string: myURLString) else {
+//            print("Error: \(myURLString) doesn't seem to be a valid URL")
+//            return
+//        }
+//
+//        do {
+//            let myHTMLString = try String(contentsOf: myURL, encoding: .utf8)
+//            let dayofOpen = myHTMLString.range(of: "예매오픈 : ", options: NSString.CompareOptions.literal, range: myHTMLString.startIndex..<myHTMLString.endIndex, locale: nil)
+//            let endofIndex = myHTMLString.range(of: "</p><p>예매매수", options: NSString.CompareOptions.literal, range: myHTMLString.startIndex..<myHTMLString.endIndex, locale: nil)
+//
+//            if let range = dayofOpen, let range2 = endofIndex {
+//                let start = range.lowerBound
+//                let end = range2.lowerBound
+//                let result = myHTMLString[start..<end]
+//                print(result)
+//
+//            }
+//
+//        } catch let error {
+//            print("Error: \(error)")
+//        }
     }
 
     override func didReceiveMemoryWarning() {

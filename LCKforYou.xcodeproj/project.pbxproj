@@ -15,7 +15,6 @@
 		1B0031A0202A09A900FF5A0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */; };
 		1B00471E2030904900FE102E /* TeamList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B00471D2030904900FE102E /* TeamList.swift */; };
 		1B00472220309F4800FE102E /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B00472120309F4800FE102E /* ScheduleViewController.swift */; };
-		1B0047242030A45E00FE102E /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0047232030A45E00FE102E /* Schedule.swift */; };
 		66AE8B5EA57E6A85EFAADCCE /* Pods_LCKforYou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B82BA7A94D6ED5272C876DB /* Pods_LCKforYou.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		1B0031A1202A09A900FF5A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B00471D2030904900FE102E /* TeamList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamList.swift; sourceTree = "<group>"; };
 		1B00472120309F4800FE102E /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
-		1B0047232030A45E00FE102E /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		40C017BCDDB0974D8FB550B3 /* Pods-LCKforYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCKforYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +70,6 @@
 				1B003192202A09A900FF5A0B /* AppDelegate.swift */,
 				1B003194202A09A900FF5A0B /* ViewController.swift */,
 				1B00472120309F4800FE102E /* ScheduleViewController.swift */,
-				1B0047232030A45E00FE102E /* Schedule.swift */,
 				1B003196202A09A900FF5A0B /* Main.storyboard */,
 				1B00319C202A09A900FF5A0B /* Assets.xcassets */,
 				1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */,
@@ -229,7 +226,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B0047242030A45E00FE102E /* Schedule.swift in Sources */,
 				1B00471E2030904900FE102E /* TeamList.swift in Sources */,
 				1B003195202A09A900FF5A0B /* ViewController.swift in Sources */,
 				1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */,
