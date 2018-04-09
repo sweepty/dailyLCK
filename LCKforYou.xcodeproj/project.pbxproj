@@ -13,10 +13,50 @@
 		1B00319B202A09A900FF5A0B /* LCKforYou.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B003199202A09A900FF5A0B /* LCKforYou.xcdatamodeld */; };
 		1B00319D202A09A900FF5A0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B00319C202A09A900FF5A0B /* Assets.xcassets */; };
 		1B0031A0202A09A900FF5A0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */; };
-		1B00471E2030904900FE102E /* TeamList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B00471D2030904900FE102E /* TeamList.swift */; };
 		1B00472220309F4800FE102E /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B00472120309F4800FE102E /* ScheduleViewController.swift */; };
+		1B28FC9420561DC300EE45B0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B28FC9320561DC300EE45B0 /* TableViewCell.swift */; };
+		1B7351E52031F1D100BD0C71 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */; };
+		1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7351E72031F1D100BD0C71 /* TodayViewController.swift */; };
+		1B7351EB2031F1D100BD0C71 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7351E92031F1D100BD0C71 /* MainInterface.storyboard */; };
+		1B7351EF2031F1D100BD0C71 /* LCKTarget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B7351E42031F1D100BD0C71 /* LCKTarget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B74743A205D55E700DDC7C0 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B747439205D55E700DDC7C0 /* Schedule.swift */; };
+		1BF22835207B279500480CE6 /* match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF22834207B279500480CE6 /* match.swift */; };
 		66AE8B5EA57E6A85EFAADCCE /* Pods_LCKforYou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B82BA7A94D6ED5272C876DB /* Pods_LCKforYou.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1B7351ED2031F1D100BD0C71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B003187202A09A900FF5A0B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B7351E32031F1D100BD0C71;
+			remoteInfo = LCKTarget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1B7351DF2031EE6A00BD0C71 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1B7351EF2031F1D100BD0C71 /* LCKTarget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B747436205D55C000DDC7C0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0B82BA7A94D6ED5272C876DB /* Pods_LCKforYou.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LCKforYou.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,8 +69,17 @@
 		1B00319C202A09A900FF5A0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B00319F202A09A900FF5A0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B0031A1202A09A900FF5A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B00471D2030904900FE102E /* TeamList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamList.swift; sourceTree = "<group>"; };
 		1B00472120309F4800FE102E /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		1B28FC9320561DC300EE45B0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		1B7351E42031F1D100BD0C71 /* LCKTarget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LCKTarget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B7351E72031F1D100BD0C71 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		1B7351EA2031F1D100BD0C71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		1B7351EC2031F1D100BD0C71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B747437205D55CC00DDC7C0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
+		1B747438205D55CC00DDC7C0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
+		1B747439205D55E700DDC7C0 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		1BF22834207B279500480CE6 /* match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = match.swift; sourceTree = "<group>"; };
 		40C017BCDDB0974D8FB550B3 /* Pods-LCKforYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCKforYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,6 +92,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B7351E12031F1D100BD0C71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7351E52031F1D100BD0C71 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -50,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				1B003191202A09A900FF5A0B /* LCKforYou */,
+				1B7351E62031F1D100BD0C71 /* LCKTarget */,
 				1B003190202A09A900FF5A0B /* Products */,
 				59C80BD0EA44761346C1BFF1 /* Pods */,
 				94AED47DC263D2B975C02B67 /* Frameworks */,
@@ -60,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				1B00318F202A09A900FF5A0B /* LCKforYou.app */,
+				1B7351E42031F1D100BD0C71 /* LCKTarget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,14 +129,26 @@
 				1B003192202A09A900FF5A0B /* AppDelegate.swift */,
 				1B003194202A09A900FF5A0B /* ViewController.swift */,
 				1B00472120309F4800FE102E /* ScheduleViewController.swift */,
+				1B28FC9320561DC300EE45B0 /* TableViewCell.swift */,
 				1B003196202A09A900FF5A0B /* Main.storyboard */,
 				1B00319C202A09A900FF5A0B /* Assets.xcassets */,
 				1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */,
 				1B0031A1202A09A900FF5A0B /* Info.plist */,
 				1B003199202A09A900FF5A0B /* LCKforYou.xcdatamodeld */,
-				1B00471D2030904900FE102E /* TeamList.swift */,
+				1B747439205D55E700DDC7C0 /* Schedule.swift */,
+				1BF22834207B279500480CE6 /* match.swift */,
 			);
 			path = LCKforYou;
+			sourceTree = "<group>";
+		};
+		1B7351E62031F1D100BD0C71 /* LCKTarget */ = {
+			isa = PBXGroup;
+			children = (
+				1B7351E72031F1D100BD0C71 /* TodayViewController.swift */,
+				1B7351E92031F1D100BD0C71 /* MainInterface.storyboard */,
+				1B7351EC2031F1D100BD0C71 /* Info.plist */,
+			);
+			path = LCKTarget;
 			sourceTree = "<group>";
 		};
 		59C80BD0EA44761346C1BFF1 /* Pods */ = {
@@ -92,7 +163,10 @@
 		94AED47DC263D2B975C02B67 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B747438205D55CC00DDC7C0 /* RealmSwift.framework */,
+				1B747437205D55CC00DDC7C0 /* Realm.framework */,
 				0B82BA7A94D6ED5272C876DB /* Pods_LCKforYou.framework */,
+				1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -110,15 +184,35 @@
 				1B00318D202A09A900FF5A0B /* Resources */,
 				1D1A2C1EE025EA34A83E93C5 /* [CP] Embed Pods Frameworks */,
 				7F9E4EDB233D93825F5B6F70 /* [CP] Copy Pods Resources */,
+				1B7351DF2031EE6A00BD0C71 /* Embed App Extensions */,
+				1B747436205D55C000DDC7C0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1B7351EE2031F1D100BD0C71 /* PBXTargetDependency */,
 			);
 			name = LCKforYou;
 			productName = LCKforYou;
 			productReference = 1B00318F202A09A900FF5A0B /* LCKforYou.app */;
 			productType = "com.apple.product-type.application";
+		};
+		1B7351E32031F1D100BD0C71 /* LCKTarget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B7351F02031F1D100BD0C71 /* Build configuration list for PBXNativeTarget "LCKTarget" */;
+			buildPhases = (
+				1B7351E02031F1D100BD0C71 /* Sources */,
+				1B7351E12031F1D100BD0C71 /* Frameworks */,
+				1B7351E22031F1D100BD0C71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LCKTarget;
+			productName = LCKTarget;
+			productReference = 1B7351E42031F1D100BD0C71 /* LCKTarget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -131,6 +225,10 @@
 				ORGANIZATIONNAME = "Seungyeon Lee";
 				TargetAttributes = {
 					1B00318E202A09A900FF5A0B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					1B7351E32031F1D100BD0C71 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
@@ -150,6 +248,7 @@
 			projectRoot = "";
 			targets = (
 				1B00318E202A09A900FF5A0B /* LCKforYou */,
+				1B7351E32031F1D100BD0C71 /* LCKTarget */,
 			);
 		};
 /* End PBXProject section */
@@ -165,6 +264,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B7351E22031F1D100BD0C71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7351EB2031F1D100BD0C71 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -175,11 +282,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -226,15 +339,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B00471E2030904900FE102E /* TeamList.swift in Sources */,
+				1B74743A205D55E700DDC7C0 /* Schedule.swift in Sources */,
 				1B003195202A09A900FF5A0B /* ViewController.swift in Sources */,
 				1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */,
+				1B28FC9420561DC300EE45B0 /* TableViewCell.swift in Sources */,
+				1BF22835207B279500480CE6 /* match.swift in Sources */,
 				1B00472220309F4800FE102E /* ScheduleViewController.swift in Sources */,
 				1B00319B202A09A900FF5A0B /* LCKforYou.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B7351E02031F1D100BD0C71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1B7351EE2031F1D100BD0C71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B7351E32031F1D100BD0C71 /* LCKTarget */;
+			targetProxy = 1B7351ED2031F1D100BD0C71 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1B003196202A09A900FF5A0B /* Main.storyboard */ = {
@@ -251,6 +382,14 @@
 				1B00319F202A09A900FF5A0B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1B7351E92031F1D100BD0C71 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B7351EA2031F1D100BD0C71 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -367,6 +506,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40C017BCDDB0974D8FB550B3 /* Pods-LCKforYou.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BX5JP2585T;
@@ -375,7 +515,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kr.ac.mju.seungyeonlee.LCKforYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -383,6 +523,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 10DA3A18E4B01BE1FBB99BAB /* Pods-LCKforYou.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BX5JP2585T;
@@ -390,6 +531,36 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.ac.mju.seungyeonlee.LCKforYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		1B7351F12031F1D100BD0C71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BX5JP2585T;
+				INFOPLIST_FILE = LCKTarget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.ac.mju.seungyeonlee.LCKforYou.LCKTarget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1B7351F22031F1D100BD0C71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BX5JP2585T;
+				INFOPLIST_FILE = LCKTarget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.ac.mju.seungyeonlee.LCKforYou.LCKTarget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -412,6 +583,15 @@
 			buildConfigurations = (
 				1B0031A5202A09A900FF5A0B /* Debug */,
 				1B0031A6202A09A900FF5A0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B7351F02031F1D100BD0C71 /* Build configuration list for PBXNativeTarget "LCKTarget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B7351F12031F1D100BD0C71 /* Debug */,
+				1B7351F22031F1D100BD0C71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
