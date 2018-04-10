@@ -19,7 +19,6 @@
 		1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7351E72031F1D100BD0C71 /* TodayViewController.swift */; };
 		1B7351EB2031F1D100BD0C71 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7351E92031F1D100BD0C71 /* MainInterface.storyboard */; };
 		1B7351EF2031F1D100BD0C71 /* LCKTarget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B7351E42031F1D100BD0C71 /* LCKTarget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1B74743A205D55E700DDC7C0 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B747439205D55E700DDC7C0 /* Schedule.swift */; };
 		1BF22835207B279500480CE6 /* match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF22834207B279500480CE6 /* match.swift */; };
 		66AE8B5EA57E6A85EFAADCCE /* Pods_LCKforYou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B82BA7A94D6ED5272C876DB /* Pods_LCKforYou.framework */; };
 /* End PBXBuildFile section */
@@ -78,7 +77,6 @@
 		1B7351EC2031F1D100BD0C71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B747437205D55CC00DDC7C0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		1B747438205D55CC00DDC7C0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
-		1B747439205D55E700DDC7C0 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		1BF22834207B279500480CE6 /* match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = match.swift; sourceTree = "<group>"; };
 		40C017BCDDB0974D8FB550B3 /* Pods-LCKforYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCKforYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,7 +133,6 @@
 				1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */,
 				1B0031A1202A09A900FF5A0B /* Info.plist */,
 				1B003199202A09A900FF5A0B /* LCKforYou.xcdatamodeld */,
-				1B747439205D55E700DDC7C0 /* Schedule.swift */,
 				1BF22834207B279500480CE6 /* match.swift */,
 			);
 			path = LCKforYou;
@@ -339,7 +336,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B74743A205D55E700DDC7C0 /* Schedule.swift in Sources */,
 				1B003195202A09A900FF5A0B /* ViewController.swift in Sources */,
 				1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */,
 				1B28FC9420561DC300EE45B0 /* TableViewCell.swift in Sources */,

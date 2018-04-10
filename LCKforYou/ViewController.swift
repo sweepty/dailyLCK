@@ -18,7 +18,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     
     
 //    var number : Int? = nil
-    var matchup: Results<schedule>?
+    var matchup: Results<match>?
     var number: Int?
     
     //date formatter
@@ -43,7 +43,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
 //        // Get the default Realm
         let realm = try! Realm()
 //        var matchup = realm.objects(schedule.self).filter("teamLeft = 'SKT'")
-        matchup = realm.objects(schedule.self)
+        matchup = realm.objects(match.self)
         number = matchup?.count
         print("개수는\(String(describing: number))")
 //        for i in matchup! {
