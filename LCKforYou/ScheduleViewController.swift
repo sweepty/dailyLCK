@@ -44,7 +44,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 matchup_dates.append(i.mmdd_date)
             }
         }
-//        날짜 순으로 정렬.
+        //날짜 순으로 정렬.
         matchup_dates.sort()
 
     }
@@ -55,7 +55,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
 
-    // 각 섹션 당 셀 수 얻기
+    //각 섹션 당 셀 수 얻기
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (items?.filter("mmdd_date ==%@",matchup_dates[section]).count)!
     }
@@ -63,16 +63,13 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     // 셀 내용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "List Cell") as! TableViewCell
-//        cell.cellView.layer.cornerRadius = 10
+        
         //date to string
         dateFormatter.dateFormat = "hh시"
-        
         let data = items?.filter("mmdd_date == %@",matchup_dates[indexPath.section])[indexPath.row]
         let startTime = dateFormatter.string(from:(data?.matchdate)!)
         cell.TitleLabel.text = data?.matchtitle
         cell.dateLabel.text = startTime
-        
-
         return cell
     }
     

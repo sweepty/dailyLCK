@@ -12,7 +12,6 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var cellView: UIView!
     @IBOutlet var TitleLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
-//    @IBOutlet weak var left_img: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
