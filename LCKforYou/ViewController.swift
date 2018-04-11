@@ -70,6 +70,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         
 //        cell.TitleLabel.text = item.matchtitle
 //        cell.dateLabel.text = dateString
+        print("왜 안돼")
         cell.TitleLabel.text = "good"
         return cell
     }
@@ -107,7 +108,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         //eventdates는 matchdate가 모여있는 array임.
         for eventDate in eventdates {
             if self.gregorian.isDate(date, inSameDayAs: eventDate){
-                return 1
+                return 2
             }
         }
         return 0
