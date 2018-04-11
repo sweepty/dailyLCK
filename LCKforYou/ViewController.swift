@@ -87,14 +87,12 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         for eventDate in eventdates {
             if self.gregorian.isDate(date, inSameDayAs: eventDate){
                 
-                //nil값이 나온다 고치기
-                dateFormatter.dateFormat = "mm월 dd일"
-                let dateString = dateFormatter.string(from: date)
-                
-                //아 이거 여러개라서 그런가봐
-                let test:[String] = matchup?.filter("mmdd_date ==%@",dateString).value(forKey: "teamLeft") as! [String]
-//                print("여기 뭐죠\()")
-//                return matchup?.filter("mmdd_date ==%@",dateString).value(forKey: "teamLeft") as? String
+//                //nil값이 나온다 고치기
+//                dateFormatter.dateFormat = "mm월 dd일"
+//                let dateString = dateFormatter.string(from: date)
+//
+//                //여기 어떻게 할지 생각...
+//                let test:[String] = matchup?.filter("mmdd_date ==%@",dateString).value(forKey: "teamLeft") as! [String]
                 //임시
                 return "경기날"
                 
