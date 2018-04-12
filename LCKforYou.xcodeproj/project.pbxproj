@@ -19,6 +19,14 @@
 		1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7351E72031F1D100BD0C71 /* TodayViewController.swift */; };
 		1B7351EB2031F1D100BD0C71 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7351E92031F1D100BD0C71 /* MainInterface.storyboard */; };
 		1B7351EF2031F1D100BD0C71 /* LCKTarget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B7351E42031F1D100BD0C71 /* LCKTarget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B96050D207FA0E3000D984C /* bbq.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B960505207FA0E2000D984C /* bbq.png */; };
+		1B96050E207FA0E3000D984C /* rox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B960506207FA0E2000D984C /* rox.png */; };
+		1B96050F207FA0E3000D984C /* ksv.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B960507207FA0E2000D984C /* ksv.png */; };
+		1B960510207FA0E3000D984C /* kz.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B960508207FA0E2000D984C /* kz.png */; };
+		1B960511207FA0E3000D984C /* skt.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B960509207FA0E2000D984C /* skt.png */; };
+		1B960512207FA0E3000D984C /* jag.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B96050A207FA0E2000D984C /* jag.png */; };
+		1B960513207FA0E3000D984C /* kt.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B96050B207FA0E2000D984C /* kt.png */; };
+		1B960514207FA0E3000D984C /* afs.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B96050C207FA0E3000D984C /* afs.png */; };
 		1BF22835207B279500480CE6 /* match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF22834207B279500480CE6 /* match.swift */; };
 		66AE8B5EA57E6A85EFAADCCE /* Pods_LCKforYou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B82BA7A94D6ED5272C876DB /* Pods_LCKforYou.framework */; };
 /* End PBXBuildFile section */
@@ -77,6 +85,14 @@
 		1B7351EC2031F1D100BD0C71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B747437205D55CC00DDC7C0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		1B747438205D55CC00DDC7C0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
+		1B960505207FA0E2000D984C /* bbq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bbq.png; path = ../../../../Documents/lckforyou_img/bbq.png; sourceTree = "<group>"; };
+		1B960506207FA0E2000D984C /* rox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rox.png; path = ../../../../Documents/lckforyou_img/rox.png; sourceTree = "<group>"; };
+		1B960507207FA0E2000D984C /* ksv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ksv.png; path = ../../../../Documents/lckforyou_img/ksv.png; sourceTree = "<group>"; };
+		1B960508207FA0E2000D984C /* kz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kz.png; path = ../../../../Documents/lckforyou_img/kz.png; sourceTree = "<group>"; };
+		1B960509207FA0E2000D984C /* skt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skt.png; path = ../../../../Documents/lckforyou_img/skt.png; sourceTree = "<group>"; };
+		1B96050A207FA0E2000D984C /* jag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jag.png; path = ../../../../Documents/lckforyou_img/jag.png; sourceTree = "<group>"; };
+		1B96050B207FA0E2000D984C /* kt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kt.png; path = ../../../../Documents/lckforyou_img/kt.png; sourceTree = "<group>"; };
+		1B96050C207FA0E3000D984C /* afs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = afs.png; path = ../../../../Documents/lckforyou_img/afs.png; sourceTree = "<group>"; };
 		1BF22834207B279500480CE6 /* match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = match.swift; sourceTree = "<group>"; };
 		40C017BCDDB0974D8FB550B3 /* Pods-LCKforYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCKforYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +140,7 @@
 		1B003191202A09A900FF5A0B /* LCKforYou */ = {
 			isa = PBXGroup;
 			children = (
+				1B960504207FA0B3000D984C /* img */,
 				1B003192202A09A900FF5A0B /* AppDelegate.swift */,
 				1B003194202A09A900FF5A0B /* ViewController.swift */,
 				1B00472120309F4800FE102E /* ScheduleViewController.swift */,
@@ -146,6 +163,21 @@
 				1B7351EC2031F1D100BD0C71 /* Info.plist */,
 			);
 			path = LCKTarget;
+			sourceTree = "<group>";
+		};
+		1B960504207FA0B3000D984C /* img */ = {
+			isa = PBXGroup;
+			children = (
+				1B960509207FA0E2000D984C /* skt.png */,
+				1B96050C207FA0E3000D984C /* afs.png */,
+				1B960505207FA0E2000D984C /* bbq.png */,
+				1B96050A207FA0E2000D984C /* jag.png */,
+				1B960507207FA0E2000D984C /* ksv.png */,
+				1B96050B207FA0E2000D984C /* kt.png */,
+				1B960508207FA0E2000D984C /* kz.png */,
+				1B960506207FA0E2000D984C /* rox.png */,
+			);
+			path = img;
 			sourceTree = "<group>";
 		};
 		59C80BD0EA44761346C1BFF1 /* Pods */ = {
@@ -255,9 +287,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B960513207FA0E3000D984C /* kt.png in Resources */,
+				1B960512207FA0E3000D984C /* jag.png in Resources */,
+				1B96050F207FA0E3000D984C /* ksv.png in Resources */,
+				1B960510207FA0E3000D984C /* kz.png in Resources */,
+				1B960511207FA0E3000D984C /* skt.png in Resources */,
 				1B0031A0202A09A900FF5A0B /* LaunchScreen.storyboard in Resources */,
 				1B00319D202A09A900FF5A0B /* Assets.xcassets in Resources */,
 				1B003198202A09A900FF5A0B /* Main.storyboard in Resources */,
+				1B960514207FA0E3000D984C /* afs.png in Resources */,
+				1B96050E207FA0E3000D984C /* rox.png in Resources */,
+				1B96050D207FA0E3000D984C /* bbq.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
