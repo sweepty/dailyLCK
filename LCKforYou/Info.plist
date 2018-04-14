@@ -4,8 +4,6 @@
 <dict>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
-	<key>NSRemindersUsageDescription</key>
-	<string>티켓팅 알람 및 경기 시작 알림을 위해 미리알림 접근 권한이 필요합니다^~^</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
