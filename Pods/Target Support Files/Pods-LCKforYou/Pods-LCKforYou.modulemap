@@ -1,0 +1,6 @@
+framework module Pods_LCKforYou {
+  umbrella header "Pods-LCKforYou-umbrella.h"
+
+  export *
+  module * { export * }
+}
