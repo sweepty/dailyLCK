@@ -87,6 +87,8 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         }
         //날짜 순으로 정렬.
         matchup_dates.sort()
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
