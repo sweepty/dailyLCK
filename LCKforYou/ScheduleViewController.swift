@@ -12,6 +12,7 @@ import Realm
 import Toaster
 import FSCalendar
 import EventKit
+import UserNotifications
 
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
@@ -87,6 +88,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         }
         //날짜 순으로 정렬.
         matchup_dates.sort()
+        
+        //local notification
+        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
         
         
     }
@@ -225,7 +229,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     //티켓팅 알림 button
     @objc func ticketBtnSelected(sender: UIButton) {
         let ticketingdate = items?.filter("id == %@",sender.tag)[0].ticketdate
-
+        
         let mTitle = items?.filter("id == %@",sender.tag)[0].matchtitle
         let tmp: String? = String(describing: ticketingdate)
         var ticketingTime = tmp?.components(separatedBy: ["-"," ",":"])
@@ -233,37 +237,65 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             print(i)
         }
         
-        //미리 알림 설정하기
-        if self.eventStore == nil {
-            self.eventStore = EKEventStore()
-            self.eventStore!.requestAccess(to: EKEntityType.reminder , completion: {(isAccessible,errors)in})
-            print("미리 알림 권한 설정 완료")
+        //local notification
+        UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
+            switch notificationSettings.authorizationStatus {
+            case .notDetermined:
+                // Request Authorization
+                self.requestAuthorization(completionHandler: { (success) in
+                    guard success else { return }
+                    // Schedule Local Notification
+                    self.scheduleLocalNotification(Int(ticketingTime![3])!, Int(ticketingTime![4])!, String(describing: mTitle!), "티켓팅")
+                })
+            case .authorized:
+                // Schedule Local Notification
+                self.scheduleLocalNotification(Int(ticketingTime![3])!, Int(ticketingTime![4])!, String(describing: mTitle!), "티켓팅")
+                break
+            case .denied:
+                //여기 alert로 알려주도록 하기
+                print("Application Not Allowed to Display Notifications")
+            }
         }
-
-        let reminder = EKReminder(eventStore: self.eventStore!)
-        reminder.title = "\(String(describing: mTitle!))의 티켓팅이 있습니다."
+    }
+    private func scheduleLocalNotification(_ hh: Int, _ mm: Int, _ title: String, _ type: String) {
+        // Create Notification Content
+        let notificationContent = UNMutableNotificationContent()
         
-        //reminder 상세 설정
-        //나중에 우리팀 설정 기능 만든 후 수정.
-        reminder.notes = "왼쪽 좌석을 예매하세요."
-        reminder.priority = 3
+        // Configure Notification Content
         
-        reminder.calendar = self.eventStore!.defaultCalendarForNewReminders()
-        
-        for i in 0...4 {
-            print("\(i)번째 값은\(ticketingTime![i])")
+        switch type {
+        case "경기":
+            notificationContent.title = "경기 알람"
+            notificationContent.body = "오늘 \(hh)시에 \(title)의 \(type)가 있습니다."
+        case "티켓팅":
+            notificationContent.title = "티켓팅 알람"
+            notificationContent.body = "오늘 \(hh)시 \(mm)분에 \(title)의 \(type)이 있습니다."
+        default:
+            notificationContent.body = "error"
         }
         
-        //임시로 year는 2018로
-        let alarm = EKAlarm(absoluteDate: setCalendarData(2018, Int(ticketingTime![1])!, Int(ticketingTime![2])!, Int(ticketingTime![3])!, 00, 00))
-        reminder.addAlarm(alarm)
+        // Add Trigger
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.0, repeats: false)
         
-        do {
-            try self.eventStore!.save(reminder, commit: true)
-            Toast(text: "success", delay: 0, duration: 1).show()
-        } catch {
-            Toast(text: "fail....", delay: 0, duration: 1).show()
-            NSLog("알람 설정 실패")
+        // Create Notification Request
+        let notificationRequest = UNNotificationRequest(identifier: "cocoacasts_local_notification", content: notificationContent, trigger: notificationTrigger)
+        
+        // Add Request to User Notification Center
+        UNUserNotificationCenter.current().add(notificationRequest) { (error) in
+            if let error = error {
+                print("Unable to Add Notification Request (\(error), \(error.localizedDescription))")
+            }
+        }
+    }
+    
+    private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
+        // Request Authorization
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
+            if let error = error {
+                print("Request Authorization Failed (\(error), \(error.localizedDescription))")
+            }
+            
+            completionHandler(success)
         }
     }
     
@@ -276,49 +308,27 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         let tmp: String? = String(describing: matchdate)
         var matchstart = tmp?.components(separatedBy: ["-"," ",":"])
         
-        //미리 알림 설정하기
-        if self.eventStore == nil {
-            self.eventStore = EKEventStore()
-            self.eventStore!.requestAccess(to: EKEntityType.reminder , completion: {(isAccessible,errors)in})
-            print("미리 알림 권한 설정 완료")
+        //local notification
+        UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
+            switch notificationSettings.authorizationStatus {
+            case .notDetermined:
+                // Request Authorization
+                self.requestAuthorization(completionHandler: { (success) in
+                    guard success else { return }
+                    // Schedule Local Notification
+                    self.scheduleLocalNotification(Int(matchstart![3])!, Int(matchstart![4])!, String(describing: mTitle!), "경기")
+                })
+            case .authorized:
+                // Schedule Local Notification
+                self.scheduleLocalNotification(Int(matchstart![3])!, Int(matchstart![4])!,String(describing: mTitle!), "경기")
+                break
+            case .denied:
+                //여기 alert로 알려주도록 하기
+                print("Application Not Allowed to Display Notifications")
+            }
         }
         
-        let reminder = EKReminder(eventStore: self.eventStore!)
-        reminder.title = "\(String(describing: mTitle!))의 경기가 있습니다."
-        
-        //reminder 상세 설정
-        //나중에 우리팀 설정 기능 만든 후 수정.
-        switch query?.stadium {
-        case "상암":
-            reminder.notes = "중계: OGN"
-        case "강남":
-            reminder.notes = "중계: SPOTV"
-        default:
-            reminder.notes = ""
-        }
-        reminder.priority = 3
-        
-        reminder.calendar = self.eventStore!.defaultCalendarForNewReminders()
-        
-        for i in 0...4 {
-            print("\(i)번째 값은\(matchstart![i])")
-        }
-        
-        //임시로 year는 2018로
-        let alarm = EKAlarm(absoluteDate: setCalendarData(2018, Int(matchstart![1])!, Int(matchstart![2])!, Int(matchstart![3])!, 00, 00))
-        reminder.addAlarm(alarm)
-        
-        do {
-            try self.eventStore!.save(reminder, commit: true)
-            Toast(text: "success", delay: 0, duration: 1).show()
-        } catch {
-            Toast(text: "fail....", delay: 0, duration: 1).show()
-            NSLog("알람 설정 실패")
-        }
     }
-    
-    
-    
     
     //CALENDAR PART
     //날짜 클릭시
@@ -366,8 +376,12 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         }
         return 0
     }
+}
+extension ScheduleViewController: UNUserNotificationCenterDelegate {
     
-    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert])
+    }
     
 }
 
