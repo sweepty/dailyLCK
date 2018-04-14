@@ -78,6 +78,9 @@
 		1B0031A1202A09A900FF5A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B00472120309F4800FE102E /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		1B28FC9320561DC300EE45B0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		1B3AB8602081F0470011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		1B3AB8612081F0470011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		1B3AB8622081F0480011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		1B7351E42031F1D100BD0C71 /* LCKTarget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LCKTarget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7351E72031F1D100BD0C71 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -408,6 +411,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1B003197202A09A900FF5A0B /* Base */,
+				1B3AB8602081F0470011ADA8 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -416,6 +420,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1B00319F202A09A900FF5A0B /* Base */,
+				1B3AB8612081F0470011ADA8 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1B7351EA2031F1D100BD0C71 /* Base */,
+				1B3AB8622081F0480011ADA8 /* ko */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -492,6 +499,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

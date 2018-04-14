@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class TableViewCell: UITableViewCell {
     @IBOutlet var cellView: UIView!
@@ -21,14 +22,10 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet var leftTeamLabel: UILabel!
     @IBOutlet var rightTeamLabel: UILabel!
+    //티켓팅 알람 설정 button
+    @IBOutlet var btn_ticketAlarm: UIButton!
+    @IBOutlet var btn_startAlarm: UIButton!
     
-    //티켓팅 알람 설정 버튼
-    @IBAction func btnTicket(_ sender: UIButton) {
-    }
-    
-    //경기 시작 알람 설정 버튼
-    @IBAction func btnMatch(_ sender: UIButton) {
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
