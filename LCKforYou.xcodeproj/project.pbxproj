@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B003192202A09A900FF5A0B /* AppDelegate.swift */; };
-		1B003195202A09A900FF5A0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B003194202A09A900FF5A0B /* ViewController.swift */; };
+		1B003195202A09A900FF5A0B /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B003194202A09A900FF5A0B /* RankingViewController.swift */; };
 		1B003198202A09A900FF5A0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B003196202A09A900FF5A0B /* Main.storyboard */; };
 		1B00319B202A09A900FF5A0B /* LCKforYou.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B003199202A09A900FF5A0B /* LCKforYou.xcdatamodeld */; };
 		1B00319D202A09A900FF5A0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B00319C202A09A900FF5A0B /* Assets.xcassets */; };
@@ -70,7 +70,7 @@
 		10DA3A18E4B01BE1FBB99BAB /* Pods-LCKforYou.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCKforYou.release.xcconfig"; path = "Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou.release.xcconfig"; sourceTree = "<group>"; };
 		1B00318F202A09A900FF5A0B /* LCKforYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LCKforYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B003192202A09A900FF5A0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1B003194202A09A900FF5A0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1B003194202A09A900FF5A0B /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		1B003197202A09A900FF5A0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B00319A202A09A900FF5A0B /* LCKforYou.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LCKforYou.xcdatamodel; sourceTree = "<group>"; };
 		1B00319C202A09A900FF5A0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 			children = (
 				1B960504207FA0B3000D984C /* img */,
 				1B003192202A09A900FF5A0B /* AppDelegate.swift */,
-				1B003194202A09A900FF5A0B /* ViewController.swift */,
+				1B003194202A09A900FF5A0B /* RankingViewController.swift */,
 				1B00472120309F4800FE102E /* ScheduleViewController.swift */,
 				1B28FC9320561DC300EE45B0 /* TableViewCell.swift */,
 				1B003196202A09A900FF5A0B /* Main.storyboard */,
@@ -325,14 +325,18 @@
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
+				"${BUILT_PRODUCTS_DIR}/YNDropDownMenu/YNDropDownMenu.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YNDropDownMenu.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -379,7 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B003195202A09A900FF5A0B /* ViewController.swift in Sources */,
+				1B003195202A09A900FF5A0B /* RankingViewController.swift in Sources */,
 				1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */,
 				1B28FC9420561DC300EE45B0 /* TableViewCell.swift in Sources */,
 				1BF22835207B279500480CE6 /* match.swift in Sources */,

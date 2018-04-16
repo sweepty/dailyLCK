@@ -5,19 +5,25 @@ PODS:
   - Realm/Headers (3.3.2)
   - RealmSwift (3.3.2):
     - Realm (= 3.3.2)
+  - SideMenu (3.1.5)
   - Toaster (2.1.1)
+  - YNDropDownMenu (3.0.2)
 
 DEPENDENCIES:
   - FSCalendar
   - RealmSwift
+  - SideMenu
   - Toaster
+  - YNDropDownMenu
 
 SPEC CHECKSUMS:
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
   RealmSwift: 4e903a494e05d866581d69ad6f7e7b879d446baf
+  SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
+  YNDropDownMenu: 9421eb9c144448415d90141344a2cdbbaf11fc3c
 
-PODFILE CHECKSUM: 53d3cb9ffe61fb83ed628dac4d18d8e810b42488
+PODFILE CHECKSUM: cb511d13dd2e2c7a1afa88c8cdea2d945a63d551
 
 COCOAPODS: 1.4.0

@@ -7,6 +7,8 @@ target 'LCKforYou' do
   pod 'FSCalendar'
   pod 'RealmSwift'
   pod 'Toaster'
+  pod 'SideMenu'
+  pod 'YNDropDownMenu'
   
   # Pods for LCKforYou
 

@@ -10,13 +10,18 @@ import Toaster
 import Realm
 import RealmSwift
 
-//class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class RankingViewController: UIViewController {
+    //, UITableViewDelegate, UITableViewDataSource 
+    override func viewDidLoad() {
+        
+    }
+    
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 1
 //    }
-//    
+//
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
+//        <#code#>
 //    }
-//}
+}
 
