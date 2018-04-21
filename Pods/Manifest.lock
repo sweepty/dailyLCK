@@ -1,5 +1,9 @@
 PODS:
+  - AWSAuthCore (2.6.16):
+    - AWSCore (= 2.6.16)
+  - AWSCore (2.6.16)
   - FSCalendar (2.7.9)
+  - Pastel (0.4.0)
   - Realm (3.3.2):
     - Realm/Headers (= 3.3.2)
   - Realm/Headers (3.3.2)
@@ -10,20 +14,25 @@ PODS:
   - YNDropDownMenu (3.0.2)
 
 DEPENDENCIES:
+  - AWSAuthCore (~> 2.6.1)
   - FSCalendar
+  - Pastel
   - RealmSwift
   - SideMenu
   - Toaster
   - YNDropDownMenu
 
 SPEC CHECKSUMS:
+  AWSAuthCore: d0f6fcbe8957c3dc5f67ce4ac198cc1f2696ee17
+  AWSCore: 314df68684e338310409c6a3b050e28932deb6ff
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  Pastel: 7fa5e26123b3dbe11f7ed255654bf37100b199a5
   Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
   RealmSwift: 4e903a494e05d866581d69ad6f7e7b879d446baf
   SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
   YNDropDownMenu: 9421eb9c144448415d90141344a2cdbbaf11fc3c
 
-PODFILE CHECKSUM: cb511d13dd2e2c7a1afa88c8cdea2d945a63d551
+PODFILE CHECKSUM: a662651c2819e8c51075707de562567dbb4c1aa5
 
 COCOAPODS: 1.4.0

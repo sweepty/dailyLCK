@@ -15,7 +15,7 @@ import EventKit
 import UserNotifications
 import YNDropDownMenu
 
-class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var calendarView: FSCalendar!
@@ -50,17 +50,15 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         
         self.tableView.rowHeight = 100.0
-        
-        
-        
+    
         //calendar 설정
         calendarView.dataSource = self
         calendarView.delegate = self
-        calendarView.scrollDirection = .vertical
+        calendarView.scrollDirection = .horizontal
         calendarView.clipsToBounds = true
         calendarView.appearance.headerDateFormat = "yyyy년 MM월"
         calendarView.appearance.headerTitleColor = UIColor.black
-        calendarView.scope = .week
+//        calendarView.scope = .week
         
         
         // Realm 저장 위치 보여줌
@@ -80,6 +78,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 matchup_dates.append(i.mmdd_date)
             }
         }
+        
         dateFormatter.dateFormat = "MM월 dd일"
         let today = dateFormatter.string(from: date as Date)
         print(today)
@@ -148,6 +147,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         //items
         let data = items?.filter("mmdd_date == %@",matchup_dates[indexPath.section])[indexPath.row]
+        
         dateFormatter.dateFormat = "hh:mm"
         let startTime = dateFormatter.string(from:(data?.matchdate)!)
         
@@ -290,7 +290,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Create Notification Request
         let id: String?
-        
         switch type {
         case "경기": id = "match"
         case "티켓팅": id = "ticketing"
@@ -321,21 +320,20 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     //CALENDAR PART
-    //날짜 클릭시
+    
+    //날짜 클릭시 해당하는 섹션으로 이동 (수정필요)
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        for eventDate in eventdates {
-            if self.gregorian.isDate(date, inSameDayAs: eventDate){
-                //해당 날짜가 있는 섹션 찾기.
-                
-                
-            }
+        let selectedDate = dateFormatter.string(from: date as Date)
+        if matchup_dates.contains(selectedDate) {
+            let idx = matchup_dates.index(of: selectedDate)
+            let indexPath = NSIndexPath(item: 0, section: idx!)
+            tableView.scrollToRow(at: indexPath as IndexPath, at: UITableViewScrollPosition.middle, animated: true)
         }
     }
     
     //subtitle
     func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
-        
-        //eventdates는 matchdate가 모여있는 array임.
+        //eventdates는 matchdate(Date)가 모여있는 array임.
         for eventDate in eventdates {
             if self.gregorian.isDate(date, inSameDayAs: eventDate){
                 return "경기날"

@@ -10,11 +10,13 @@
 		1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B003192202A09A900FF5A0B /* AppDelegate.swift */; };
 		1B003195202A09A900FF5A0B /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B003194202A09A900FF5A0B /* RankingViewController.swift */; };
 		1B003198202A09A900FF5A0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B003196202A09A900FF5A0B /* Main.storyboard */; };
-		1B00319B202A09A900FF5A0B /* LCKforYou.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B003199202A09A900FF5A0B /* LCKforYou.xcdatamodeld */; };
 		1B00319D202A09A900FF5A0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B00319C202A09A900FF5A0B /* Assets.xcassets */; };
 		1B0031A0202A09A900FF5A0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */; };
 		1B00472220309F4800FE102E /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B00472120309F4800FE102E /* ScheduleViewController.swift */; };
 		1B28FC9420561DC300EE45B0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B28FC9320561DC300EE45B0 /* TableViewCell.swift */; };
+		1B648C282088BA4C003D747A /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B648C272088BA4C003D747A /* awsconfiguration.json */; };
+		1B648C2C2088EF4F003D747A /* SlieMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B648C2B2088EF4F003D747A /* SlieMenuViewController.swift */; };
+		1B73315020874A5500CFF3E2 /* users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73314F20874A5500CFF3E2 /* users.swift */; };
 		1B7351E52031F1D100BD0C71 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */; };
 		1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7351E72031F1D100BD0C71 /* TodayViewController.swift */; };
 		1B7351EB2031F1D100BD0C71 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7351E92031F1D100BD0C71 /* MainInterface.storyboard */; };
@@ -72,7 +74,6 @@
 		1B003192202A09A900FF5A0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B003194202A09A900FF5A0B /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		1B003197202A09A900FF5A0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1B00319A202A09A900FF5A0B /* LCKforYou.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LCKforYou.xcdatamodel; sourceTree = "<group>"; };
 		1B00319C202A09A900FF5A0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B00319F202A09A900FF5A0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B0031A1202A09A900FF5A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,6 +82,9 @@
 		1B3AB8602081F0470011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		1B3AB8612081F0470011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1B3AB8622081F0480011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		1B648C272088BA4C003D747A /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		1B648C2B2088EF4F003D747A /* SlieMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlieMenuViewController.swift; sourceTree = "<group>"; };
+		1B73314F20874A5500CFF3E2 /* users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = users.swift; sourceTree = "<group>"; };
 		1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		1B7351E42031F1D100BD0C71 /* LCKTarget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LCKTarget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7351E72031F1D100BD0C71 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -147,13 +151,15 @@
 				1B003192202A09A900FF5A0B /* AppDelegate.swift */,
 				1B003194202A09A900FF5A0B /* RankingViewController.swift */,
 				1B00472120309F4800FE102E /* ScheduleViewController.swift */,
+				1B648C2B2088EF4F003D747A /* SlieMenuViewController.swift */,
 				1B28FC9320561DC300EE45B0 /* TableViewCell.swift */,
 				1B003196202A09A900FF5A0B /* Main.storyboard */,
 				1B00319C202A09A900FF5A0B /* Assets.xcassets */,
 				1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */,
 				1B0031A1202A09A900FF5A0B /* Info.plist */,
-				1B003199202A09A900FF5A0B /* LCKforYou.xcdatamodeld */,
+				1B648C272088BA4C003D747A /* awsconfiguration.json */,
 				1BF22834207B279500480CE6 /* match.swift */,
+				1B73314F20874A5500CFF3E2 /* users.swift */,
 			);
 			path = LCKforYou;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				1B0031A0202A09A900FF5A0B /* LaunchScreen.storyboard in Resources */,
 				1B00319D202A09A900FF5A0B /* Assets.xcassets in Resources */,
 				1B003198202A09A900FF5A0B /* Main.storyboard in Resources */,
+				1B648C282088BA4C003D747A /* awsconfiguration.json in Resources */,
 				1B960514207FA0E3000D984C /* afs.png in Resources */,
 				1B96050E207FA0E3000D984C /* rox.png in Resources */,
 				1B96050D207FA0E3000D984C /* bbq.png in Resources */,
@@ -322,7 +329,10 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSAuthCore/AWSAuthCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Pastel/Pastel.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
@@ -331,7 +341,10 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAuthCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pastel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
@@ -384,11 +397,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B003195202A09A900FF5A0B /* RankingViewController.swift in Sources */,
+				1B648C2C2088EF4F003D747A /* SlieMenuViewController.swift in Sources */,
 				1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */,
+				1B73315020874A5500CFF3E2 /* users.swift in Sources */,
 				1B28FC9420561DC300EE45B0 /* TableViewCell.swift in Sources */,
 				1BF22835207B279500480CE6 /* match.swift in Sources */,
 				1B00472220309F4800FE102E /* ScheduleViewController.swift in Sources */,
-				1B00319B202A09A900FF5A0B /* LCKforYou.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,19 +659,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		1B003199202A09A900FF5A0B /* LCKforYou.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				1B00319A202A09A900FF5A0B /* LCKforYou.xcdatamodel */,
-			);
-			currentVersion = 1B00319A202A09A900FF5A0B /* LCKforYou.xcdatamodel */;
-			path = LCKforYou.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 1B003187202A09A900FF5A0B /* Project object */;
 }

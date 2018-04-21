@@ -6,22 +6,13 @@
 //  Copyright © 2018년 Seungyeon Lee. All rights reserved.
 //
 import UIKit
-import Toaster
 import Realm
 import RealmSwift
+import Pastel
 
-class RankingViewController: UIViewController {
-    //, UITableViewDelegate, UITableViewDataSource 
+class RankingViewController: UIViewController { 
     override func viewDidLoad() {
-        
     }
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
 }
 
