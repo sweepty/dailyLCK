@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import Toaster
 
 class TableViewCell: UITableViewCell {
     @IBOutlet var cellView: UIView!
 
+    @IBOutlet var barView: UIView!
     @IBOutlet var monthLabel: UILabel!
     @IBOutlet var dayLabel: UILabel!
     @IBOutlet var weekLabel: UILabel!

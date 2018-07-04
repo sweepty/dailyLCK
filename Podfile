@@ -6,10 +6,10 @@ target 'LCKforYou' do
   use_frameworks!
   pod 'FSCalendar'
   pod 'RealmSwift'
-  pod 'Toaster'
-  pod 'SideMenu'
-  pod 'YNDropDownMenu'
-  
+  pod 'RealmLoginKit'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'SnapKit', '~> 4.0.0'
   # Pods for LCKforYou
 
 end

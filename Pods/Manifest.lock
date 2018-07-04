@@ -1,38 +1,73 @@
 PODS:
-  - AWSAuthCore (2.6.16):
-    - AWSCore (= 2.6.16)
-  - AWSCore (2.6.16)
+  - Firebase/Core (5.4.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.0.1)
+  - Firebase/CoreOnly (5.4.0):
+    - FirebaseCore (= 5.0.5)
+  - Firebase/Database (5.4.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (= 5.0.2)
+  - FirebaseAnalytics (5.0.1):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - nanopb (~> 0.3)
+  - FirebaseCore (5.0.5):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseDatabase (5.0.2):
+    - FirebaseCore (~> 5.0)
+    - leveldb-library (~> 1.18)
+  - FirebaseInstanceID (3.1.1):
+    - FirebaseCore (~> 5.0)
   - FSCalendar (2.7.9)
-  - Pastel (0.4.0)
-  - Realm (3.3.2):
-    - Realm/Headers (= 3.3.2)
-  - Realm/Headers (3.3.2)
-  - RealmSwift (3.3.2):
-    - Realm (= 3.3.2)
-  - SideMenu (3.1.5)
-  - Toaster (2.1.1)
-  - YNDropDownMenu (3.0.2)
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - GoogleToolboxForMac/NSData+zlib (2.1.4):
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - leveldb-library (1.20)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - Realm (3.7.4):
+    - Realm/Headers (= 3.7.4)
+  - Realm/Headers (3.7.4)
+  - RealmLoginKit (0.1.4):
+    - Realm
+    - RealmLoginKit/Core (= 0.1.4)
+    - TORoundedTableView
+  - RealmLoginKit/Core (0.1.4):
+    - Realm
+    - TORoundedTableView
+  - RealmSwift (3.7.4):
+    - Realm (= 3.7.4)
+  - SnapKit (4.0.0)
+  - TORoundedTableView (0.1.3)
 
 DEPENDENCIES:
-  - AWSAuthCore (~> 2.6.1)
+  - Firebase/Core
+  - Firebase/Database
   - FSCalendar
-  - Pastel
+  - RealmLoginKit
   - RealmSwift
-  - SideMenu
-  - Toaster
-  - YNDropDownMenu
+  - SnapKit (~> 4.0.0)
 
 SPEC CHECKSUMS:
-  AWSAuthCore: d0f6fcbe8957c3dc5f67ce4ac198cc1f2696ee17
-  AWSCore: 314df68684e338310409c6a3b050e28932deb6ff
+  Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
+  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
+  FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
+  FirebaseDatabase: 27be5ac5bc75e0b17537b2bbfada8258addcc8cd
+  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
-  Pastel: 7fa5e26123b3dbe11f7ed255654bf37100b199a5
-  Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
-  RealmSwift: 4e903a494e05d866581d69ad6f7e7b879d446baf
-  SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
-  Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
-  YNDropDownMenu: 9421eb9c144448415d90141344a2cdbbaf11fc3c
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Realm: a469bb59e33f9926102ccaea4349822c53b9117e
+  RealmLoginKit: 827026eb88983f20f8b236835940b614f4a50dd6
+  RealmSwift: a45861b21c180f5cf0f122144b9759fa8dde3e9e
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  TORoundedTableView: cd1437ef81ab3888dea8c06d2dfe4795bcaac768
 
-PODFILE CHECKSUM: a662651c2819e8c51075707de562567dbb4c1aa5
+PODFILE CHECKSUM: dd7a6fa2f3b12b3ff1e11ab0a2629d6b2e8e9af6
 
 COCOAPODS: 1.4.0

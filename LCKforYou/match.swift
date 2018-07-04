@@ -10,11 +10,11 @@ import Foundation
 import Realm
 import RealmSwift
 
-class match: Object {
+class Match: Object {
     @objc dynamic var id = 0
-    @objc dynamic var matchtitle: String = ""
-    @objc dynamic var matchdate = Date()
-    @objc dynamic var ticketdate = Date()
+    @objc dynamic var title: String = ""
+    @objc dynamic var date = Date()
+    @objc dynamic var ticketDate = Date()
     @objc dynamic var teamLeft: String = ""
     @objc dynamic var teamRight: String = ""
     @objc dynamic var stadium: String = "" //상암,강남
@@ -27,5 +27,11 @@ class match: Object {
         return "id"
     }
     
-    
+}
+extension Match {
+    func writeToRealm(){
+        try! uiRealm.write {
+            uiRealm.add(self, update: true)
+        }
+    }
 }

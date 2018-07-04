@@ -8,7 +8,6 @@
 import UIKit
 import Realm
 import RealmSwift
-import Pastel
 
 class RankingViewController: UIViewController { 
     override func viewDidLoad() {

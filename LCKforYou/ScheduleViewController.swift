@@ -9,11 +9,10 @@
 import UIKit
 import RealmSwift
 import Realm
-import Toaster
 import FSCalendar
 import EventKit
 import UserNotifications
-import YNDropDownMenu
+import FirebaseDatabase
 
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
@@ -22,7 +21,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     //realm
     let realm = try! Realm()
-    var items: Results<match>?
+    var items: Results<Match>?
     
     //tableview section name List
     var matchup_dates : [String] = []
@@ -46,10 +45,13 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         super.viewDidLoad()
         
+        grabData()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
-        self.tableView.rowHeight = 100.0
+        self.tableView.rowHeight = 90.0
+        
     
         //calendar 설정
         calendarView.dataSource = self
@@ -58,18 +60,17 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         calendarView.clipsToBounds = true
         calendarView.appearance.headerDateFormat = "yyyy년 MM월"
         calendarView.appearance.headerTitleColor = UIColor.black
-//        calendarView.scope = .week
         
         
         // Realm 저장 위치 보여줌
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-        items = realm.objects(match.self)
+        items = realm.objects(Match.self)
         
         
         for i in items! {
             //calendar용
             //날짜 받아서 eventdots로 뿌려주기 위함.
-            eventdates.append(i.matchdate)
+            eventdates.append(i.date)
             
             //tableview section용
             if matchup_dates.contains(i.mmdd_date) {
@@ -93,7 +94,50 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         //local notification
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
         
-
+    }
+    
+    func grabData() {
+        var databaseRef = Database.database().reference()
+        databaseRef.child("match").observe(.value, with: {
+            (snapshot) in
+            print(snapshot)
+            for snap in snapshot.children.allObjects as! [DataSnapshot]{
+                guard let dictionary = snap.value as? [String : AnyObject] else {
+                    return
+                }
+                var mTitle = dictionary["title"] as? String
+                //date format 해줘야함...
+                var mDate = dictionary["date"] as? String
+                self.dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss"
+                let matchDate = self.dateFormatter.date(from: mDate!)
+                //date format 해줘야함...
+                var ticketDate = dictionary["ticketDate"] as? String
+                self.dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss"
+                let tDate = self.dateFormatter.date(from: ticketDate!)
+                
+                var teamLeft = dictionary["teamLeft"] as? String
+                var teamRight = dictionary["teamRight"] as? String
+                var stadium = dictionary["stadium"] as? String
+                var season = dictionary["season"] as? String
+                var round = dictionary["round"] as? String
+                var mmdd_date = dictionary["mmdd_date"]  as? String
+                
+                var matchToAdd = Match()
+                matchToAdd.title = mTitle!
+                matchToAdd.date = matchDate!
+                matchToAdd.ticketDate = tDate!
+                matchToAdd.teamLeft = teamLeft!
+                matchToAdd.teamRight = teamRight!
+                matchToAdd.stadium = stadium!
+                matchToAdd.season = season!
+                matchToAdd.round = round!
+                matchToAdd.mmdd_date = mmdd_date!
+                
+                matchToAdd.writeToRealm()
+                
+                
+            }
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -120,6 +164,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     //요일 만들기
     func getDayOfWeek(today:Date)->String {
+        dateFormatter.locale = Locale(identifier:"ko_KR")
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let today = dateFormatter.string(from: date as Date)
         let todayDate = dateFormatter.date(from: today)!
@@ -143,26 +188,33 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     // 셀 내용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "List Cell") as! TableViewCell
-        cell.layoutMargins.bottom = 30.0
         
         //items
         let data = items?.filter("mmdd_date == %@",matchup_dates[indexPath.section])[indexPath.row]
         
         dateFormatter.dateFormat = "hh:mm"
-        let startTime = dateFormatter.string(from:(data?.matchdate)!)
+        let startTime = dateFormatter.string(from:(data?.date)!)
         
         //MM으로 할지 경기장으로 할지? 우선 경기장으로
         cell.monthLabel.text = data?.stadium
         dateFormatter.dateFormat = "dd"
-        let dayday = dateFormatter.string(from: (data?.matchdate as Date?)!)
+        let dayday = dateFormatter.string(from: (data?.date as Date?)!)
         cell.dayLabel.text = dayday
-        cell.weekLabel.text = getDayOfWeek(today: (data?.matchdate)!)
+        cell.weekLabel.text = getDayOfWeek(today: (data?.date)!)
         cell.timeLabel.text = "PM \(startTime)"
         cell.leftTeamLabel.text = data?.teamLeft
         cell.rightTeamLabel.text = data?.teamRight
         
-        
-        //왼쪽 팀 image
+        switch data?.stadium {
+        case "상암":
+            cell.barView.backgroundColor = UIColor.green
+        case "강남":
+            cell.barView.backgroundColor = UIColor.blue
+        default:
+           cell.barView.backgroundColor = UIColor.orange
+        }
+        // image db에 넣는 방향으로 수정하자
+        // 왼쪽 팀 image
         switch data?.teamLeft {
         case "SKT": cell.img_leftTeam.image = UIImage(named: "skt.png")
         case "AFs": cell.img_leftTeam.image = UIImage(named: "afs.png")
@@ -170,8 +222,10 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         case "Jin Air": cell.img_leftTeam.image = UIImage(named: "jag.png")
         case "KSV": cell.img_leftTeam.image = UIImage(named: "ksv.png")
         case "KT": cell.img_leftTeam.image = UIImage(named: "kt.png")
-        case "ROX": cell.img_leftTeam.image = UIImage(named: "rox.png")
+        case "HIE": cell.img_leftTeam.image = UIImage(named: "hie.png")
         case "KZ": cell.img_leftTeam.image = UIImage(named: "kz.png")
+        case "FIN": cell.img_leftTeam.image = UIImage(named: "griffin.png")
+        case "MVP": cell.img_leftTeam.image = UIImage(named: "kz.png") //임시
         default: cell.img_leftTeam.image = UIImage(named: "skt.png")
         }
         
@@ -183,8 +237,10 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         case "Jin Air": cell.img_rightTeam.image = UIImage(named: "jag.png")
         case "KSV": cell.img_rightTeam.image = UIImage(named: "ksv.png")
         case "KT": cell.img_rightTeam.image = UIImage(named: "kt.png")
-        case "Rox": cell.img_rightTeam.image = UIImage(named: "rox.png")
+        case "HIE": cell.img_rightTeam.image = UIImage(named: "hie.png")
         case "KZ": cell.img_rightTeam.image = UIImage(named: "kz.png")
+        case "FIN": cell.img_rightTeam.image = UIImage(named: "griffin.png")
+        case "MVP": cell.img_rightTeam.image = UIImage(named: "kz.png")
         default: cell.img_rightTeam.image = UIImage(named: "skt.png")
         }
         
@@ -199,7 +255,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    //셀을 누르면 해당 셀 가운데로 이동.
+    // cell 선택 시
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
@@ -231,8 +287,8 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func ticketBtnSelected(sender: UIButton) {
         let query = items?.filter("id == %@",sender.tag)[0]
         
-        let ticketingdate = query?.ticketdate
-        let mTitle = query?.matchtitle
+        let ticketingdate = query?.ticketDate
+        let mTitle = query?.title
         let tmp = String(describing: ticketingdate)
         var ticketingTime = tmp.components(separatedBy: ["-"," ",":"])
         notificating(Int(ticketingTime[3])!, Int(ticketingTime[4])!,String(describing: mTitle!), "티켓팅")
@@ -244,8 +300,8 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func startBtnSelected(sender: UIButton) {
         let query = items?.filter("id == %@",sender.tag)[0]
         
-        let matchdate = query?.matchdate
-        let mTitle = query?.matchtitle
+        let matchdate = query?.date
+        let mTitle = query?.title
         let tmp = String(describing: matchdate)
         var matchstart = tmp.components(separatedBy: ["-"," ",":"])
         notificating(Int(matchstart[3])!, Int(matchstart[4])!,String(describing: mTitle!), "경기")
@@ -274,9 +330,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         default:
             notificationContent.body = "error"
         }
-        //
+
 //        var dateComponents = DateComponents()
-//////        dateComponents.weekday = 2
+//        dateComponents.weekday = 2
 //        dateComponents.month = 4
 //        dateComponents.day = 16
 //        dateComponents.hour = 3
@@ -327,7 +383,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         if matchup_dates.contains(selectedDate) {
             let idx = matchup_dates.index(of: selectedDate)
             let indexPath = NSIndexPath(item: 0, section: idx!)
-            tableView.scrollToRow(at: indexPath as IndexPath, at: UITableViewScrollPosition.middle, animated: true)
+            tableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: true)
         }
     }
     
@@ -361,11 +417,11 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 //이벤트 마다 색깔 바뀌도록 변경할 것. (예정)
                 switch stadium {
                 case "상암":
-                    calendar.appearance.eventDefaultColor = UIColor.green
+                    calendar.appearance.eventSelectionColor = UIColor.green
                 case "강남":
-                    calendar.appearance.eventDefaultColor = UIColor.blue
+                    calendar.appearance.eventSelectionColor = UIColor.blue
                 default:
-                    calendar.appearance.eventDefaultColor = UIColor.orange
+                    calendar.appearance.eventSelectionColor = UIColor.orange
                 }
                 return 1
             }
