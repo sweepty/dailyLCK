@@ -13,6 +13,7 @@ import FSCalendar
 import EventKit
 import UserNotifications
 import FirebaseDatabase
+import SnapKit
 
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
@@ -97,7 +98,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func grabData() {
-        var databaseRef = Database.database().reference()
+        let databaseRef = Database.database().reference()
         databaseRef.child("match").observe(.value, with: {
             (snapshot) in
             print(snapshot)
@@ -105,27 +106,28 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 guard let dictionary = snap.value as? [String : AnyObject] else {
                     return
                 }
-                var mTitle = dictionary["title"] as? String
+                let mTitle = dictionary["title"] as? String
+                
                 //date format 해줘야함...
-                var mDate = dictionary["date"] as? String
+                let mDate = dictionary["date"] as? String
                 self.dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss"
                 let matchDate = self.dateFormatter.date(from: mDate!)
+                
                 //date format 해줘야함...
-                var ticketDate = dictionary["ticketDate"] as? String
+                let tDate = dictionary["ticketDate"] as? String
                 self.dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss"
-                let tDate = self.dateFormatter.date(from: ticketDate!)
+                let ticketDay = self.dateFormatter.date(from: tDate!)
+                let teamLeft = dictionary["teamLeft"] as? String
+                let teamRight = dictionary["teamRight"] as? String
+                let stadium = dictionary["stadium"] as? String
+                let season = dictionary["season"] as? String
+                let round = dictionary["round"] as? String
+                let mmdd_date = dictionary["mmdd_date"]  as? String
                 
-                var teamLeft = dictionary["teamLeft"] as? String
-                var teamRight = dictionary["teamRight"] as? String
-                var stadium = dictionary["stadium"] as? String
-                var season = dictionary["season"] as? String
-                var round = dictionary["round"] as? String
-                var mmdd_date = dictionary["mmdd_date"]  as? String
-                
-                var matchToAdd = Match()
+                let matchToAdd = Match()
                 matchToAdd.title = mTitle!
                 matchToAdd.date = matchDate!
-                matchToAdd.ticketDate = tDate!
+                matchToAdd.ticketDate = ticketDay!
                 matchToAdd.teamLeft = teamLeft!
                 matchToAdd.teamRight = teamRight!
                 matchToAdd.stadium = stadium!
@@ -134,7 +136,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 matchToAdd.mmdd_date = mmdd_date!
                 
                 matchToAdd.writeToRealm()
-                
+
                 
             }
         })
@@ -189,9 +191,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "List Cell") as! TableViewCell
         
+        
         //items
         let data = items?.filter("mmdd_date == %@",matchup_dates[indexPath.section])[indexPath.row]
-        
         dateFormatter.dateFormat = "hh:mm"
         let startTime = dateFormatter.string(from:(data?.date)!)
         
