@@ -10,7 +10,6 @@ import UIKit
 import RealmSwift
 import Realm
 import FSCalendar
-import EventKit
 import UserNotifications
 import FirebaseDatabase
 import SnapKit
@@ -19,7 +18,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var calendarView: FSCalendar!
-    
+
     //realm
     let realm = try! Realm()
     var items: Results<Match>?
@@ -39,8 +38,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     //event dot 뿌려주기
     var eventdates : [Date] = []
     
-    //미리 알림 event
-    var eventStore: EKEventStore?
+    var isMonthMode = true
     
     override func viewDidLoad() {
         
@@ -54,14 +52,16 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.rowHeight = 90.0
         
     
-        //calendar 설정
+        // calendar 설정
         calendarView.dataSource = self
         calendarView.delegate = self
         calendarView.scrollDirection = .horizontal
         calendarView.clipsToBounds = true
-        calendarView.appearance.headerDateFormat = "yyyy년 MM월"
+        calendarView.appearance.headerDateFormat = "MMMM"
+//        calendarView.appearance.header
         calendarView.appearance.headerTitleColor = UIColor.black
-        
+//        calendarView.clipsToBounds = true
+        self.calendarView.appearance.headerMinimumDissolvedAlpha = 0.0;
         
         // Realm 저장 위치 보여줌
         print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -103,11 +103,12 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             (snapshot) in
             print(snapshot)
             for snap in snapshot.children.allObjects as! [DataSnapshot]{
-                guard let dictionary = snap.value as? [String : AnyObject] else {
+                guard var dictionary = snap.value as? [String : AnyObject] else {
                     return
                 }
+                let id = Int(snap.key)
                 let mTitle = dictionary["title"] as? String
-                
+            
                 //date format 해줘야함...
                 let mDate = dictionary["date"] as? String
                 self.dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss"
@@ -125,6 +126,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 let mmdd_date = dictionary["mmdd_date"]  as? String
                 
                 let matchToAdd = Match()
+                matchToAdd.id = id!
                 matchToAdd.title = mTitle!
                 matchToAdd.date = matchDate!
                 matchToAdd.ticketDate = ticketDay!
@@ -136,8 +138,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 matchToAdd.mmdd_date = mmdd_date!
                 
                 matchToAdd.writeToRealm()
-
-                
             }
         })
     }
@@ -201,16 +201,16 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         cell.monthLabel.text = data?.stadium
         dateFormatter.dateFormat = "dd"
         let dayday = dateFormatter.string(from: (data?.date as Date?)!)
-        cell.dayLabel.text = dayday
-        cell.weekLabel.text = getDayOfWeek(today: (data?.date)!)
+//        cell.dayLabel.text = dayday
+//        cell.weekLabel.text = getDayOfWeek(today: (data?.date)!)
         cell.timeLabel.text = "PM \(startTime)"
         cell.leftTeamLabel.text = data?.teamLeft
         cell.rightTeamLabel.text = data?.teamRight
         
         switch data?.stadium {
-        case "상암":
+        case "ogn":
             cell.barView.backgroundColor = UIColor.green
-        case "강남":
+        case "spotv":
             cell.barView.backgroundColor = UIColor.blue
         default:
            cell.barView.backgroundColor = UIColor.orange
