@@ -111,12 +111,15 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             
                 //date format 해줘야함...
                 let mDate = dictionary["date"] as? String
-                self.dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss"
+                self.dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+//                self.dateFormatter.timeZone = TimeZone(abbreviation: "KST")
+                self.dateFormatter.locale = Locale(identifier:"ko_KR")
                 let matchDate = self.dateFormatter.date(from: mDate!)
                 
                 //date format 해줘야함...
                 let tDate = dictionary["ticketDate"] as? String
-                self.dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss"
+                self.dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+                self.dateFormatter.locale = Locale(identifier:"ko_KR")
                 let ticketDay = self.dateFormatter.date(from: tDate!)
                 let teamLeft = dictionary["teamLeft"] as? String
                 let teamRight = dictionary["teamRight"] as? String
@@ -196,11 +199,11 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         let data = items?.filter("mmdd_date == %@",matchup_dates[indexPath.section])[indexPath.row]
         dateFormatter.dateFormat = "hh:mm"
         let startTime = dateFormatter.string(from:(data?.date)!)
-        
+
         //MM으로 할지 경기장으로 할지? 우선 경기장으로
         cell.monthLabel.text = data?.stadium
         dateFormatter.dateFormat = "dd"
-        let dayday = dateFormatter.string(from: (data?.date as Date?)!)
+//        let dayday = dateFormatter.string(from: (data?.date as Date?)!)
 //        cell.dayLabel.text = dayday
 //        cell.weekLabel.text = getDayOfWeek(today: (data?.date)!)
         cell.timeLabel.text = "PM \(startTime)"
@@ -208,9 +211,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         cell.rightTeamLabel.text = data?.teamRight
         
         switch data?.stadium {
-        case "ogn":
+        case "OGN":
             cell.barView.backgroundColor = UIColor.green
-        case "spotv":
+        case "SPOTV":
             cell.barView.backgroundColor = UIColor.blue
         default:
            cell.barView.backgroundColor = UIColor.orange
@@ -219,14 +222,14 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         // 왼쪽 팀 image
         switch data?.teamLeft {
         case "SKT": cell.img_leftTeam.image = UIImage(named: "skt.png")
-        case "AFs": cell.img_leftTeam.image = UIImage(named: "afs.png")
+        case "Afreeca": cell.img_leftTeam.image = UIImage(named: "afs.png")
         case "bbq": cell.img_leftTeam.image = UIImage(named: "bbq.png")
         case "Jin Air": cell.img_leftTeam.image = UIImage(named: "jag.png")
-        case "KSV": cell.img_leftTeam.image = UIImage(named: "ksv.png")
-        case "KT": cell.img_leftTeam.image = UIImage(named: "kt.png")
-        case "HIE": cell.img_leftTeam.image = UIImage(named: "hie.png")
-        case "KZ": cell.img_leftTeam.image = UIImage(named: "kz.png")
-        case "FIN": cell.img_leftTeam.image = UIImage(named: "griffin.png")
+        case "Gen.G": cell.img_leftTeam.image = UIImage(named: "ksv.png")
+        case "KT Rolster": cell.img_leftTeam.image = UIImage(named: "kt.png")
+        case "HLE": cell.img_leftTeam.image = UIImage(named: "hie.png")
+        case "KING-ZONE": cell.img_leftTeam.image = UIImage(named: "kz.png")
+        case "Griffin": cell.img_leftTeam.image = UIImage(named: "griffin.png")
         case "MVP": cell.img_leftTeam.image = UIImage(named: "kz.png") //임시
         default: cell.img_leftTeam.image = UIImage(named: "skt.png")
         }
@@ -234,17 +237,25 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         //오른쪽 팀 image
         switch data?.teamRight {
         case "SKT": cell.img_rightTeam.image = UIImage(named: "skt.png")
-        case "AFs": cell.img_rightTeam.image = UIImage(named: "afs.png")
+        case "Afreeca": cell.img_rightTeam.image = UIImage(named: "afs.png")
         case "bbq": cell.img_rightTeam.image = UIImage(named: "bbq.png")
         case "Jin Air": cell.img_rightTeam.image = UIImage(named: "jag.png")
-        case "KSV": cell.img_rightTeam.image = UIImage(named: "ksv.png")
-        case "KT": cell.img_rightTeam.image = UIImage(named: "kt.png")
-        case "HIE": cell.img_rightTeam.image = UIImage(named: "hie.png")
-        case "KZ": cell.img_rightTeam.image = UIImage(named: "kz.png")
-        case "FIN": cell.img_rightTeam.image = UIImage(named: "griffin.png")
+        case "Gen.G": cell.img_rightTeam.image = UIImage(named: "ksv.png")
+        case "KT Rolster": cell.img_rightTeam.image = UIImage(named: "kt.png")
+        case "HLE": cell.img_rightTeam.image = UIImage(named: "hie.png")
+        case "KING-ZONE": cell.img_rightTeam.image = UIImage(named: "kz.png")
+        case "Griffin": cell.img_rightTeam.image = UIImage(named: "griffin.png")
         case "MVP": cell.img_rightTeam.image = UIImage(named: "kz.png")
         default: cell.img_rightTeam.image = UIImage(named: "skt.png")
         }
+        
+//        // 오늘
+//        dateFormatter.dateFormat = "MM월 dd일"
+//        let today = dateFormatter.string(from: date as Date)
+//        print(today)
+//        if data?.mmdd_date == today {
+//            tableView.indexPath(for: )
+//        }
         
         //ticketing
         cell.btn_ticketAlarm.tag = (data?.id)!
@@ -256,11 +267,17 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         return cell
     }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        //오늘날짜가 가장 처음으로 나오도록?
+//
+//        tableView.scrollToRow(at: IndexPath(row: 1, section: 3), at: .none , animated: false)
+//    }
     
-    // cell 선택 시
+    // cell 선택 시 해당 셀로 스크롤
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
+    
     
     func notificating(_ hh: Int, _ mm: Int, _ title:String, _ type: String){
         //local notification
@@ -390,19 +407,19 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     //subtitle
-    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
-        //eventdates는 matchdate(Date)가 모여있는 array임.
-        for eventDate in eventdates {
-            if self.gregorian.isDate(date, inSameDayAs: eventDate){
-                return "경기날"
-            }
-            if self.gregorian.isDateInToday(date){
-                return "today"
-            }
-        }
-        return nil
-        
-    }
+//    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+//        //eventdates는 matchdate(Date)가 모여있는 array임.
+//        for eventDate in eventdates {
+//            if self.gregorian.isDate(date, inSameDayAs: eventDate){
+//                return "경기날"
+//            }
+//            if self.gregorian.isDateInToday(date){
+//                return "today"
+//            }
+//        }
+//        return nil
+//        
+//    }
     
     //event dots
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
@@ -418,9 +435,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 //이벤트 마다 색깔 바뀌도록 변경할 것. (예정)
                 switch stadium {
-                case "상암":
+                case "OGN":
                     calendar.appearance.eventSelectionColor = UIColor.green
-                case "강남":
+                case "SPOTV":
                     calendar.appearance.eventSelectionColor = UIColor.blue
                 default:
                     calendar.appearance.eventSelectionColor = UIColor.orange
