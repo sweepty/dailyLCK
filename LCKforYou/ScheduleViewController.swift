@@ -27,6 +27,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     var matchup_dates : [String] = []
     var list :[String:[Int]] = [:]
     
+    // 월별 몇개 있는지. dictionary
+    var months: [String: Int] = [:]
+    var sortedList :[Date] = []
     fileprivate let gregorian = Calendar(identifier: .gregorian)
     
     //dateformatter(date to string, string to date)
@@ -48,47 +51,51 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
+        self.tableView.rowHeight = 70.0
         
-        self.tableView.rowHeight = 90.0
-        
-    
         // calendar 설정
         calendarView.dataSource = self
         calendarView.delegate = self
         calendarView.scrollDirection = .horizontal
         calendarView.clipsToBounds = true
-        calendarView.appearance.headerDateFormat = "MMMM"
-//        calendarView.appearance.header
+        calendarView.appearance.headerDateFormat = "YYYY MMMM"
+//        calendarView.appearance.weekdayFont = UIFont (name: "HelveticaNeue", size: 20)
+        calendarView.appearance.titleFont = UIFont (name: "HelveticaNeue", size: 17)
         calendarView.appearance.headerTitleColor = UIColor.black
-//        calendarView.clipsToBounds = true
-        self.calendarView.appearance.headerMinimumDissolvedAlpha = 0.0;
+//        self.calendarView.appearance.headerMinimumDissolvedAlpha = 0.0;
         
         // Realm 저장 위치 보여줌
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         items = realm.objects(Match.self)
         
+        // 날짜로 sort
+        items = items?.sorted(byKeyPath: "date", ascending: true)
         
-        for i in items! {
-            //calendar용
-            //날짜 받아서 eventdots로 뿌려주기 위함.
-            eventdates.append(i.date)
-            
-            //tableview section용
-            if matchup_dates.contains(i.mmdd_date) {
-                
-            } else {
-                matchup_dates.append(i.mmdd_date)
+        if let mItems = items {
+            for i in mItems {
+                dateFormatter.dateFormat = "YYYY년 M월"
+                let d = dateFormatter.string(from: i.date)
+                if months.keys.contains(d) {
+                    months.updateValue(months[d]! + 1, forKey: d)
+                } else {
+                    months[d] = 1
+                    
+                    //섹션 명
+                    matchup_dates.append(d)
+                    
+                    
+                }
             }
         }
         
-        dateFormatter.dateFormat = "MM월 dd일"
-        let today = dateFormatter.string(from: date as Date)
-        print(today)
+//        dateFormatter.dateFormat = "MM월 dd일"
+//        let today = dateFormatter.string(from: date as Date)
+//        print(today)
         
         //오늘 경기가 없지만 유저에게 오늘 경기가 없다는 것을 보여주기 위해서 추가
-        if !matchup_dates.contains(today) {
-            matchup_dates.append(today)
-        }
+//        if !matchup_dates.contains(today) {
+//            matchup_dates.append(today)
+//        }
         //날짜 순으로 정렬.
         matchup_dates.sort()
         
@@ -124,20 +131,20 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 let teamLeft = dictionary["teamLeft"] as? String
                 let teamRight = dictionary["teamRight"] as? String
                 let stadium = dictionary["stadium"] as? String
-                let season = dictionary["season"] as? String
-                let round = dictionary["round"] as? String
+//                let season = dictionary["season"] as? String
+//                let round = dictionary["round"] as? String
                 let mmdd_date = dictionary["mmdd_date"]  as? String
                 
                 let matchToAdd = Match()
                 matchToAdd.id = id!
-                matchToAdd.title = mTitle!
+//                matchToAdd.title = mTitle!
                 matchToAdd.date = matchDate!
                 matchToAdd.ticketDate = ticketDay!
                 matchToAdd.teamLeft = teamLeft!
                 matchToAdd.teamRight = teamRight!
                 matchToAdd.stadium = stadium!
-                matchToAdd.season = season!
-                matchToAdd.round = round!
+//                matchToAdd.season = season!
+//                matchToAdd.round = round!
                 matchToAdd.mmdd_date = mmdd_date!
                 
                 matchToAdd.writeToRealm()
@@ -163,29 +170,26 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     //각 섹션 당 셀 수 얻기
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (items?.filter("mmdd_date ==%@",matchup_dates[section]).count)!
+        let monthsKeys = months.keys.sorted()
+        return (months[monthsKeys[section]])!
+
     }
     
     
     //요일 만들기
     func getDayOfWeek(today:Date)->String {
-        dateFormatter.locale = Locale(identifier:"ko_KR")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let today = dateFormatter.string(from: date as Date)
-        let todayDate = dateFormatter.date(from: today)!
         let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
-        let myComponents = myCalendar.components(.weekday, from: todayDate)
+        let myComponents = myCalendar.components(.weekday, from: today)
         let weekDay = myComponents.weekday
-        
+
         switch weekDay {
-        case 1: return "SUN"
-        case 2: return "MON"
-        case 3: return "TUE"
-        case 4: return "WED"
-        case 5: return "THR"
-        case 6: return "FRI"
-        case 7: return "SAT"
-        default: return "ERROR"
+        case 1: return "일요일"
+        case 2: return "월요일"
+        case 3: return "화요일"
+        case 4: return "수요일"
+        case 5: return "목요일"
+        case 6: return "금요일"
+        default: return "토요일"
         }
     }
     
@@ -193,24 +197,21 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     // 셀 내용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "List Cell") as! TableViewCell
-        
-        
-        //items
-        let data = items?.filter("mmdd_date == %@",matchup_dates[indexPath.section])[indexPath.row]
+        let data = items![indexPath.row]
         dateFormatter.dateFormat = "hh:mm"
-        let startTime = dateFormatter.string(from:(data?.date)!)
+        let startTime = dateFormatter.string(from:(data.date))
 
         //MM으로 할지 경기장으로 할지? 우선 경기장으로
-        cell.monthLabel.text = data?.stadium
+//        cell.monthLabel.text = data.stadium
         dateFormatter.dateFormat = "dd"
-//        let dayday = dateFormatter.string(from: (data?.date as Date?)!)
-//        cell.dayLabel.text = dayday
-//        cell.weekLabel.text = getDayOfWeek(today: (data?.date)!)
+        let dayday = dateFormatter.string(from: (data.date as Date?)!)
+        cell.dayLabel.text = dayday
+        cell.weekLabel.text = getDayOfWeek(today: (data.date))
         cell.timeLabel.text = "PM \(startTime)"
-        cell.leftTeamLabel.text = data?.teamLeft
-        cell.rightTeamLabel.text = data?.teamRight
+        cell.leftTeamLabel.text = data.teamLeft
+        cell.rightTeamLabel.text = data.teamRight
         
-        switch data?.stadium {
+        switch data.stadium {
         case "OGN":
             cell.barView.backgroundColor = UIColor.green
         case "SPOTV":
@@ -218,9 +219,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         default:
            cell.barView.backgroundColor = UIColor.orange
         }
-        // image db에 넣는 방향으로 수정하자
+        
         // 왼쪽 팀 image
-        switch data?.teamLeft {
+        switch data.teamLeft {
         case "SKT": cell.img_leftTeam.image = UIImage(named: "skt.png")
         case "Afreeca": cell.img_leftTeam.image = UIImage(named: "afs.png")
         case "bbq": cell.img_leftTeam.image = UIImage(named: "bbq.png")
@@ -235,7 +236,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         //오른쪽 팀 image
-        switch data?.teamRight {
+        switch data.teamRight {
         case "SKT": cell.img_rightTeam.image = UIImage(named: "skt.png")
         case "Afreeca": cell.img_rightTeam.image = UIImage(named: "afs.png")
         case "bbq": cell.img_rightTeam.image = UIImage(named: "bbq.png")
@@ -249,20 +250,12 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         default: cell.img_rightTeam.image = UIImage(named: "skt.png")
         }
         
-//        // 오늘
-//        dateFormatter.dateFormat = "MM월 dd일"
-//        let today = dateFormatter.string(from: date as Date)
-//        print(today)
-//        if data?.mmdd_date == today {
-//            tableView.indexPath(for: )
-//        }
-        
         //ticketing
-        cell.btn_ticketAlarm.tag = (data?.id)!
+        cell.btn_ticketAlarm.tag = (data.id)
         cell.btn_ticketAlarm.addTarget(self, action: #selector(ticketBtnSelected), for: .touchUpInside)
         
         //start
-        cell.btn_startAlarm.tag = (data?.id)!
+        cell.btn_startAlarm.tag = (data.id)
         cell.btn_startAlarm.addTarget(self, action: #selector(startBtnSelected), for: .touchUpInside)
         
         return cell
@@ -406,46 +399,36 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    //subtitle
-//    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
-//        //eventdates는 matchdate(Date)가 모여있는 array임.
+//    //event dots
+//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+//        dateFormatter.dateFormat = "MM월 dd일"
+//        let mmdd = dateFormatter.string(from: date)
+//
+//        //eventdates는 matchdate가 모여있는 array임.
 //        for eventDate in eventdates {
 //            if self.gregorian.isDate(date, inSameDayAs: eventDate){
-//                return "경기날"
-//            }
-//            if self.gregorian.isDateInToday(date){
-//                return "today"
+//                //이미 지난 경기이면 eventdot 색깔 바꿔주도록 하기 (예정)
+//
+//                let stadium = items?.filter("mmdd_date == %@",mmdd)[0].stadium
+//
+//                //이벤트 마다 색깔 바뀌도록 변경할 것. (예정)
+//                switch stadium {
+//                case "OGN":
+//                    calendar.appearance.eventSelectionColor = UIColor.green
+//                case "SPOTV":
+//                    calendar.appearance.eventSelectionColor = UIColor.blue
+//                default:
+//                    calendar.appearance.eventSelectionColor = UIColor.orange
+//                }
+//                return 1
 //            }
 //        }
-//        return nil
-//        
+//        return 0
 //    }
     
-    //event dots
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        dateFormatter.dateFormat = "MM월 dd일"
-        let mmdd = dateFormatter.string(from: date)
-        
-        //eventdates는 matchdate가 모여있는 array임.
-        for eventDate in eventdates {
-            if self.gregorian.isDate(date, inSameDayAs: eventDate){
-                //이미 지난 경기이면 eventdot 색깔 바꿔주도록 하기 (예정)
-        
-                let stadium = items?.filter("mmdd_date == %@",mmdd)[0].stadium
-                
-                //이벤트 마다 색깔 바뀌도록 변경할 것. (예정)
-                switch stadium {
-                case "OGN":
-                    calendar.appearance.eventSelectionColor = UIColor.green
-                case "SPOTV":
-                    calendar.appearance.eventSelectionColor = UIColor.blue
-                default:
-                    calendar.appearance.eventSelectionColor = UIColor.orange
-                }
-                return 1
-            }
-        }
-        return 0
+    // 달이 바뀌었을 때.
+    func calendarCurrentMonthDidChange(_ calendar: FSCalendar) {
+        // Do something
     }
 }
 extension ScheduleViewController: UNUserNotificationCenterDelegate {
