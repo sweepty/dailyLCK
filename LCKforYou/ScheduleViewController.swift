@@ -19,6 +19,8 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var calendarView: FSCalendar!
 
+
+    
     //realm
     let realm = try! Realm()
     var items: Results<Match>?
@@ -114,12 +116,11 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                     return
                 }
                 let id = Int(snap.key)
-                let mTitle = dictionary["title"] as? String
+//                let mTitle = dictionary["title"] as? String
             
                 //date format 해줘야함...
                 let mDate = dictionary["date"] as? String
                 self.dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
-//                self.dateFormatter.timeZone = TimeZone(abbreviation: "KST")
                 self.dateFormatter.locale = Locale(identifier:"ko_KR")
                 let matchDate = self.dateFormatter.date(from: mDate!)
                 
@@ -131,13 +132,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 let teamLeft = dictionary["teamLeft"] as? String
                 let teamRight = dictionary["teamRight"] as? String
                 let stadium = dictionary["stadium"] as? String
-//                let season = dictionary["season"] as? String
-//                let round = dictionary["round"] as? String
-                let mmdd_date = dictionary["mmdd_date"]  as? String
-                
+
                 let matchToAdd = Match()
                 matchToAdd.id = id!
-//                matchToAdd.title = mTitle!
                 matchToAdd.date = matchDate!
                 matchToAdd.ticketDate = ticketDay!
                 matchToAdd.teamLeft = teamLeft!
@@ -145,7 +142,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 matchToAdd.stadium = stadium!
 //                matchToAdd.season = season!
 //                matchToAdd.round = round!
-                matchToAdd.mmdd_date = mmdd_date!
+//                matchToAdd.mmdd_date = mmdd_date!
                 
                 matchToAdd.writeToRealm()
             }
