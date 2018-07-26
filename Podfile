@@ -9,9 +9,8 @@ target 'LCKforYou' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
-  pod 'GoogleSignIn'
-  pod 'FirebaseUI/Google'
   pod 'SnapKit', '~> 4.0.0'
+  pod 'lottie-ios'
   # Pods for LCKforYou
 
 end

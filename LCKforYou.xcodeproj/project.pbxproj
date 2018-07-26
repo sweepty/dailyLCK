@@ -20,6 +20,8 @@
 		1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7351E72031F1D100BD0C71 /* TodayViewController.swift */; };
 		1B7351EB2031F1D100BD0C71 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7351E92031F1D100BD0C71 /* MainInterface.storyboard */; };
 		1B7351EF2031F1D100BD0C71 /* LCKTarget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B7351E42031F1D100BD0C71 /* LCKTarget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B905A252109A2200032F3B5 /* SelectTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */; };
+		1B905A272109B4A50032F3B5 /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B905A262109B4A50032F3B5 /* TeamCell.swift */; };
 		1B96050D207FA0E3000D984C /* bbq.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B960505207FA0E2000D984C /* bbq.png */; };
 		1B96050E207FA0E3000D984C /* rox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B960506207FA0E2000D984C /* rox.png */; };
 		1B96050F207FA0E3000D984C /* ksv.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B960507207FA0E2000D984C /* ksv.png */; };
@@ -92,6 +94,8 @@
 		1B7351EC2031F1D100BD0C71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B747437205D55CC00DDC7C0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		1B747438205D55CC00DDC7C0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
+		1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamViewController.swift; sourceTree = "<group>"; };
+		1B905A262109B4A50032F3B5 /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		1B960505207FA0E2000D984C /* bbq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bbq.png; path = ../../../../Documents/lckforyou_img/bbq.png; sourceTree = "<group>"; };
 		1B960506207FA0E2000D984C /* rox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rox.png; path = ../../../../Documents/lckforyou_img/rox.png; sourceTree = "<group>"; };
 		1B960507207FA0E2000D984C /* ksv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ksv.png; path = ../../../../Documents/lckforyou_img/ksv.png; sourceTree = "<group>"; };
@@ -152,7 +156,9 @@
 				1B2B964D20F6FC2D007DBDC3 /* GoogleService-Info.plist */,
 				1B00472120309F4800FE102E /* ScheduleViewController.swift */,
 				1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */,
+				1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */,
 				1B28FC9320561DC300EE45B0 /* TableViewCell.swift */,
+				1B905A262109B4A50032F3B5 /* TeamCell.swift */,
 				1BF22834207B279500480CE6 /* match.swift */,
 				1B5423B420F7C92E0088C3E5 /* Team.swift */,
 				1B960504207FA0B3000D984C /* img */,
@@ -335,25 +341,25 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +414,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B905A272109B4A50032F3B5 /* TeamCell.swift in Sources */,
+				1B905A252109A2200032F3B5 /* SelectTeamViewController.swift in Sources */,
 				1B5423B720F7CEE90088C3E5 /* ProfileViewController.swift in Sources */,
 				1B5423B520F7C92E0088C3E5 /* Team.swift in Sources */,
 				1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */,

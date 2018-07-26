@@ -20,6 +20,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let supportList :[String] = ["개발자에게 이메일 보내기", "앱 평가하기"]
     let lckforyouList :[String] = ["공유하기", "트위터"]
     
+    let sbList :[String] = ["selectTeam","setAlert"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,6 +71,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let cell = tableView.dequeueReusableCell(withIdentifier: "List Cell")!
             cell.textLabel?.text = lckforyouList[indexPath.row]
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            let vcName = sbList[indexPath.row]
+            let vc = storyboard?.instantiateViewController(withIdentifier: vcName)
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
     

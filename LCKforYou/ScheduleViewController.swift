@@ -60,7 +60,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         calendarView.delegate = self
         calendarView.scrollDirection = .horizontal
         calendarView.clipsToBounds = true
-        calendarView.appearance.headerDateFormat = "YYYY MMMM"
+        calendarView.appearance.headerDateFormat = "YYYY년 M월"
 //        calendarView.appearance.weekdayFont = UIFont (name: "HelveticaNeue", size: 20)
         calendarView.appearance.titleFont = UIFont (name: "HelveticaNeue", size: 17)
         calendarView.appearance.headerTitleColor = UIColor.black
@@ -90,14 +90,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
-//        dateFormatter.dateFormat = "MM월 dd일"
-//        let today = dateFormatter.string(from: date as Date)
-//        print(today)
-        
-        //오늘 경기가 없지만 유저에게 오늘 경기가 없다는 것을 보여주기 위해서 추가
-//        if !matchup_dates.contains(today) {
-//            matchup_dates.append(today)
-//        }
         //날짜 순으로 정렬.
         matchup_dates.sort()
         

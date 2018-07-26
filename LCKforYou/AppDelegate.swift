@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import GoogleSignIn
 import RealmSwift
 
 var uiRealm  = try! Realm()
