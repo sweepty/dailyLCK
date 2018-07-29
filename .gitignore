@@ -86,5 +86,6 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
-
+# googleService
+LCKforYou/GoogleService-Info.plist
 # End of https://www.gitignore.io/api/swift,firebase,cocoapods
