@@ -32,7 +32,6 @@
 		1B7FA8122110D4EB00097F69 /* hie.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7FA8082110D4EB00097F69 /* hie.png */; };
 		1B7FA8132110D4EB00097F69 /* afs.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7FA8092110D4EB00097F69 /* afs.png */; };
 		1B7FA8172110D8B900097F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B7FA8162110D8B900097F69 /* GoogleService-Info.plist */; };
-		1B7FA8192110DD4F00097F69 /* TeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FA8182110DD4F00097F69 /* TeamCollectionViewCell.swift */; };
 		1B8F15502113605B00F1FDB3 /* MyTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */; };
 		1B905A252109A2200032F3B5 /* SelectTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */; };
 		1BF22835207B279500480CE6 /* match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF22834207B279500480CE6 /* match.swift */; };
@@ -109,7 +108,6 @@
 		1B7FA8082110D4EB00097F69 /* hie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hie.png; sourceTree = "<group>"; };
 		1B7FA8092110D4EB00097F69 /* afs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = afs.png; sourceTree = "<group>"; };
 		1B7FA8162110D8B900097F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1B7FA8182110DD4F00097F69 /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamTableViewCell.swift; sourceTree = "<group>"; };
 		1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamViewController.swift; sourceTree = "<group>"; };
 		1BF22834207B279500480CE6 /* match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = match.swift; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 				1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */,
 				1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */,
 				1B28FC9320561DC300EE45B0 /* TableViewCell.swift */,
-				1B7FA8182110DD4F00097F69 /* TeamCollectionViewCell.swift */,
 				1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */,
 				1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */,
 				1BF22834207B279500480CE6 /* match.swift */,
@@ -431,7 +428,6 @@
 				1B5423B520F7C92E0088C3E5 /* Team.swift in Sources */,
 				1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */,
 				1B28FC9420561DC300EE45B0 /* TableViewCell.swift in Sources */,
-				1B7FA8192110DD4F00097F69 /* TeamCollectionViewCell.swift in Sources */,
 				1BF22835207B279500480CE6 /* match.swift in Sources */,
 				1B00472220309F4800FE102E /* ScheduleViewController.swift in Sources */,
 			);
