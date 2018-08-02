@@ -215,13 +215,13 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         case "Afreeca": cell.img_leftTeam.image = UIImage(named: "afs.png")
         case "bbq": cell.img_leftTeam.image = UIImage(named: "bbq.png")
         case "Jin Air": cell.img_leftTeam.image = UIImage(named: "jag.png")
-        case "Gen.G": cell.img_leftTeam.image = UIImage(named: "ksv.png")
-        case "KT Rolster": cell.img_leftTeam.image = UIImage(named: "kt.png")
+        case "Gen.G": cell.img_leftTeam.image = UIImage(named: "gen.png")
+        case "KT": cell.img_leftTeam.image = UIImage(named: "kt.png")
         case "HLE": cell.img_leftTeam.image = UIImage(named: "hie.png")
         case "KING-ZONE": cell.img_leftTeam.image = UIImage(named: "kz.png")
         case "Griffin": cell.img_leftTeam.image = UIImage(named: "griffin.png")
-        case "MVP": cell.img_leftTeam.image = UIImage(named: "kz.png") //임시
-        default: cell.img_leftTeam.image = UIImage(named: "skt.png")
+        case "MVP": cell.img_leftTeam.image = UIImage(named: "mvp.png")
+        default: cell.img_leftTeam.image = UIImage(named: "skt.png") // 다른 이미지로 교체 할것
         }
         
         //오른쪽 팀 image
@@ -230,13 +230,13 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         case "Afreeca": cell.img_rightTeam.image = UIImage(named: "afs.png")
         case "bbq": cell.img_rightTeam.image = UIImage(named: "bbq.png")
         case "Jin Air": cell.img_rightTeam.image = UIImage(named: "jag.png")
-        case "Gen.G": cell.img_rightTeam.image = UIImage(named: "ksv.png")
-        case "KT Rolster": cell.img_rightTeam.image = UIImage(named: "kt.png")
+        case "Gen.G": cell.img_rightTeam.image = UIImage(named: "gen.png")
+        case "KT": cell.img_rightTeam.image = UIImage(named: "kt.png")
         case "HLE": cell.img_rightTeam.image = UIImage(named: "hie.png")
         case "KING-ZONE": cell.img_rightTeam.image = UIImage(named: "kz.png")
         case "Griffin": cell.img_rightTeam.image = UIImage(named: "griffin.png")
-        case "MVP": cell.img_rightTeam.image = UIImage(named: "kz.png")
-        default: cell.img_rightTeam.image = UIImage(named: "skt.png")
+        case "MVP": cell.img_rightTeam.image = UIImage(named: "mvp.png")
+        default: cell.img_rightTeam.image = UIImage(named: "skt.png") // 다른 이미지로 교체 할것
         }
         
         //ticketing

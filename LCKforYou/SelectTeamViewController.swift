@@ -17,32 +17,33 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return teamList.count
     }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCollectionViewCell", for: indexPath) as! teamCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCollectionViewCell", for: indexPath) as! TeamCollectionViewCell
         
-//        switch teamList[indexPath.row] {
-//        case 0: cell.logo.image = UIImage(named: "afs.png")
-//        case 1: cell.logo.image = UIImage(named: "bbq.png")
-//        case 2: cell.logo.image = UIImage(named: "ksv.png")
-//        case 3: cell.logo.image = UIImage(named: "griffin.png")
-//        case 4: cell.logo.image = UIImage(named: "hie.png")
-//        case 5: cell.logo.image = UIImage(named: "jag.png")
-//        case 6: cell.logo.image = UIImage(named: "kz.png")
-//        case 7: cell.logo.image = UIImage(named: "kt.png")
-//        case 8: cell.logo.image = UIImage(named: "mvp.png")
-//        default:
-//            cell.logo.image = UIImage(named: "skt.png")
-//        }
-        //로고 임시용
-        cell.logo.image = UIImage(named: "skt.png")
-        cell.name.text = teamList[indexPath.row]
-        
+        switch teamList[indexPath.row] {
+        case "Afreeca Freecs": cell.button.setImage(UIImage(named: "afs.png"), for: .normal)
+        case "bbq Olivers": cell.button.setImage(UIImage(named: "bbq.png"), for: .normal)
+        case "Gen.G": cell.button.setImage(UIImage(named: "gen.png"), for: .normal)
+        case "Griffin": cell.button.setImage(UIImage(named: "griffin.png"), for: .normal)
+        case "Hanwha Life Esports": cell.button.setImage(UIImage(named: "hie.png"), for: .normal)
+        case "Jin Air Greenwings": cell.button.setImage(UIImage(named: "jag.png"), for: .normal)
+        case "KING-ZONE DragonX": cell.button.setImage(UIImage(named: "kz.png"), for: .normal)
+        case "KT Rolster": cell.button.setImage(UIImage(named: "kt.png"), for: .normal)
+        case "MVP": cell.button.setImage(UIImage(named: "mvp.png"), for: .normal)
+        default:
+            cell.button.setImage(UIImage(named: "skt.png"), for: .normal)
+        }
+        cell.button.setTitle(teamList[indexPath.row], for: .normal)
+
         return cell
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         teamList.sort()
+        collectionView.contentInset = UIEdgeInsetsMake(10, 20, 10, 20) // top left bottom right
+        self.navigationController?.navigationBar.topItem?.title = "설정"
     }
 }
