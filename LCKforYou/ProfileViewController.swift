@@ -10,9 +10,23 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "my Team Cell", for: indexPath) as! MyTeamCollectionViewCell
+        cell.teamLogo.image = UIImage(named: "skt.png")
+
+        return cell
+    }
+    
+    
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var myTeamCollectionView: UICollectionView!
     
     let sectionList :[String] = ["설정", "피드백", "LckforYou"]
     
@@ -22,14 +36,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let sbList :[String] = ["selectTeam","setAlert"]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
         
+        self.navigationController?.navigationBar.topItem?.title = "설정"
+        
     }
     
+    // tableview
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
@@ -56,8 +75,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "List Cell3")!
-//            cell.textLabel?.text = settingList[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "List Cell3", for: indexPath) as! MyTeamTableViewCell
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "List Cell2")!
@@ -74,6 +92,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let vcName = sbList[indexPath.row]
@@ -85,7 +105,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // 셀 높이 설정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 100
+            return 120
         } else {
             return UITableViewAutomaticDimension
         }
