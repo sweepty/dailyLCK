@@ -23,20 +23,20 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCollectionViewCell", for: indexPath) as! TeamCollectionViewCell
         
         switch teamList[indexPath.row] {
-        case "Afreeca Freecs": cell.button.setImage(UIImage(named: "afs.png"), for: .normal)
-        case "bbq Olivers": cell.button.setImage(UIImage(named: "bbq.png"), for: .normal)
-        case "Gen.G": cell.button.setImage(UIImage(named: "gen.png"), for: .normal)
-        case "Griffin": cell.button.setImage(UIImage(named: "griffin.png"), for: .normal)
-        case "Hanwha Life Esports": cell.button.setImage(UIImage(named: "hie.png"), for: .normal)
-        case "Jin Air Greenwings": cell.button.setImage(UIImage(named: "jag.png"), for: .normal)
-        case "KING-ZONE DragonX": cell.button.setImage(UIImage(named: "kz.png"), for: .normal)
-        case "KT Rolster": cell.button.setImage(UIImage(named: "kt.png"), for: .normal)
-        case "MVP": cell.button.setImage(UIImage(named: "mvp.png"), for: .normal)
+        case "Afreeca Freecs": cell.teamButton.setImage(UIImage(named: "afs.png"), for: .normal)
+        case "bbq Olivers": cell.teamButton.setImage(UIImage(named: "bbq.png"), for: .normal)
+        case "Gen.G": cell.teamButton.setImage(UIImage(named: "gen.png"), for: .normal)
+        case "Griffin": cell.teamButton.setImage(UIImage(named: "griffin.png"), for: .normal)
+        case "Hanwha Life Esports": cell.teamButton.setImage(UIImage(named: "hie.png"), for: .normal)
+        case "Jin Air Greenwings": cell.teamButton.setImage(UIImage(named: "jag.png"), for: .normal)
+        case "KING-ZONE DragonX": cell.teamButton.setImage(UIImage(named: "kz.png"), for: .normal)
+        case "KT Rolster": cell.teamButton.setImage(UIImage(named: "kt.png"), for: .normal)
+        case "MVP": cell.teamButton.setImage(UIImage(named: "mvp.png"), for: .normal)
         default:
-            cell.button.setImage(UIImage(named: "skt.png"), for: .normal)
+            cell.teamButton.setImage(UIImage(named: "skt.png"), for: .normal)
         }
-        cell.button.setTitle(teamList[indexPath.row], for: .normal)
-
+        cell.teamButton.setTitle(teamList[indexPath.row], for: .normal)
+//        cell.teamButton.layer.borderColor = UIColor(red: 189, green: 189, blue: 189, alpha: .init()).cgColor
         return cell
     }
 

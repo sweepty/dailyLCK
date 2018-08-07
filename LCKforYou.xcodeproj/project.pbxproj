@@ -159,16 +159,16 @@
 		1B003191202A09A900FF5A0B /* LCKforYou */ = {
 			isa = PBXGroup;
 			children = (
-				1B7FA8162110D8B900097F69 /* GoogleService-Info.plist */,
 				1B7FA7FF2110D4D000097F69 /* img */,
+				1B7FA8162110D8B900097F69 /* GoogleService-Info.plist */,
 				1B00472120309F4800FE102E /* ScheduleViewController.swift */,
 				1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */,
 				1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */,
 				1B28FC9320561DC300EE45B0 /* TableViewCell.swift */,
 				1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */,
 				1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */,
-				1BF22834207B279500480CE6 /* match.swift */,
 				1B115ECA2113C237008092D0 /* TeamCollectionViewCell.swift */,
+				1BF22834207B279500480CE6 /* match.swift */,
 				1B5423B420F7C92E0088C3E5 /* Team.swift */,
 				1B003192202A09A900FF5A0B /* AppDelegate.swift */,
 				1B003196202A09A900FF5A0B /* Main.storyboard */,

@@ -10,5 +10,6 @@ import UIKit
 
 class TeamCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet var button: UIButton!
+    @IBOutlet var teamButton: UIButton!
+    
 }

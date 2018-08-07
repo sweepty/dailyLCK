@@ -142,31 +142,35 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jAi-D0-Uk6">
-                                    <size key="itemSize" width="143" height="132"/>
+                                    <size key="itemSize" width="118" height="113"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamCollectionViewCell" id="6ON-sc-zCv" customClass="TeamCollectionViewCell" customModule="LCKforYou" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="143" height="139"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="118" height="113"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="143" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="118" height="113"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9k-N1-Hdz">
-                                                    <rect key="frame" x="20" y="14" width="103" height="112"/>
+                                                    <rect key="frame" x="14" y="11" width="90" height="90"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="bubbobsdfdfdfdf" image="gen.png">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorIB">
+                                                            <color key="value" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </button>
                                             </subviews>
                                         </view>
-                                        <size key="customSize" width="143" height="139"/>
+                                        <size key="customSize" width="118" height="113"/>
                                         <connections>
-                                            <outlet property="button" destination="C9k-N1-Hdz" id="LoR-X5-jFx"/>
+                                            <outlet property="teamButton" destination="C9k-N1-Hdz" id="2F7-cm-kk4"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -184,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="02X-Nq-8Ze" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1814" y="610"/>
+            <point key="canvasLocation" x="1813.5999999999999" y="609.44527736131943"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="HcO-gm-w0f">
@@ -419,6 +423,5 @@
     </scenes>
     <resources>
         <image name="clock" width="25" height="25"/>
-        <image name="gen.png" width="600" height="600"/>
     </resources>
 </document>
