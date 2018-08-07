@@ -13,10 +13,10 @@ import RealmSwift
 class Team: Object {
     @objc dynamic var id = 0
     @objc dynamic var name: String = ""
+    @objc dynamic var heart: Bool = false
     
     //primary key 설정
     override static func primaryKey() -> String? {
         return "id"
     }
-    
 }
