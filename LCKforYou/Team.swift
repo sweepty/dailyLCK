@@ -19,4 +19,18 @@ class Team: Object {
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+    static func add(_ id: Int, _ name: String, _ heart: Bool) {
+        let realm = try! Realm()
+        let team = Team()
+        
+        team.id = id
+        team.name = name
+        team.heart = heart
+        
+        try? realm.write {
+            realm.add(team)
+        }
+        
+    }
 }
