@@ -96,13 +96,41 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         //local notification
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
         
+        dataTask(url: "http://127.0.0.1:3000/matches")
+    }
+
+    
+    func dataTask(url: String) {
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+            
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(response)")
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(responseString)")
+            
+        }
+        
+        // 6. POST 전송
+        
+        task.resume()
     }
     
     func grabData() {
         let databaseRef = Database.database().reference()
         databaseRef.child("match").observe(.value, with: {
             (snapshot) in
-            print(snapshot)
+//            print(snapshot)
             for snap in snapshot.children.allObjects as! [DataSnapshot]{
                 guard var dictionary = snap.value as? [String : AnyObject] else {
                     return
