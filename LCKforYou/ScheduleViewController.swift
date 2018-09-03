@@ -11,7 +11,6 @@ import RealmSwift
 import Realm
 import FSCalendar
 import UserNotifications
-import FirebaseDatabase
 import SnapKit
 
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
@@ -45,11 +44,10 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     var isMonthMode = true
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        grabData()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -67,7 +65,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
 //        self.calendarView.appearance.headerMinimumDissolvedAlpha = 0.0;
         
         // Realm 저장 위치 보여줌
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+//        print(Realm.Configuration.defaultConfiguration.fileURL!)
         items = realm.objects(Match.self)
         
         // 날짜로 sort
@@ -96,77 +94,20 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         //local notification
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
         
-        dataTask(url: "http://127.0.0.1:3000/matches")
+        dataTask(url: "http://127.0.0.1:3000/matches", method: "GET")
     }
-
     
-    func dataTask(url: String) {
+    func dataTask(url: String, method: String) {
         var request = URLRequest(url: URL(string: url)!)
-        request.httpMethod = "GET"
+        request.httpMethod = method
         
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-            
-            guard let data = data, error == nil else {                                                 // check for fundamental networking error
-                print("error=\(error)")
-                return
+            let decoder = JSONDecoder()
+            if let data = data, let matchString = try? decoder.decode([Matches].self, from: data) {
+                print(matchString)
             }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
-            }
-            
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
-            
         }
-        
-        // 6. POST 전송
-        
         task.resume()
-    }
-    
-    func grabData() {
-        let databaseRef = Database.database().reference()
-        databaseRef.child("match").observe(.value, with: {
-            (snapshot) in
-//            print(snapshot)
-            for snap in snapshot.children.allObjects as! [DataSnapshot]{
-                guard var dictionary = snap.value as? [String : AnyObject] else {
-                    return
-                }
-                let id = Int(snap.key)
-//                let mTitle = dictionary["title"] as? String
-            
-                //date format 해줘야함...
-                let mDate = dictionary["date"] as? String
-                self.dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
-                self.dateFormatter.locale = Locale(identifier:"ko_KR")
-                let matchDate = self.dateFormatter.date(from: mDate!)
-                
-                //date format 해줘야함...
-                let tDate = dictionary["ticketDate"] as? String
-                self.dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
-                self.dateFormatter.locale = Locale(identifier:"ko_KR")
-                let ticketDay = self.dateFormatter.date(from: tDate!)
-                let teamLeft = dictionary["teamLeft"] as? String
-                let teamRight = dictionary["teamRight"] as? String
-                let stadium = dictionary["stadium"] as? String
-
-                let matchToAdd = Match()
-                matchToAdd.id = id!
-                matchToAdd.date = matchDate!
-                matchToAdd.ticketDate = ticketDay!
-                matchToAdd.teamLeft = teamLeft!
-                matchToAdd.teamRight = teamRight!
-                matchToAdd.stadium = stadium!
-//                matchToAdd.season = season!
-//                matchToAdd.round = round!
-//                matchToAdd.mmdd_date = mmdd_date!
-                
-                matchToAdd.writeToRealm()
-            }
-        })
     }
     
     override func didReceiveMemoryWarning() {
