@@ -26,8 +26,8 @@
 		1B5494B0211B374000909F35 /* skt.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5494A6211B374000909F35 /* skt.png */; };
 		1B5494B1211B374000909F35 /* hie.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5494A7211B374000909F35 /* hie.png */; };
 		1B5494B2211B374000909F35 /* afs.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5494A8211B374000909F35 /* afs.png */; };
-		1B5494B4211B37B200909F35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B5494B3211B37B200909F35 /* GoogleService-Info.plist */; };
 		1B5660752111654500DA3980 /* MyTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */; };
+		1B68D252213D54BE00524220 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68D251213D54BE00524220 /* Matches.swift */; };
 		1B7351E52031F1D100BD0C71 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */; };
 		1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7351E72031F1D100BD0C71 /* TodayViewController.swift */; };
 		1B7351EB2031F1D100BD0C71 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7351E92031F1D100BD0C71 /* MainInterface.storyboard */; };
@@ -100,8 +100,8 @@
 		1B5494A6211B374000909F35 /* skt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skt.png; path = ../../../Documents/lckforyou_img/skt.png; sourceTree = "<group>"; };
 		1B5494A7211B374000909F35 /* hie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hie.png; path = ../../../Documents/lckforyou_img/hie.png; sourceTree = "<group>"; };
 		1B5494A8211B374000909F35 /* afs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = afs.png; path = ../../../Documents/lckforyou_img/afs.png; sourceTree = "<group>"; };
-		1B5494B3211B37B200909F35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamCollectionViewCell.swift; sourceTree = "<group>"; };
+		1B68D251213D54BE00524220 /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		1B7351E42031F1D100BD0C71 /* LCKTarget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LCKTarget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7351E72031F1D100BD0C71 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		1B003191202A09A900FF5A0B /* LCKforYou */ = {
 			isa = PBXGroup;
 			children = (
-				1B5494B3211B37B200909F35 /* GoogleService-Info.plist */,
+				1B68D253213DA25F00524220 /* Model */,
 				1B7FA7FF2110D4D000097F69 /* img */,
 				1B00472120309F4800FE102E /* ScheduleViewController.swift */,
 				1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */,
@@ -168,8 +168,6 @@
 				1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */,
 				1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */,
 				1B115ECA2113C237008092D0 /* TeamCollectionViewCell.swift */,
-				1BF22834207B279500480CE6 /* match.swift */,
-				1B5423B420F7C92E0088C3E5 /* Team.swift */,
 				1B003192202A09A900FF5A0B /* AppDelegate.swift */,
 				1B003196202A09A900FF5A0B /* Main.storyboard */,
 				1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */,
@@ -178,6 +176,16 @@
 				1BB262DC211AD3650087BCA2 /* Init.swift */,
 			);
 			path = LCKforYou;
+			sourceTree = "<group>";
+		};
+		1B68D253213DA25F00524220 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1BF22834207B279500480CE6 /* match.swift */,
+				1B5423B420F7C92E0088C3E5 /* Team.swift */,
+				1B68D251213D54BE00524220 /* Matches.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1B7351E62031F1D100BD0C71 /* LCKTarget */ = {
@@ -327,7 +335,6 @@
 				1B5494A9211B374000909F35 /* bbq.png in Resources */,
 				1B5494B2211B374000909F35 /* afs.png in Resources */,
 				1B5494B0211B374000909F35 /* skt.png in Resources */,
-				1B5494B4211B37B200909F35 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +440,7 @@
 				1B28FC9420561DC300EE45B0 /* TableViewCell.swift in Sources */,
 				1B115ECB2113C237008092D0 /* TeamCollectionViewCell.swift in Sources */,
 				1BF22835207B279500480CE6 /* match.swift in Sources */,
+				1B68D252213D54BE00524220 /* Matches.swift in Sources */,
 				1B00472220309F4800FE102E /* ScheduleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
