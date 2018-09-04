@@ -6,9 +6,6 @@ target 'LCKforYou' do
   use_frameworks!
   pod 'FSCalendar'
   pod 'RealmSwift'
-  pod 'Firebase/Core'
-  pod 'Firebase/Database'
-  pod 'Firebase/Auth'
   pod 'SnapKit', '~> 4.0.0'
   pod 'lottie-ios'
   # Pods for LCKforYou
