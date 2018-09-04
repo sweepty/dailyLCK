@@ -103,6 +103,12 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+//            self.dateFormatter.locale = Locale(identifier: "ko_KR")
+            decoder.dateDecodingStrategy = .formatted(self.dateFormatter)
+            
             if let data = data, let matchString = try? decoder.decode([Matches].self, from: data) {
                 print(matchString)
             }
