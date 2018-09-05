@@ -13,32 +13,22 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet var collectionView: UICollectionView!
     
-    var teamList = ["Afreeca Freecs", "bbq Olivers", "Gen.G", "Griffin", "Hanwha Life Esports", "Jin Air Greenwings", "KING-ZONE DragonX" ,"KT Rolster", "MVP" ,"SK Telecom T1"]
+    var teamList = ["Afreeca Freecs", "Gen.G", "Griffin", "Hanwha Life Esports", "Jin Air Greenwings", "KING-ZONE DragonX" ,"KT Rolster", "MVP" ,"SK Telecom T1", "bbq Olivers"]
     
     let realm = try! Realm()
-    var teams: Results<Team>?
-
+    
     // 팀 선택 버튼
     @IBAction func touchTeamLogoButton(_ sender: UIButton) {
-        print("@@@@@@@@@@@@@@@@@@@@@@@@ \(sender.tag)")
-//        let myid = teams?.filter("id == %@", 1)
-//        if let salmon = myid {
-//            print("ttrueee")
-//            print("\(salmon)")
-//        } else {
-//            print("liar")
-//        }
-//        print("\(teams?.filter("id == %@", myid).value(forKey: <#T##String#>))")
-//        if let teamId: Int = id as? Int {
-
-//            let heart = teams?.filter("id == %@", teamId).value(forKey: "heart")
-
-//            if let changeHeart = heart as? Bool {
-//                Team.update(teamId, changeHeart == true ? false : true)
-////                _ = UIAlertController(title: "팀을 설정했습니다.", message: "\(teamList[sender.tag])의 설정이 변경되었습니다", preferredStyle: UIAlertControllerStyle.alert)
-//            }
-//        }
-        
+        print(realm.objects(Team.self).filter("id == %@",sender.tag))
+        if let heart = realm.objects(Team.self).filter("id == %@",sender.tag)[0].value(forKeyPath: "heart") as? Bool {
+            if heart == true {
+                Team.updateHeart(sender.tag, false)
+                print("취소")
+            } else {
+                Team.updateHeart(sender.tag, true)
+                print("하트")
+            }
+        }
     }
     
     
@@ -49,6 +39,8 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCollectionViewCell", for: indexPath) as! TeamCollectionViewCell
+        let teamId = realm.objects(Team.self).filter("id == %@", indexPath.row + 1)[0].name
+        
         switch teamList[indexPath.row] {
         case "Afreeca Freecs": cell.teamButton.setImage(UIImage(named: "afs.png"), for: .normal)
         case "bbq Olivers": cell.teamButton.setImage(UIImage(named: "bbq.png"), for: .normal)
@@ -73,7 +65,7 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        teamList.sort()
+//        teamList.sort()
         collectionView.contentInset = UIEdgeInsetsMake(10, 20, 10, 20) // top left bottom right
         self.navigationController?.navigationBar.topItem?.title = "설정"
     }
