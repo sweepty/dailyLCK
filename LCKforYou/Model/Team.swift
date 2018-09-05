@@ -33,17 +33,10 @@ class Team: Object {
         }
     }
     
-//    static func update(_ id: Int, _ heart: Bool) {
-//        let realm = try! Realm()
-//        let team = Team()
-//        
-//        team.id = id
-//        team.heart = heart
-//        
-//        try! realm.write {
-//            realm.add(team, update: true)
-////            realm.add(team, update: true)
-////            realm.create(Team.self, value: ["id": id, "heart": heart], update: true)
-//        }
-//    }
+    static func updateHeart(_ id: Int, _ heart: Bool) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.create(Team.self, value: ["id": id, "heart": heart], update: true)
+        }
+    }
 }
