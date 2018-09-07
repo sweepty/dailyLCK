@@ -9,7 +9,15 @@
 import UIKit
 
 class TeamCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var teamImageView: UIImageView!
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var teamBoxView: UIView!
+    
+    override var isSelected: Bool {
+        didSet {
+            self.teamBoxView.layer.borderWidth = 2
+            self.teamBoxView.layer.borderColor = self.teamBoxView.layer.borderColor == UIColor.red.cgColor ? UIColor.clear.cgColor : UIColor.red.cgColor
+        }
+    }
 }

@@ -21,7 +21,6 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
         return teamList.count
     }
 
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCollectionViewCell", for: indexPath) as! TeamCollectionViewCell
         switch teamList[indexPath.row] {
@@ -38,6 +37,13 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
         default:
             cell.teamImageView.image = UIImage(named: "mvp.png")
         }
+        if let isHearted: Bool = realm.objects(Team.self).filter("id == %@", indexPath.row + 1)[0].value(forKey: "heart") as? Bool {
+            if isHearted == true {
+                cell.teamBoxView.layer.borderWidth = 2
+                cell.teamBoxView.layer.borderColor = UIColor.red.cgColor
+            }
+        }
+        
         cell.teamLabel.text = teamList[indexPath.row]
         
         return cell
@@ -45,7 +51,6 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let teamId = indexPath.row + 1
-        let cell = collectionView.cellForItem(at: indexPath)
         if let heart = realm.objects(Team.self).filter("id == %@", teamId)[0].value(forKeyPath: "heart") as? Bool {
             if heart == true {
                 Team.updateHeart(teamId, false)
@@ -53,7 +58,6 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
             } else {
                 Team.updateHeart(teamId, true)
                 print("하트")
-                
             }
         }
     }
