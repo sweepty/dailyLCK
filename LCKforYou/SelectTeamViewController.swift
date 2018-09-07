@@ -39,11 +39,13 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         if let isHearted: Bool = realm.objects(Team.self).filter("id == %@", indexPath.row + 1)[0].value(forKey: "heart") as? Bool {
             if isHearted == true {
-                cell.teamBoxView.layer.borderWidth = 2
                 cell.teamBoxView.layer.borderColor = UIColor.red.cgColor
+            } else {
+                cell.teamBoxView.layer.borderColor = UIColor.clear.cgColor
             }
         }
-        
+        cell.teamBoxView.layer.borderWidth = 2
+        cell.teamBoxView.layer.cornerRadius = 10
         cell.teamLabel.text = teamList[indexPath.row]
         
         return cell
