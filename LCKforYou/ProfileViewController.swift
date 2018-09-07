@@ -9,25 +9,10 @@
 import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "my Team Cell", for: indexPath) as! MyTeamCollectionViewCell
-        cell.teamLogo.image = UIImage(named: "skt.png")
 
-        return cell
-    }
-    
-    
-    
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var myTeamCollectionView: UICollectionView!
-    
+
     let sectionList :[String] = ["설정", "피드백", "LckforYou"]
-    
     let settingList :[String] = ["나의 팀 설정", "앱 알림 설정"]
     let supportList :[String] = ["개발자에게 이메일 보내기", "앱 평가하기"]
     let lckforyouList :[String] = ["공유하기", "트위터"]
@@ -42,7 +27,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         
         self.navigationController?.navigationBar.topItem?.title = "설정"
+    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let cell = tableView.cellForRow(at: [0, 0]) as? MyTeamTableViewCell else { return }
+        cell.collectionView.reloadData()
+    }
+    
+    // collectionview
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "my Team Cell", for: indexPath) as! MyTeamCollectionViewCell
+        cell.teamLogo.image = UIImage(named: "skt.png")
         
+        return cell
     }
     
     // tableview
@@ -89,9 +91,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             return cell
         }
     }
-    
-    
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let vcName = sbList[indexPath.row]
@@ -103,7 +103,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // 셀 높이 설정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 120
+            return 150
         } else {
             return UITableViewAutomaticDimension
         }
