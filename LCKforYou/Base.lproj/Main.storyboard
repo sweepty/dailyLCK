@@ -142,35 +142,41 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jAi-D0-Uk6">
-                                    <size key="itemSize" width="118" height="113"/>
+                                    <size key="itemSize" width="145" height="133"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamCollectionViewCell" id="6ON-sc-zCv" customClass="TeamCollectionViewCell" customModule="LCKforYou" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="118" height="113"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="145" height="133"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="118" height="113"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="145" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9k-N1-Hdz">
-                                                    <rect key="frame" x="14" y="11" width="90" height="90"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvS-C1-Gbd">
+                                                    <rect key="frame" x="20" y="112" width="133" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorIB">
-                                                            <color key="value" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </button>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XIB-Yn-Z2e">
+                                                    <rect key="frame" x="13" y="13" width="119" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2f6-Fa-AYO">
+                                                    <rect key="frame" x="7" y="6" width="132" height="127"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </view>
                                             </subviews>
                                         </view>
-                                        <size key="customSize" width="118" height="113"/>
+                                        <size key="customSize" width="145" height="133"/>
                                         <connections>
-                                            <outlet property="teamButton" destination="C9k-N1-Hdz" id="2F7-cm-kk4"/>
+                                            <outlet property="teamBoxView" destination="2f6-Fa-AYO" id="VnZ-SI-fxv"/>
+                                            <outlet property="teamImageView" destination="XIB-Yn-Z2e" id="Rz9-IA-JKJ"/>
+                                            <outlet property="teamLabel" destination="xvS-C1-Gbd" id="CFH-80-VpP"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

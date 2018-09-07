@@ -9,7 +9,7 @@
 import UIKit
 
 class TeamCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet var teamButton: UIButton!
-    
+    @IBOutlet weak var teamImageView: UIImageView!
+    @IBOutlet weak var teamLabel: UILabel!
+    @IBOutlet weak var teamBoxView: UIView!
 }
