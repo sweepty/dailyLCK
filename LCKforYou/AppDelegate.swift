@@ -17,11 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        // Use Firebase library to configure APIs
-        let _ = Init()
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            print("Not first launch.")
+        } else {
+            print("First launch, setting UserDefault.")
+            let _ = Init()
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+        }
         return true
-    }
-    
+    }    
     
 }
 
