@@ -18,7 +18,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var calendarView: FSCalendar!
 
-
     
     //realm
     let realm = try! Realm()
@@ -34,7 +33,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     fileprivate let gregorian = Calendar(identifier: .gregorian)
     
     //dateformatter(date to string, string to date)
-    let dateFormatter = DateFormatter()
+    var dateFormatter = DateFormatter()
     
     //현재 날짜 시간
     let date = NSDate()
@@ -44,6 +43,8 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     var isMonthMode = true
     
+    // 노티
+    var notificationToken: NotificationToken?
     
     override func viewDidLoad() {
         
@@ -93,29 +94,8 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         //local notification
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
-        
-        dataTask(url: "http://127.0.0.1:3000/matches", method: "GET")
     }
-    
-    func dataTask(url: String, method: String) {
-        var request = URLRequest(url: URL(string: url)!)
-        request.httpMethod = method
-        
-        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-//            self.dateFormatter.locale = Locale(identifier: "ko_KR")
-            decoder.dateDecodingStrategy = .formatted(self.dateFormatter)
-            
-            if let data = data, let matchString = try? decoder.decode([Matches].self, from: data) {
-                print(matchString)
-            }
-        }
-        task.resume()
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -186,32 +166,32 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         // 왼쪽 팀 image
         switch data.teamLeft {
-        case "SKT": cell.img_leftTeam.image = UIImage(named: "skt.png")
-        case "Afreeca": cell.img_leftTeam.image = UIImage(named: "afs.png")
-        case "bbq": cell.img_leftTeam.image = UIImage(named: "bbq.png")
-        case "Jin Air": cell.img_leftTeam.image = UIImage(named: "jag.png")
-        case "Gen.G": cell.img_leftTeam.image = UIImage(named: "gen.png")
-        case "KT": cell.img_leftTeam.image = UIImage(named: "kt.png")
-        case "HLE": cell.img_leftTeam.image = UIImage(named: "hie.png")
-        case "KING-ZONE": cell.img_leftTeam.image = UIImage(named: "kz.png")
-        case "Griffin": cell.img_leftTeam.image = UIImage(named: "griffin.png")
-        case "MVP": cell.img_leftTeam.image = UIImage(named: "mvp.png")
-        default: cell.img_leftTeam.image = UIImage(named: "skt.png") // 다른 이미지로 교체 할것
+        case "SKT": cell.img_leftTeam.image = UIImage(named: "skt")
+        case "Afreeca": cell.img_leftTeam.image = UIImage(named: "afs")
+        case "bbq": cell.img_leftTeam.image = UIImage(named: "bbq")
+        case "Jin Air": cell.img_leftTeam.image = UIImage(named: "jag")
+        case "Gen.G": cell.img_leftTeam.image = UIImage(named: "gen")
+        case "KT": cell.img_leftTeam.image = UIImage(named: "kt")
+        case "HLE": cell.img_leftTeam.image = UIImage(named: "hie")
+        case "KING-ZONE": cell.img_leftTeam.image = UIImage(named: "kz")
+        case "Griffin": cell.img_leftTeam.image = UIImage(named: "griffin")
+        case "MVP": cell.img_leftTeam.image = UIImage(named: "mvp")
+        default: cell.img_leftTeam.image = UIImage(named: "skt") // 다른 이미지로 교체 할것
         }
         
         //오른쪽 팀 image
         switch data.teamRight {
-        case "SKT": cell.img_rightTeam.image = UIImage(named: "skt.png")
-        case "Afreeca": cell.img_rightTeam.image = UIImage(named: "afs.png")
-        case "bbq": cell.img_rightTeam.image = UIImage(named: "bbq.png")
-        case "Jin Air": cell.img_rightTeam.image = UIImage(named: "jag.png")
-        case "Gen.G": cell.img_rightTeam.image = UIImage(named: "gen.png")
-        case "KT": cell.img_rightTeam.image = UIImage(named: "kt.png")
-        case "HLE": cell.img_rightTeam.image = UIImage(named: "hie.png")
-        case "KING-ZONE": cell.img_rightTeam.image = UIImage(named: "kz.png")
-        case "Griffin": cell.img_rightTeam.image = UIImage(named: "griffin.png")
-        case "MVP": cell.img_rightTeam.image = UIImage(named: "mvp.png")
-        default: cell.img_rightTeam.image = UIImage(named: "skt.png") // 다른 이미지로 교체 할것
+        case "SKT": cell.img_rightTeam.image = UIImage(named: "skt")
+        case "Afreeca": cell.img_rightTeam.image = UIImage(named: "afs")
+        case "bbq": cell.img_rightTeam.image = UIImage(named: "bbq")
+        case "Jin Air": cell.img_rightTeam.image = UIImage(named: "jag")
+        case "Gen.G": cell.img_rightTeam.image = UIImage(named: "gen")
+        case "KT": cell.img_rightTeam.image = UIImage(named: "kt")
+        case "HLE": cell.img_rightTeam.image = UIImage(named: "hie")
+        case "KING-ZONE": cell.img_rightTeam.image = UIImage(named: "kz")
+        case "Griffin": cell.img_rightTeam.image = UIImage(named: "griffin")
+        case "MVP": cell.img_rightTeam.image = UIImage(named: "mvp")
+        default: cell.img_rightTeam.image = UIImage(named: "skt") // 다른 이미지로 교체 할것
         }
         
         //ticketing
@@ -264,7 +244,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         let query = items?.filter("id == %@",sender.tag)[0]
         
         let ticketingdate = query?.ticketDate
-        let mTitle = query?.title
+        let mTitle = query?.teamLeft
         let tmp = String(describing: ticketingdate)
         var ticketingTime = tmp.components(separatedBy: ["-"," ",":"])
         notificating(Int(ticketingTime[3])!, Int(ticketingTime[4])!,String(describing: mTitle!), "티켓팅")
@@ -277,7 +257,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         let query = items?.filter("id == %@",sender.tag)[0]
         
         let matchdate = query?.date
-        let mTitle = query?.title
+        let mTitle = query?.teamLeft
         let tmp = String(describing: matchdate)
         var matchstart = tmp.components(separatedBy: ["-"," ",":"])
         notificating(Int(matchstart[3])!, Int(matchstart[4])!,String(describing: mTitle!), "경기")

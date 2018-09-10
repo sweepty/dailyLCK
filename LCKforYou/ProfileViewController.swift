@@ -42,7 +42,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "my Team Cell", for: indexPath) as! MyTeamCollectionViewCell
-        cell.teamLogo.image = UIImage(named: "skt.png")
+//        cell.teamLogo.image = UIImage(named: "skt")
         
         return cell
     }

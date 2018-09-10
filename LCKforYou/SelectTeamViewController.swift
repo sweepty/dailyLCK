@@ -24,18 +24,18 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCollectionViewCell", for: indexPath) as! TeamCollectionViewCell
         switch teamList[indexPath.row] {
-        case "Afreeca Freecs": cell.teamImageView.image = UIImage(named: "afs.png")
-        case "bbq Olivers": cell.teamImageView.image = UIImage(named: "bbq.png")
-        case "Gen.G": cell.teamImageView.image = UIImage(named: "gen.png")
-        case "Griffin": cell.teamImageView.image = UIImage(named: "griffin.png")
-        case "Hanwha Life Esports": cell.teamImageView.image = UIImage(named: "hie.png")
-        case "Jin Air Greenwings": cell.teamImageView.image = UIImage(named: "jag.png")
-        case "KING-ZONE DragonX": cell.teamImageView.image = UIImage(named: "kz.png")
-        case "KT Rolster": cell.teamImageView.image = UIImage(named: "kt.png")
-        case "SK Telecom T1": cell.teamImageView.image = UIImage(named: "skt.png")
-        case "MVP": cell.teamImageView.image = UIImage(named: "mvp.png")
+        case "Afreeca Freecs": cell.teamImageView.image = UIImage(named: "afs")
+        case "bbq Olivers": cell.teamImageView.image = UIImage(named: "bbq")
+        case "Gen.G": cell.teamImageView.image = UIImage(named: "gen")
+        case "Griffin": cell.teamImageView.image = UIImage(named: "griffin")
+        case "Hanwha Life Esports": cell.teamImageView.image = UIImage(named: "hie")
+        case "Jin Air Greenwings": cell.teamImageView.image = UIImage(named: "jag")
+        case "KING-ZONE DragonX": cell.teamImageView.image = UIImage(named: "kz")
+        case "KT Rolster": cell.teamImageView.image = UIImage(named: "kt")
+        case "SK Telecom T1": cell.teamImageView.image = UIImage(named: "skt")
+        case "MVP": cell.teamImageView.image = UIImage(named: "mvp")
         default:
-            cell.teamImageView.image = UIImage(named: "mvp.png")
+            cell.teamImageView.image = UIImage(named: "mvp")
         }
         if let isHearted: Bool = realm.objects(Team.self).filter("id == %@", indexPath.row + 1)[0].value(forKey: "heart") as? Bool {
             if isHearted == true {

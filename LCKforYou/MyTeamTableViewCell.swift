@@ -25,18 +25,18 @@ class MyTeamTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "my Team Cell", for: indexPath) as! MyTeamCollectionViewCell
         if let myTeamList = realm.objects(Team.self).filter("heart == true").value(forKey: "id") as? [Int] {
             switch myTeamList[indexPath.row] {
-            case 1: cell.teamLogo.image = UIImage(named: "afs.png")
-            case 2: cell.teamLogo.image = UIImage(named: "gen.png")
-            case 3: cell.teamLogo.image = UIImage(named: "griffin.png")
-            case 4: cell.teamLogo.image = UIImage(named: "hie.png")
-            case 5: cell.teamLogo.image = UIImage(named: "jag.png")
-            case 6: cell.teamLogo.image = UIImage(named: "kz.png")
-            case 7: cell.teamLogo.image = UIImage(named: "kt.png")
-            case 8: cell.teamLogo.image = UIImage(named: "mvp.png")
-            case 9: cell.teamLogo.image = UIImage(named: "skt.png")
-            case 10: cell.teamLogo.image = UIImage(named: "bbq.png")
+            case 1: cell.teamLogo.image = UIImage(named: "afs")
+            case 2: cell.teamLogo.image = UIImage(named: "gen")
+            case 3: cell.teamLogo.image = UIImage(named: "griffin")
+            case 4: cell.teamLogo.image = UIImage(named: "hie")
+            case 5: cell.teamLogo.image = UIImage(named: "jag")
+            case 6: cell.teamLogo.image = UIImage(named: "kz")
+            case 7: cell.teamLogo.image = UIImage(named: "kt")
+            case 8: cell.teamLogo.image = UIImage(named: "mvp")
+            case 9: cell.teamLogo.image = UIImage(named: "skt")
+            case 10: cell.teamLogo.image = UIImage(named: "bbq")
             default:
-                cell.teamLogo.image = UIImage(named: "skt.png")
+                cell.teamLogo.image = UIImage(named: "skt")
             }
         }
         
