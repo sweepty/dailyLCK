@@ -28,7 +28,7 @@ class MyTeamTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
             case 1: cell.teamLogo.image = UIImage(named: "afs")
             case 2: cell.teamLogo.image = UIImage(named: "gen")
             case 3: cell.teamLogo.image = UIImage(named: "griffin")
-            case 4: cell.teamLogo.image = UIImage(named: "hie")
+            case 4: cell.teamLogo.image = UIImage(named: "hle")
             case 5: cell.teamLogo.image = UIImage(named: "jag")
             case 6: cell.teamLogo.image = UIImage(named: "kz")
             case 7: cell.teamLogo.image = UIImage(named: "kt")

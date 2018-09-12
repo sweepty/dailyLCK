@@ -28,7 +28,7 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
         case "bbq Olivers": cell.teamImageView.image = UIImage(named: "bbq")
         case "Gen.G": cell.teamImageView.image = UIImage(named: "gen")
         case "Griffin": cell.teamImageView.image = UIImage(named: "griffin")
-        case "Hanwha Life Esports": cell.teamImageView.image = UIImage(named: "hie")
+        case "Hanwha Life Esports": cell.teamImageView.image = UIImage(named: "hle")
         case "Jin Air Greenwings": cell.teamImageView.image = UIImage(named: "jag")
         case "KING-ZONE DragonX": cell.teamImageView.image = UIImage(named: "kz")
         case "KT Rolster": cell.teamImageView.image = UIImage(named: "kt")
