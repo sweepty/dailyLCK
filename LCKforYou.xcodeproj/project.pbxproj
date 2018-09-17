@@ -17,6 +17,7 @@
 		1B5423B520F7C92E0088C3E5 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5423B420F7C92E0088C3E5 /* Team.swift */; };
 		1B5423B720F7CEE90088C3E5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */; };
 		1B5660752111654500DA3980 /* MyTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */; };
+		1B61461D214FE98B00B1A208 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B61461C214FE98B00B1A208 /* Teams.swift */; };
 		1B68D252213D54BE00524220 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68D251213D54BE00524220 /* Matches.swift */; };
 		1B7351E52031F1D100BD0C71 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */; };
 		1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7351E72031F1D100BD0C71 /* TodayViewController.swift */; };
@@ -81,6 +82,7 @@
 		1B5423B420F7C92E0088C3E5 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamCollectionViewCell.swift; sourceTree = "<group>"; };
+		1B61461C214FE98B00B1A208 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		1B68D251213D54BE00524220 /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		1B7351E42031F1D100BD0C71 /* LCKTarget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LCKTarget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +165,7 @@
 				1BF22834207B279500480CE6 /* match.swift */,
 				1B5423B420F7C92E0088C3E5 /* Team.swift */,
 				1B68D251213D54BE00524220 /* Matches.swift */,
+				1B61461C214FE98B00B1A208 /* Teams.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				1B5423B520F7C92E0088C3E5 /* Team.swift in Sources */,
 				1BB262DD211AD3650087BCA2 /* Init.swift in Sources */,
 				1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */,
+				1B61461D214FE98B00B1A208 /* Teams.swift in Sources */,
 				1B28FC9420561DC300EE45B0 /* TableViewCell.swift in Sources */,
 				1B115ECB2113C237008092D0 /* TeamCollectionViewCell.swift in Sources */,
 				1BF22835207B279500480CE6 /* match.swift in Sources */,

@@ -9,21 +9,11 @@
 import Foundation
 
 struct Matches: Codable {
-    var id: Int
-    var date: Date
+    var matchId: Int
+    var matchDate: Date
     var ticketDate: Date
-    var teamLeft: String
-    var teamRight: String
+    var leftTeam: String
+    var rightTeam: String
     var stadium: String
-    var season: String
-    
-    private enum CodingKeys: String, CodingKey {
-        case id = "match_id"
-        case date = "match_date"
-        case ticketDate = "ticket_date"
-        case teamLeft = "left_team"
-        case teamRight = "right_team"
-        case stadium
-        case season = "season_name"
-    }
+    var seasonName: String
 }

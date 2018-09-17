@@ -19,18 +19,7 @@ class Init {
         realm = try! Realm()
         
         dataTask(url: "http://127.0.0.1:3000/matches", method: "GET")
-
-        Team.add(1, "Afreeca", false)
-        Team.add(2, "Gen.G", false)
-        Team.add(3, "Griffin", false)
-        Team.add(4, "Hanwha", false)
-        Team.add(5, "Jin Air", false)
-        Team.add(6, "KING-ZONE", false)
-        Team.add(7, "KT", false)
-        Team.add(8, "MVP", false)
-        Team.add(9, "SKT", false)
-        Team.add(10, "bbq", false)
-
+        insertTeams()
     }
     
     func dataTask(url: String, method: String) {
@@ -41,7 +30,8 @@ class Init {
             let decoder = JSONDecoder()
             self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
             decoder.dateDecodingStrategy = .formatted(self.dateFormatter)
-
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
             if let data = data, let matchList = try? decoder.decode([Matches].self, from: data) {
 
                 DispatchQueue(label: "background").async {
@@ -52,24 +42,56 @@ class Init {
                             realm.beginWrite()
                             
                             let matchItem = Match()
-                            matchItem.id = m.id
-                            matchItem.date = m.date
+                            matchItem.id = m.matchId
+                            matchItem.date = m.matchDate
                             matchItem.ticketDate = m.ticketDate
-                            matchItem.teamLeft = m.teamLeft
-                            matchItem.teamRight = m.teamRight
+                            matchItem.teamLeft = m.leftTeam
+                            matchItem.teamRight = m.rightTeam
                             matchItem.stadium = m.stadium
-                            matchItem.season = m.season
+                            matchItem.season = m.seasonName
                             
                             realm.create(Match.self, value: matchItem)
                             try! realm.commitWrite()
                         }
                     }
                 }
-
             }
         }
         task.resume()
+    }
+    
+    func insertTeams() {
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:3000/teams")!)
+        request.httpMethod = "GET"
         
+        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            if let data = data, let teamList = try? decoder.decode([Teams].self, from: data) {
+                
+                DispatchQueue(label: "background").async {
+                    autoreleasepool {
+                        let realm = try! Realm()
+                        
+                        for t in teamList {
+                            realm.beginWrite()
+                            
+                            let teamItem = Team()
+                            teamItem.id = t.teamId
+                            teamItem.name = t.teamName
+                            teamItem.heart = false
+
+                            
+                            realm.create(Team.self, value: teamItem)
+                            try! realm.commitWrite()
+                        }
+                    }
+                }
+                
+            }
+        }
+        task.resume()
     }
 }
 
