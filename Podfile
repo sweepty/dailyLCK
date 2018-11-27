@@ -8,6 +8,7 @@ target 'LCKforYou' do
   pod 'RealmSwift'
   pod 'SnapKit', '~> 4.0.0'
   pod 'lottie-ios'
+  pod 'JTAppleCalendar', '~> 7.0'
   # Pods for LCKforYou
 
 end

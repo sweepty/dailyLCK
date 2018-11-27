@@ -23,10 +23,12 @@
 		1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7351E72031F1D100BD0C71 /* TodayViewController.swift */; };
 		1B7351EB2031F1D100BD0C71 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7351E92031F1D100BD0C71 /* MainInterface.storyboard */; };
 		1B7351EF2031F1D100BD0C71 /* LCKTarget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B7351E42031F1D100BD0C71 /* LCKTarget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B73F98721AAF2FD00A17E0F /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73F98621AAF2FD00A17E0F /* CellView.swift */; };
 		1B8F15502113605B00F1FDB3 /* MyTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */; };
 		1B905A252109A2200032F3B5 /* SelectTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */; };
 		1BB262DD211AD3650087BCA2 /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB262DC211AD3650087BCA2 /* Init.swift */; };
 		1BF22835207B279500480CE6 /* match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF22834207B279500480CE6 /* match.swift */; };
+		1BF66A3921AAE8600075E6FF /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */; };
 		66AE8B5EA57E6A85EFAADCCE /* Pods_LCKforYou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B82BA7A94D6ED5272C876DB /* Pods_LCKforYou.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,12 +91,14 @@
 		1B7351E72031F1D100BD0C71 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		1B7351EA2031F1D100BD0C71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		1B7351EC2031F1D100BD0C71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B73F98621AAF2FD00A17E0F /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		1B747437205D55CC00DDC7C0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		1B747438205D55CC00DDC7C0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
 		1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamTableViewCell.swift; sourceTree = "<group>"; };
 		1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamViewController.swift; sourceTree = "<group>"; };
 		1BB262DC211AD3650087BCA2 /* Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		1BF22834207B279500480CE6 /* match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = match.swift; sourceTree = "<group>"; };
+		1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		40C017BCDDB0974D8FB550B3 /* Pods-LCKforYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCKforYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,20 +145,14 @@
 		1B003191202A09A900FF5A0B /* LCKforYou */ = {
 			isa = PBXGroup;
 			children = (
-				1B68D253213DA25F00524220 /* Model */,
-				1B00472120309F4800FE102E /* ScheduleViewController.swift */,
-				1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */,
-				1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */,
-				1B28FC9320561DC300EE45B0 /* TableViewCell.swift */,
-				1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */,
-				1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */,
-				1B115ECA2113C237008092D0 /* TeamCollectionViewCell.swift */,
-				1B003192202A09A900FF5A0B /* AppDelegate.swift */,
-				1B003196202A09A900FF5A0B /* Main.storyboard */,
-				1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */,
-				1B00319C202A09A900FF5A0B /* Assets.xcassets */,
 				1B0031A1202A09A900FF5A0B /* Info.plist */,
-				1BB262DC211AD3650087BCA2 /* Init.swift */,
+				1B68D253213DA25F00524220 /* Model */,
+				1B73F98B21AAFABE00A17E0F /* FSCalendar */,
+				1B73F98921AAFA8700A17E0F /* Settings */,
+				1B73F98821AAF35100A17E0F /* Calendar */,
+				1B003196202A09A900FF5A0B /* Main.storyboard */,
+				1B73F98A21AAFAA800A17E0F /* Network */,
+				1B73F98C21AAFAEA00A17E0F /* Supporting Files */,
 			);
 			path = LCKforYou;
 			sourceTree = "<group>";
@@ -178,6 +176,54 @@
 				1B7351EC2031F1D100BD0C71 /* Info.plist */,
 			);
 			path = LCKTarget;
+			sourceTree = "<group>";
+		};
+		1B73F98821AAF35100A17E0F /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */,
+				1B73F98621AAF2FD00A17E0F /* CellView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		1B73F98921AAFA8700A17E0F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */,
+				1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */,
+				1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */,
+				1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */,
+				1B115ECA2113C237008092D0 /* TeamCollectionViewCell.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		1B73F98A21AAFAA800A17E0F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1BB262DC211AD3650087BCA2 /* Init.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		1B73F98B21AAFABE00A17E0F /* FSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				1B00472120309F4800FE102E /* ScheduleViewController.swift */,
+				1B28FC9320561DC300EE45B0 /* TableViewCell.swift */,
+			);
+			path = FSCalendar;
+			sourceTree = "<group>";
+		};
+		1B73F98C21AAFAEA00A17E0F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1B00319C202A09A900FF5A0B /* Assets.xcassets */,
+				1B003192202A09A900FF5A0B /* AppDelegate.swift */,
+				1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		59C80BD0EA44761346C1BFF1 /* Pods */ = {
@@ -312,6 +358,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -320,6 +367,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -386,9 +434,11 @@
 				1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */,
 				1B61461D214FE98B00B1A208 /* Teams.swift in Sources */,
 				1B28FC9420561DC300EE45B0 /* TableViewCell.swift in Sources */,
+				1B73F98721AAF2FD00A17E0F /* CellView.swift in Sources */,
 				1B115ECB2113C237008092D0 /* TeamCollectionViewCell.swift in Sources */,
 				1BF22835207B279500480CE6 /* match.swift in Sources */,
 				1B68D252213D54BE00524220 /* Matches.swift in Sources */,
+				1BF66A3921AAE8600075E6FF /* CalendarViewController.swift in Sources */,
 				1B00472220309F4800FE102E /* ScheduleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
