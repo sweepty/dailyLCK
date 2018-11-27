@@ -40,8 +40,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSRemindersUsageDescription</key>
-	<string>티켓팅 알람 및 경기 시작 알림을 위해 미리알림 접근 권한이 필요합니다^~^</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

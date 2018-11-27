@@ -9,6 +9,8 @@
 import UIKit
 import Realm
 import RealmSwift
+import UserNotifications
+
 class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet var collectionView: UICollectionView!
@@ -60,13 +62,61 @@ class SelectTeamViewController: UIViewController, UICollectionViewDelegate, UICo
             } else {
                 Team.updateHeart(teamId, true)
                 print("하트")
+                
             }
         }
     }
+    
+//    // 경기 시작 알림
+//    func setMatchNotification(_ teamId: Int) {
+//        let now = Date()
+//        let calendar = Calendar.current
+//        let teamName: String = (realm.objects(Team.self).filter("id ==%@", teamId).value(forKey: "name") as? String)!
+//
+//        let leftBaseQuery = realm.objects(Match.self).filter("teamLeft == %@", teamName)
+//        // 경기날
+//        let leftTeamDate = leftBaseQuery.value(forKey: "date")
+//        // 적팀
+//        let leftOpp = leftBaseQuery.value(forKey: "teamRight")
+////        let rightQuery = realm.objects(Match.self).filter("teamRight == %@", teamName).filter("date")
+//
+//        for mDate in leftBaseQuery {
+//            let dateGap = calendar.dateComponents([.year, .month, .day, .hour], from: now, to: mDate)
+//            if case let (y?, m?, d?, h?) = (dateGap.year, dateGap.month, dateGap.day, dateGap.hour)
+//            {
+//                print("\(y)년 \(m)개월 \(d)일 \(h)시간 후")
+//                notificating(m, Int(ticketingTime[4])!,String(describing: mTitle!), "티켓팅")
+//            }
+//        }
+////
+////        var ticketingTime = tmp.components(separatedBy: ["-"," ",":"])
+////        notificating(Int(ticketingTime[3])!, Int(ticketingTime[4])!,String(describing: mTitle!), "티켓팅")
+//    }
+//    
+//    func notificating(_ hh: Int, _ mm: Int, _ title:String, _ type: String){
+//        //local notification
+//        UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
+//            switch notificationSettings.authorizationStatus {
+//            case .notDetermined:
+//                // Request Authorization
+//                self.requestAuthorization(completionHandler: { (success) in
+//                    guard success else { return }
+//                    // Schedule Local Notification
+//                    self.scheduleLocalNotification(hh, mm, title, type)
+//                })
+//            case .authorized:
+//                // Schedule Local Notification
+//                self.scheduleLocalNotification(hh, mm, title, type)
+//                
+//            case .denied:
+//                //여기 alert로 알려주도록 하기 (예정)
+//                print("Application Not Allowed to Display Notifications")
+//            }
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        teamList.sort()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.contentInset = UIEdgeInsetsMake(10, 20, 10, 20) // top left bottom right

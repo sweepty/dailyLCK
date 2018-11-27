@@ -44,11 +44,24 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     var isMonthMode = true
     
     // 노티
-    var notificationToken: NotificationToken?
+    var notificationToken: NotificationToken? = nil
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        tableView.beginUpdates()
+//        let _ = Init()
+//        tableView.endUpdates()
+        makeTableViewSectionTitles()
+        tableView.reloadData()
+//        tableView.beginUpdates()
+        
+    }
+
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -61,12 +74,53 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         calendarView.clipsToBounds = true
         calendarView.appearance.headerDateFormat = "YYYY년 M월"
 //        calendarView.appearance.weekdayFont = UIFont (name: "HelveticaNeue", size: 20)
-        calendarView.appearance.titleFont = UIFont (name: "HelveticaNeue", size: 17)
+        calendarView.appearance.titleFont = UIFont (name: "HelveticaNeue", size: 15)
         calendarView.appearance.headerTitleColor = UIColor.black
 //        self.calendarView.appearance.headerMinimumDissolvedAlpha = 0.0;
+        calendarView.appearance.titleOffset = CGPoint(x: 0, y: -10)
+        calendarView.appearance.subtitleFont = UIFont (name: "HelveticaNeue", size: 10)
+        
+//        tableView.reloadData()
         
         // Realm 저장 위치 보여줌
-//        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+//        tableView.reloadData()
+//        let results = realm.objects(Match.self)
+
+    
+        // Observe Results Notifications
+//        notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
+//            guard let tableView = self?.tableView else { return }
+//            switch changes {
+//            case .initial:
+//                // Results are now populated and can be accessed without blocking the UI
+//                tableView.reloadData()
+//
+//            case .update(_, let deletions, let insertions, let modifications):
+//                // Query results have changed, so apply them to the UITableView
+//
+//                tableView.beginUpdates()
+//
+//                tableView.deleteRows(at: deletions.map {IndexPath(row: $0, section: $0)}, with: .automatic)
+//                tableView.insertRows(at: insertions.map{IndexPath(row: $0, section: $0)}, with: .automatic)
+//                tableView.reloadRows(at: modifications.map {IndexPath(row: $0, section: $0)}, with: .automatic)
+//
+//                tableView.endUpdates()
+//            case .error(let error):
+//                // An error occurred while opening the Realm file on the background worker thread
+//                fatalError("\(error)")
+//
+//            }
+//        }
+        
+//        makeTableViewSectionTitles()
+//        tableView.reloadData()
+        
+        //local notification
+//        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+    }
+    
+    func makeTableViewSectionTitles() {
         items = realm.objects(Match.self)
         
         // 날짜로 sort
@@ -91,10 +145,12 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         //날짜 순으로 정렬.
         matchup_dates.sort()
-        
-        //local notification
-        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
     }
+    
+//    func updateScheduleTableView() {
+//        self.tableView.beginUpdates()
+//        self.tableView.endUpdates()
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -157,11 +213,11 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         switch data.stadium {
         case "OGN":
-            cell.barView.backgroundColor = UIColor.green
+            cell.barView.backgroundColor = UIColor.clear
         case "SPOTV":
-            cell.barView.backgroundColor = UIColor.blue
+            cell.barView.backgroundColor = UIColor.clear
         default:
-           cell.barView.backgroundColor = UIColor.orange
+           cell.barView.backgroundColor = UIColor.clear
         }
         
         // 왼쪽 팀 image
@@ -234,7 +290,11 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             case .denied:
                 //여기 alert로 알려주도록 하기 (예정)
                 print("Application Not Allowed to Display Notifications")
+                
+            case .provisional:
+                print("provisional")
             }
+            
         }
     }
     
@@ -242,7 +302,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     //티켓팅 알림 button
     @objc func ticketBtnSelected(sender: UIButton) {
         let query = items?.filter("id == %@",sender.tag)[0]
-        
+        print("티켓팅\(query?.ticketDate)")
         let ticketingdate = query?.ticketDate
         let mTitle = query?.teamLeft
         let tmp = String(describing: ticketingdate)
@@ -268,36 +328,42 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         // Create Notification Content
         let notificationContent = UNMutableNotificationContent()
         
+        notificationContent.title = "경기 알람"
+        notificationContent.body = "오늘 \(hh)시에 \(title)의 \(type)가 있습니다."
+        
         // Configure Notification Content
-        switch type {
-        case "경기" where mm == 0:
-            notificationContent.title = "경기 알람"
-            notificationContent.body = "오늘 \(hh)시에 \(title)의 \(type)가 있습니다."
-        //경기는 항상 정시에 시작하지만 혹시 모르니까 추가
-        case "경기" where mm != 0:
-            notificationContent.title = "경기 알람"
-            notificationContent.body = "오늘 \(hh)시 \(mm)분에 \(title)의 \(type)가 있습니다."
-        case "티켓팅" where mm == 0:
-            notificationContent.title = "티켓팅 알람"
-            notificationContent.body = "오늘 \(hh)시에 \(title)의 \(type)이 있습니다."
-        case "티켓팅" where mm != 0:
-            notificationContent.title = "티켓팅 알람"
-            notificationContent.body = "오늘 \(hh)시 \(mm)분에 \(title)의 \(type)이 있습니다."
-        default:
-            notificationContent.body = "error"
-        }
+//        switch type {
+//        case "경기" where mm == 0:
+//            notificationContent.title = "경기 알람"
+//            notificationContent.body = "오늘 \(hh)시에 \(title)의 \(type)가 있습니다."
+//        //경기는 항상 정시에 시작하지만 혹시 모르니까 추가
+//        case "경기" where mm != 0:
+//            notificationContent.title = "경기 알람"
+//            notificationContent.body = "오늘 \(hh)시 \(mm)분에 \(title)의 \(type)가 있습니다."
+//        case "티켓팅" where mm == 0:
+//            notificationContent.title = "티켓팅 알람"
+//            notificationContent.body = "오늘 \(hh)시에 \(title)의 \(type)이 있습니다."
+//        case "티켓팅" where mm != 0:
+//            notificationContent.title = "티켓팅 알람"
+//            notificationContent.body = "오늘 \(hh)시 \(mm)분에 \(title)의 \(type)이 있습니다."
+//        default:
+//            notificationContent.body = "error"
+//        }
 
-//        var dateComponents = DateComponents()
-//        dateComponents.weekday = 2
-//        dateComponents.month = 4
-//        dateComponents.day = 16
-//        dateComponents.hour = 3
-//        dateComponents.minute = 20
+        var dateComponents = DateComponents()
+        
+        dateComponents.weekday = 1
+        dateComponents.month = 11
+        dateComponents.day = 2
+        dateComponents.hour = 3
+        dateComponents.minute = 0
         
         //시간 바꾸기 (예정)
         // Add Trigger
         let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.0, repeats: false)
 //        let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: <#T##DateComponents#>, repeats: false)
+//        let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
         
         
         // Create Notification Request
@@ -370,9 +436,21 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
 //        return 0
 //    }
     
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        
+//        items = realm.objects(Match.self)
+        for i in items! {
+            if self.gregorian.isDate(date, inSameDayAs: i.date){
+                return "\(i.teamLeft) vs \(i.teamRight)"
+            }
+        }
+        return nil
+    }
+    
     // 달이 바뀌었을 때.
     func calendarCurrentMonthDidChange(_ calendar: FSCalendar) {
         // Do something
+//        tableView.section
     }
 }
 extension ScheduleViewController: UNUserNotificationCenterDelegate {

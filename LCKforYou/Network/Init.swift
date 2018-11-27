@@ -17,7 +17,6 @@ class Init {
     
     init() {
         realm = try! Realm()
-        
         dataTask(url: "http://127.0.0.1:3000/matches", method: "GET")
         insertTeams()
     }
@@ -33,13 +32,14 @@ class Init {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             if let data = data, let matchList = try? decoder.decode([Matches].self, from: data) {
-
+                
+                
                 DispatchQueue(label: "background").async {
                     autoreleasepool {
                         let realm = try! Realm()
-                        
+                        realm.beginWrite()
                         for m in matchList {
-                            realm.beginWrite()
+                            
                             
                             let matchItem = Match()
                             matchItem.id = m.matchId
@@ -50,14 +50,18 @@ class Init {
                             matchItem.stadium = m.stadium
                             matchItem.season = m.seasonName
                             
-                            realm.create(Match.self, value: matchItem)
-                            try! realm.commitWrite()
+                            realm.create(Match.self, value: matchItem)  
                         }
+                        try! realm.commitWrite()
                     }
+                    
+                    
                 }
+                
             }
         }
         task.resume()
+//        ScheduleViewController().tableView?.reloadData()
     }
     
     func insertTeams() {
