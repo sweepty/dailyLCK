@@ -10,6 +10,8 @@ import UIKit
 import JTAppleCalendar
 
 class CellView: JTAppleCell {
+    @IBOutlet weak var selectedView: UIView!
     @IBOutlet weak var dayLabel: UILabel!
-//    @IBOutlet weak var matchLabel: UILabel!
+
+    @IBOutlet weak var listStackView: UIStackView!
 }
