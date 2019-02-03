@@ -1,7 +1,7 @@
 PODS:
+  - Alamofire (4.8.1)
   - FSCalendar (2.8.0)
   - JTAppleCalendar (7.1.6)
-  - lottie-ios (2.5.2)
   - Realm (3.11.2):
     - Realm/Headers (= 3.11.2)
   - Realm/Headers (3.11.2)
@@ -10,20 +10,29 @@ PODS:
   - SnapKit (4.0.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - FSCalendar
   - JTAppleCalendar (~> 7.0)
-  - lottie-ios
   - RealmSwift
   - SnapKit (~> 4.0.0)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - FSCalendar
+    - JTAppleCalendar
+    - Realm
+    - RealmSwift
+    - SnapKit
+
 SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
-  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   Realm: 864477d028db77f7c5a0cba64a4892ad53db128a
   RealmSwift: 12b8262fc08020b47de4fd88eb3d5c9425b34ec7
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: c16cf849a19b910d1194c7792c3fa33f6d97e202
+PODFILE CHECKSUM: 3dcd25dc63ec66afc52d82e00f007b19a6617c20
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.6.0.beta.2
