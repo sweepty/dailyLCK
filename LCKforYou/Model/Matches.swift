@@ -9,11 +9,12 @@
 import Foundation
 
 struct Matches: Codable {
-    var matchId: Int
-    var matchDate: Date
-    var ticketDate: Date
-    var leftTeam: String
-    var rightTeam: String
+    var _id: String
+    var blue: String
+    var red: String
     var stadium: String
-    var seasonName: String
+    var mDate: Date
+    var tDate: Date
+    var isplayoff: Bool
+    var season: String
 }
