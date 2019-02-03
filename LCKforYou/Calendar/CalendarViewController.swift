@@ -10,22 +10,47 @@ import Foundation
 import JTAppleCalendar
 import Realm
 import RealmSwift
+import Alamofire
 
 class CalendarViewController: UIViewController {
-    @IBOutlet weak var stackView: UIStackView!
+//    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     let testLabel = UILabel()
     
-    
     let formatter = DateFormatter()
+    
+    // 경기 정보 담을 객체
+    public static var matchList = [Matches]()
+    
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCalendarView()
+        
+        Requests().getMatchInfo() { (isSuccess, matches)  in
+            if isSuccess {
+                // update UI
+                DispatchQueue.main.async {
+                    self.calendarView.reloadData()
+                }
+                
+                print(CalendarViewController.matchList.count)
+                print("개")
+            } else {
+                print("틀려먹음")
+            }
+            
+        }
+        
+//        print("몇개")
+//        print(CalendarViewController.matchList.count)
     }
     
     func setupCalendarView() {
@@ -33,6 +58,10 @@ class CalendarViewController: UIViewController {
         calendarView.visibleDates { (visibleDates) in
             self.setupViewsOfCalendar(from: visibleDates)
         }
+        calendarView.minimumLineSpacing = 1
+        calendarView.minimumInteritemSpacing = 0
+        calendarView.cellSize = calendarView.frame.size.width / 7
+        
     }
     
     func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
@@ -54,7 +83,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
-        let startDate = formatter.date(from: "2018 11 01")! // You can use date generated from a formatter
+        let startDate = formatter.date(from: "2019 01 01")! // You can use date generated from a formatter
         let endDate = formatter.date(from: "2030 12 30")!
         // You can also use dates created from this function
         let parameters = ConfigurationParameters(startDate: startDate,
@@ -64,6 +93,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
             generateInDates: .forAllMonths,
             generateOutDates: .tillEndOfGrid,
             firstDayOfWeek: .sunday)
+        
         return parameters
     }
 }
@@ -84,11 +114,27 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
             dateCell.dayLabel.textColor = UIColor.gray
         }
         
-//        let myView = UIView(frame: CGRect(x: 0, y: 40, width: 10, height: 20))
-//        myView.backgroundColor = UIColor.purple
-//
-//        dateCell.listStackView.insertArrangedSubview(myView, at: 0)
-        
+        for i in CalendarViewController.matchList {
+            // 이거 제대로 안됨.
+            if Calendar.current.compare(i.mDate, to: date, toGranularity: .day) == .orderedSame {
+                print("경기날이닷")
+                print(date)
+
+                let textLabel = UILabel()
+                textLabel.backgroundColor = UIColor.brown
+                textLabel.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
+                textLabel.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
+                textLabel.text = "\(i.blue) : \(i.red)"
+                textLabel.font = textLabel.font.withSize(10)
+
+                textLabel.textAlignment = .center
+                
+                textLabel.clipsToBounds = true
+                textLabel.layer.cornerRadius = 5
+                dateCell.listStackView.addArrangedSubview(textLabel)
+
+            }
+        }
         return dateCell
     }
     
