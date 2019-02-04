@@ -9,6 +9,7 @@ target 'LCKforYou' do
   pod 'SnapKit', '~> 4.0.0'
   pod 'Alamofire', '~> 4.7'
   pod 'JTAppleCalendar', '~> 7.0'
+  pod 'Kanna', '~> 4.0.0'
   # Pods for LCKforYou
 
 end
