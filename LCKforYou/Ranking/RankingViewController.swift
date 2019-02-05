@@ -15,7 +15,7 @@ class RankingViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     struct Ranking {
-//        let rank: String
+        let rank: String
         let logoURL: String
         let team: String
         let all: String
@@ -23,8 +23,8 @@ class RankingViewController: UIViewController {
         let lose: String
         let difference: String
         
-        init(logoURL: String, team: String, all: String, win: String, lose: String, difference: String) {
-//            self.rank = rank
+        init(rank: String, logoURL: String, team: String, all: String, win: String, lose: String, difference: String) {
+            self.rank = rank
             self.logoURL = logoURL
             self.team = team
             self.all = all
@@ -48,7 +48,7 @@ class RankingViewController: UIViewController {
     
     func parsePage() {
         guard let main = URL(string: baseURL) else {
-            print("Error: \(baseURL) doesn't seem to be a valid URL")
+            print("Error: \(baseURL) URL이 잘못됨")
             return
         }
         do {
@@ -67,6 +67,7 @@ class RankingViewController: UIViewController {
                 let loseIndex = index * 6 + 3
                 let differenceIndex = index * 6 + 5
                 
+                let rank = info[teamIndex].parent?.at_xpath("th")?.text ?? "?"
                 let logo = info[teamIndex].at_xpath("img")!["src"] ?? "?"
                 let team = info[teamIndex].text ?? "?"
                 let all = info[allIndex].text ?? "?"
@@ -74,7 +75,7 @@ class RankingViewController: UIViewController {
                 let lose = info[loseIndex].text ?? "?"
                 let difference = info[differenceIndex].text ?? "?"
                 
-                let info = Ranking(logoURL: logo, team: team, all: all, win: win, lose: lose, difference: difference)
+                let info = Ranking(rank: rank, logoURL: logo, team: team, all: all, win: win, lose: lose, difference: difference)
                 rankingList.append(info)
                 
             }
@@ -107,19 +108,20 @@ extension RankingViewController: UITableViewDataSource {
         if (indexPath.row != 0) {
             let rankCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             if let cell = rankCell as? RankingTableViewCell {
-                cell.rankLabel.text = "\(indexPath.row)"
+                cell.rankLabel.text = rankingList[indexPath.row - 1].rank
                 cell.teamLabel.text = rankingList[indexPath.row - 1].team
                 cell.allLabel.text = rankingList[indexPath.row - 1].all
                 cell.winLabel.text = rankingList[indexPath.row - 1].win
                 cell.loseLabel.text = rankingList[indexPath.row - 1].lose
                 cell.differenceLabel.text = rankingList[indexPath.row - 1].difference
                 
-                let url = URL(string: imageBaseURL + rankingList[indexPath.row - 1].logoURL)
+                let urlString = URL(string: imageBaseURL + rankingList[indexPath.row - 1].logoURL)
                 
                 DispatchQueue.global().async {
-                    let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-                    DispatchQueue.main.async {
-                        cell.logoImageView.image = UIImage(data: data!)
+                    if let url =  urlString, let data = try? Data(contentsOf: url) {
+                        DispatchQueue.main.async {
+                            cell.logoImageView.image = UIImage(data: data)
+                        }
                     }
                 }
             }
