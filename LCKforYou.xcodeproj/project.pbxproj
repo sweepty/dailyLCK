@@ -29,7 +29,6 @@
 		1B905A252109A2200032F3B5 /* SelectTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */; };
 		1BB2417B2203476E00EA57F2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2417A2203476E00EA57F2 /* API.swift */; };
 		1BB466D022074DF600908317 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB466CF22074DF600908317 /* Requests.swift */; };
-		1BF22835207B279500480CE6 /* match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF22834207B279500480CE6 /* match.swift */; };
 		1BF66A3921AAE8600075E6FF /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */; };
 		66AE8B5EA57E6A85EFAADCCE /* Pods_LCKforYou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B82BA7A94D6ED5272C876DB /* Pods_LCKforYou.framework */; };
 /* End PBXBuildFile section */
@@ -101,7 +100,6 @@
 		1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamViewController.swift; sourceTree = "<group>"; };
 		1BB2417A2203476E00EA57F2 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1BB466CF22074DF600908317 /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
-		1BF22834207B279500480CE6 /* match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = match.swift; sourceTree = "<group>"; };
 		1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		40C017BCDDB0974D8FB550B3 /* Pods-LCKforYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCKforYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,13 +147,13 @@
 		1B003191202A09A900FF5A0B /* LCKforYou */ = {
 			isa = PBXGroup;
 			children = (
-				1B090067220875D400E17832 /* Ranking */,
 				1B0031A1202A09A900FF5A0B /* Info.plist */,
 				1B68D253213DA25F00524220 /* Model */,
+				1B73F98A21AAFAA800A17E0F /* Network */,
 				1B73F98821AAF35100A17E0F /* Calendar */,
+				1B090067220875D400E17832 /* Ranking */,
 				1B73F98921AAFA8700A17E0F /* Settings */,
 				1B003196202A09A900FF5A0B /* Main.storyboard */,
-				1B73F98A21AAFAA800A17E0F /* Network */,
 				1B73F98C21AAFAEA00A17E0F /* Supporting Files */,
 			);
 			path = LCKforYou;
@@ -173,7 +171,6 @@
 		1B68D253213DA25F00524220 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1BF22834207B279500480CE6 /* match.swift */,
 				1B5423B420F7C92E0088C3E5 /* Team.swift */,
 				1B68D251213D54BE00524220 /* Matches.swift */,
 				1B61461C214FE98B00B1A208 /* Teams.swift */,
@@ -361,7 +358,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
@@ -382,7 +379,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		30FAC745028B7D5BD914D1B4 /* [CP] Check Pods Manifest.lock */ = {
@@ -423,7 +420,6 @@
 				1B09006B2208762A00E17832 /* RankingViewController.swift in Sources */,
 				1B115ECB2113C237008092D0 /* TeamCollectionViewCell.swift in Sources */,
 				1B318CE021B1854E00AA37F0 /* CalendarCellScrollView.swift in Sources */,
-				1BF22835207B279500480CE6 /* match.swift in Sources */,
 				1B68D252213D54BE00524220 /* Matches.swift in Sources */,
 				1BF66A3921AAE8600075E6FF /* CalendarViewController.swift in Sources */,
 				1BB2417B2203476E00EA57F2 /* API.swift in Sources */,
