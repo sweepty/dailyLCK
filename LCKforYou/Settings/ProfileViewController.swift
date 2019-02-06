@@ -12,12 +12,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var tableView: UITableView!
 
-    let sectionList :[String] = ["설정", "피드백", "LckforYou"]
-    let settingList :[String] = ["나의 팀 설정", "앱 알림 설정"]
-    let supportList :[String] = ["개발자에게 이메일 보내기", "앱 평가하기"]
-    let lckforyouList :[String] = ["공유하기", "트위터"]
+    let sectionList: [String] = ["설정", "피드백", "LckforYou"]
+    let settingList: [String] = ["나의 팀 설정", "앱 알림 설정"]
+    let supportList: [String] = ["개발자에게 이메일 보내기", "앱 평가하기"]
+    let lckforyouList: [String] = ["공유하기", "트위터"]
     
-    let sbList :[String] = ["selectTeam","setAlert"]
+    let sbList: [String] = ["selectTeam","setAlert"]
     
     
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         guard let cell = tableView.cellForRow(at: [0, 0]) as? MyTeamTableViewCell else { return }
-        cell.collectionView.reloadData()
+        cell.collectionView.reloadData() // 여기 코드 정리하기 async로 
     }
     
     // collectionview
@@ -93,10 +93,33 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         if indexPath.section == 1 {
             let vcName = sbList[indexPath.row]
             let vc = storyboard?.instantiateViewController(withIdentifier: vcName)
             self.navigationController?.pushViewController(vc!, animated: true)
+        } else if indexPath.section == 3 && indexPath.row == 1 {
+            print("트위터")
+            let screenName =  "dailylck"
+            let appURL = NSURL(string: "twitter://user?screen_name=\(screenName)")!
+            let webURL = NSURL(string: "https://twitter.com/\(screenName)")!
+            
+            // 사용자가 트위터 앱을 설치한 경우 앱에서 열음
+            if UIApplication.shared.canOpenURL(appURL as URL) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(appURL as URL, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(appURL as URL)
+                }
+            } else {
+                // 사용자가 트위터 앱이 없는 경우 사파리로 리다이렉트
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(webURL as URL, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(webURL as URL)
+                }
+            }
         }
     }
     
