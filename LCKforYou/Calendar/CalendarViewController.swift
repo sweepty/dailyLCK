@@ -13,15 +13,11 @@ import RealmSwift
 import Alamofire
 
 class CalendarViewController: UIViewController {
-//    @IBOutlet weak var stackView: UIStackView!
+    
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    
-    let testLabel = UILabel()
     
     let formatter = DateFormatter()
     
@@ -32,25 +28,15 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 현재 날짜로 스크롤
+        calendarView.scrollToDate(Date(), triggerScrollToDateDelegate: false, animateScroll: false, preferredScrollPosition: nil, extraAddedOffset: 0, completionHandler: nil)
         setupCalendarView()
         
-        Requests().getMatchInfo() { (isSuccess, matches)  in
-            if isSuccess {
-                // update UI
-                DispatchQueue.main.async {
-                    self.calendarView.reloadData()
-                }
-                
-                print(CalendarViewController.matchList.count)
-                print("개")
-            } else {
-                print("틀려먹음")
-            }
-            
+        if CalendarViewController.matchList.count == 0 {
+            requestMatches()
         }
-        
-//        print("몇개")
-//        print(CalendarViewController.matchList.count)
+//        requestMatches()
     }
     
     func setupCalendarView() {
@@ -72,6 +58,26 @@ class CalendarViewController: UIViewController {
         
         self.formatter.dateFormat = "yyyy"
         self.yearLabel.text = self.formatter.string(from: date!)
+    }
+    
+    func requestMatches() {
+        Requests().getMatchInfo() { (isSuccess, matches)  in
+            print("이게 머야 \(isSuccess)")
+            if isSuccess {
+                // update UI
+                DispatchQueue.main.async {
+                    self.calendarView.reloadData()
+                }
+                
+                print(CalendarViewController.matchList.count)
+                print("개")
+            } else {
+                let alert = UIAlertController(title: "네트워크 오류", message: "네트워크 연결상태를 확인해주세요.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+            
+        }
     }
 }
 
@@ -96,6 +102,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
         
         return parameters
     }
+    
 }
 
 extension CalendarViewController: JTAppleCalendarViewDelegate {
@@ -107,32 +114,25 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         
         dateCell.dayLabel.text = cellState.text
         
-        
         if cellState.dateBelongsTo == .thisMonth {
             dateCell.dayLabel.textColor = UIColor.black
         } else {
             dateCell.dayLabel.textColor = UIColor.gray
         }
         
-        for i in CalendarViewController.matchList {
-            // 이거 제대로 안됨.
-            if Calendar.current.compare(i.mDate, to: date, toGranularity: .day) == .orderedSame {
-                print("경기날이닷")
-                print(date)
-
+        for (_, element) in CalendarViewController.matchList.enumerated() {
+            if Calendar.current.isDate(element.mDate, inSameDayAs: date) == true {
+                print("경기날이닷 \(element.mDate)")
                 let textLabel = UILabel()
                 textLabel.backgroundColor = UIColor.brown
                 textLabel.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-                textLabel.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-                textLabel.text = "\(i.blue) : \(i.red)"
+                textLabel.heightAnchor.constraint(equalToConstant: 23.0).isActive = true
+                textLabel.text = "\(element.blue) : \(element.red)"
                 textLabel.font = textLabel.font.withSize(10)
-
                 textLabel.textAlignment = .center
-                
                 textLabel.clipsToBounds = true
                 textLabel.layer.cornerRadius = 5
                 dateCell.listStackView.addArrangedSubview(textLabel)
-
             }
         }
         return dateCell
