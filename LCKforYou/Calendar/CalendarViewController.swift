@@ -37,7 +37,6 @@ class CalendarViewController: UIViewController {
         if CalendarViewController.matchList.count == 0 {
             requestMatches()
         }
-//        requestMatches()
     }
     
     func setupCalendarView() {
@@ -126,15 +125,15 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
         formatter.locale = Calendar.current.locale
         
         let startDate = formatter.date(from: "2019 01 01")! // You can use date generated from a formatter
-        let endDate = formatter.date(from: "2030 12 30")!
+        let endDate = formatter.date(from: "2020 12 30")!
         // You can also use dates created from this function
         let parameters = ConfigurationParameters(startDate: startDate,
                                                  endDate: endDate,
                                                  numberOfRows: 6, // Only 1, 2, 3, & 6 are allowed
             calendar: Calendar.current,
-            generateInDates: .forAllMonths,
+            generateInDates: .forAllMonths, // forFirstMonthOnly forAllMonths
             generateOutDates: .tillEndOfGrid,
-            firstDayOfWeek: .sunday)
+            firstDayOfWeek: .monday)
         
         return parameters
     }
