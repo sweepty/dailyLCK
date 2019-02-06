@@ -31,6 +31,7 @@ class CalendarViewController: UIViewController {
         
         // 현재 날짜로 스크롤
         calendarView.scrollToDate(Date(), triggerScrollToDateDelegate: false, animateScroll: false, preferredScrollPosition: nil, extraAddedOffset: 0, completionHandler: nil)
+        
         setupCalendarView()
         
         if CalendarViewController.matchList.count == 0 {
@@ -44,7 +45,7 @@ class CalendarViewController: UIViewController {
         calendarView.visibleDates { (visibleDates) in
             self.setupViewsOfCalendar(from: visibleDates)
         }
-        calendarView.minimumLineSpacing = 1
+//        calendarView.minimumLineSpacing = 3
         calendarView.minimumInteritemSpacing = 0
         calendarView.cellSize = calendarView.frame.size.width / 7
         
@@ -53,11 +54,46 @@ class CalendarViewController: UIViewController {
     func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
         let date = visibleDates.monthDates.first?.date
         
-        self.formatter.dateFormat = "MMMM"
+        self.formatter.dateFormat = "MMM"
         self.monthLabel.text = self.formatter.string(from: date!)
         
         self.formatter.dateFormat = "yyyy"
         self.yearLabel.text = self.formatter.string(from: date!)
+        
+        
+    }
+    
+    func configureCell(cell: JTAppleCell?, cellState: CellState) {
+        guard let myCell = cell as? CellView else { return }
+        
+        handleCellTextColor(cell: myCell, cellState: cellState)
+        handleCellVisiblity(cell: myCell, cellState: cellState)
+        handleCellSelection(cell: myCell, cellState: cellState)
+        
+    }
+    
+    func handleCellTextColor(cell: CellView, cellState: CellState) {
+        let todaysDate = Date()
+
+        formatter.dateFormat = "yyyy MM dd"
+
+        let todaysDateString = formatter.string(from: todaysDate)
+        let monthsDateString = formatter.string(from: cellState.date)
+        
+        // 오늘 날짜에 색깔 넣기
+        if todaysDateString == monthsDateString {
+            cell.dayLabel.textColor = UIColor.red
+        } else {
+            cell.dayLabel.textColor = UIColor.black
+        }
+    }
+    
+    func handleCellVisiblity(cell: CellView, cellState: CellState) {
+        cell.isHidden = cellState.dateBelongsTo == .thisMonth ? false : true
+    }
+    
+    func handleCellSelection(cell: CellView, cellState: CellState) {
+        cell.selectedView.isHidden = cellState.isSelected ? false : true
     }
     
     func requestMatches() {
@@ -107,28 +143,25 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
 
 extension CalendarViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+        configureCell(cell: cell, cellState: cellState)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let dateCell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "cell", for: indexPath) as! CellView
+        configureCell(cell: dateCell, cellState: cellState)
         
         dateCell.dayLabel.text = cellState.text
-        
-        if cellState.dateBelongsTo == .thisMonth {
-            dateCell.dayLabel.textColor = UIColor.black
-        } else {
-            dateCell.dayLabel.textColor = UIColor.gray
-        }
         
         for (_, element) in CalendarViewController.matchList.enumerated() {
             if Calendar.current.isDate(element.mDate, inSameDayAs: date) == true {
                 print("경기날이닷 \(element.mDate)")
                 let textLabel = UILabel()
-                textLabel.backgroundColor = UIColor.brown
+                textLabel.backgroundColor = UIColor.blue
                 textLabel.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
                 textLabel.heightAnchor.constraint(equalToConstant: 23.0).isActive = true
                 textLabel.text = "\(element.blue) : \(element.red)"
                 textLabel.font = textLabel.font.withSize(10)
+                textLabel.textColor = UIColor.white
                 textLabel.textAlignment = .center
                 textLabel.clipsToBounds = true
                 textLabel.layer.cornerRadius = 5
@@ -146,6 +179,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         guard let validCell = cell as? CellView else { return }
         
         validCell.selectedView.isHidden = false
+//        validCell.listStackView.subviews
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
