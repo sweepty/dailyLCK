@@ -18,24 +18,36 @@ class Requests {
     var notificationToken: NotificationToken!
 
     func getMatchInfo(completion: @escaping (Bool, [Matches]) -> Void) {
-        Alamofire.request(API.baseURL).responseJSON { response in
+        // ????
+        Alamofire.request(API.baseURL).validate().responseJSON { response in
             print("Result: \(response.result)")
-            let decoder = JSONDecoder()
-            self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            decoder.dateDecodingStrategy = .formatted(self.dateFormatter)
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            switch response.result {
+            case .success:
+                print("성공쓰")
+            case .failure(let error):
+                print("실패쓰")
+                print(error)
+            }
             
-            if let data = response.data, let matches = try? decoder.decode([Matches].self, from: data) {
-//                print("Data: \(matches)")
-                CalendarViewController.matchList = matches
-                
-                
+            if String(response.result.description) == "FAILURE" {
                 DispatchQueue.main.async {
-                    completion(true, CalendarViewController.matchList)
+                    completion(false, CalendarViewController.matchList)
                 }
-                print("변경완료")
+            } else {
+                let decoder = JSONDecoder()
+                self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                decoder.dateDecodingStrategy = .formatted(self.dateFormatter)
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                
+                if let data = response.data, let matches = try? decoder.decode([Matches].self, from: data) {
+                    CalendarViewController.matchList = matches
+                    DispatchQueue.main.async {
+                        completion(true, CalendarViewController.matchList)
+                    }
+                }
             }
         }
+        print("ㄴ넘어감")
     }
     
     func insertTeams() {
