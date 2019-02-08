@@ -17,6 +17,7 @@ class RankingTableViewCell: UITableViewCell {
     @IBOutlet weak var winLabel: UILabel!
     @IBOutlet weak var loseLabel: UILabel!
     @IBOutlet weak var differenceLabel: UILabel!
+    @IBOutlet weak var top5View: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

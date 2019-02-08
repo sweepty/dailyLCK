@@ -41,6 +41,7 @@ class RankingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleLabel.sizeToFit()
         tableView.allowsSelection = false
         parsePage()
 
@@ -54,6 +55,9 @@ class RankingViewController: UIViewController {
         do {
             let lolMain = try String(contentsOf: main, encoding: .utf8)
             let doc = try HTML(html: lolMain, encoding: .utf8)
+            if let titlePath = doc.at_xpath("//header[@class='esports-header']//h2//strong")?.text {
+                self.titleLabel.text = setLeagueTitle(titlePath)
+            }
             
             let info = doc.xpath("//div[@class='esports-body']//tbody//tr//td")
             
@@ -70,10 +74,10 @@ class RankingViewController: UIViewController {
                 let rank = info[teamIndex].parent?.at_xpath("th")?.text ?? "?"
                 let logo = info[teamIndex].at_xpath("img")!["src"] ?? "?"
                 let team = info[teamIndex].text ?? "?"
-                let all = info[allIndex].text ?? "?"
-                let win = info[winIndex].text ?? "?"
-                let lose = info[loseIndex].text ?? "?"
-                let difference = info[differenceIndex].text ?? "?"
+                let all = info[allIndex].text ?? "0"
+                let win = info[winIndex].text ?? "0"
+                let lose = info[loseIndex].text ?? "0"
+                let difference = info[differenceIndex].text ?? "0"
                 
                 let info = Ranking(rank: rank, logoURL: logo, team: team, all: all, win: win, lose: lose, difference: difference)
                 rankingList.append(info)
@@ -85,6 +89,11 @@ class RankingViewController: UIViewController {
         } catch let error {
             print("Error: \(error)")
         }
+    }
+    
+    func setLeagueTitle(_ title: String) -> String {
+        let shortTitle = title.replacingOccurrences(of: "LoL 챔피언스 코리아", with: "LCK").replacingOccurrences(of: "스플릿", with: "")
+        return shortTitle
     }
     
 
@@ -106,6 +115,7 @@ extension RankingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row != 0) {
+            
             let rankCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             if let cell = rankCell as? RankingTableViewCell {
                 cell.rankLabel.text = rankingList[indexPath.row - 1].rank
@@ -114,6 +124,23 @@ extension RankingViewController: UITableViewDataSource {
                 cell.winLabel.text = rankingList[indexPath.row - 1].win
                 cell.loseLabel.text = rankingList[indexPath.row - 1].lose
                 cell.differenceLabel.text = rankingList[indexPath.row - 1].difference
+                
+                cell.rankLabel.textAlignment = .center
+                
+                // 포스트시즌 안정권 (1위 ~ 5위)
+                if indexPath.row < 6 {
+                    cell.top5View.isHidden = false
+                    cell.top5View.layer.cornerRadius = 15
+                    cell.top5View.clipsToBounds = true
+//                    cell.rankLabel.backgroundColor = UIColor.blue
+//                    cell.rankLabel.textColor = UIColor.white
+//                    cell.rankLabel.clipsToBounds = true
+//                    cell.rankLabel.layer.cornerRadius = 9
+                    
+                } else {
+                    cell.top5View.isHidden = true
+//                    cell.rankLabel.textColor = UIColor.black
+                }
                 
                 let urlString = URL(string: imageBaseURL + rankingList[indexPath.row - 1].logoURL)
                 
