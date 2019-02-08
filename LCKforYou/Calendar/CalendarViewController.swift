@@ -29,8 +29,6 @@ class CalendarViewController: UIViewController {
     // 테이블뷰 정보
     static var detailList = [Matches]()
     
-    let dateFormatter = DateFormatter()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -178,7 +176,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
                 textLabel.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
                 textLabel.heightAnchor.constraint(equalToConstant: 23.0).isActive = true
                 textLabel.text = "\(element.blue) : \(element.red)"
-                textLabel.font = textLabel.font.withSize(10)
+                textLabel.font = textLabel.font.withSize(9)
                 textLabel.textColor = UIColor.white
                 textLabel.textAlignment = .center
                 textLabel.clipsToBounds = true
@@ -273,5 +271,17 @@ extension CalendarViewController: UITableViewDataSource {
 }
 
 extension CalendarViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data = CalendarViewController.detailList[indexPath.row]
+//        DetailViewController()
+        
+        let vcName = "DetailView"
+        let vc = storyboard?.instantiateViewController(withIdentifier: vcName) as? DetailViewController
+        vc?.info = data
+        
+        self.navigationController?.pushViewController(vc!, animated: true)
+//        self.navigationController?.push
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
 }
