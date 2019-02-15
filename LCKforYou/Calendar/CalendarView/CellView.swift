@@ -19,7 +19,7 @@ class CellView: JTAppleCell {
     // 중복되어서 이상하게 나타나는 현상 해결
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.selectedView.isHidden = true
+//        self.selectedView.isHidden = true
         
         for subview in listStackView.subviews {
             subview.removeFromSuperview()
