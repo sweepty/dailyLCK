@@ -15,6 +15,10 @@
 		1B09006B2208762A00E17832 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B09006A2208762A00E17832 /* RankingViewController.swift */; };
 		1B115ECB2113C237008092D0 /* TeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B115ECA2113C237008092D0 /* TeamCollectionViewCell.swift */; };
 		1B2E73BB220D3E1200392289 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2E73BA220D3E1200392289 /* DetailViewController.swift */; };
+		1B3293D922153167003679BB /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3293D822153167003679BB /* DetailView.storyboard */; };
+		1B3382952215390C00CCF91E /* Ranking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3382942215390C00CCF91E /* Ranking.storyboard */; };
+		1B3382972215397400CCF91E /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3382962215397400CCF91E /* Calendar.storyboard */; };
+		1B33829922153A5200CCF91E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B33829822153A5200CCF91E /* Settings.storyboard */; };
 		1B5423B520F7C92E0088C3E5 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5423B420F7C92E0088C3E5 /* Team.swift */; };
 		1B5423B720F7CEE90088C3E5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */; };
 		1B5660752111654500DA3980 /* MyTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */; };
@@ -82,6 +86,10 @@
 		1B09006A2208762A00E17832 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		1B115ECA2113C237008092D0 /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		1B2E73BA220D3E1200392289 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		1B3293D822153167003679BB /* DetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailView.storyboard; sourceTree = "<group>"; };
+		1B3382942215390C00CCF91E /* Ranking.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ranking.storyboard; sourceTree = "<group>"; };
+		1B3382962215397400CCF91E /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		1B33829822153A5200CCF91E /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		1B3AB8602081F0470011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		1B3AB8612081F0470011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1B3AB8622081F0480011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainInterface.strings; sourceTree = "<group>"; };
@@ -168,8 +176,30 @@
 			children = (
 				1B090068220875F300E17832 /* RankingTableViewCell.swift */,
 				1B09006A2208762A00E17832 /* RankingViewController.swift */,
+				1B3382942215390C00CCF91E /* Ranking.storyboard */,
 			);
 			path = Ranking;
+			sourceTree = "<group>";
+		};
+		1B3293DB2215332B003679BB /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */,
+				1B73F98621AAF2FD00A17E0F /* CellView.swift */,
+				1B3382962215397400CCF91E /* Calendar.storyboard */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		1B3293DC22153333003679BB /* DetailTableView */ = {
+			isa = PBXGroup;
+			children = (
+				1BEB1735220C1689000FDA15 /* DetailTableViewCell.xib */,
+				1B3293D822153167003679BB /* DetailView.storyboard */,
+				1BEB1734220C1689000FDA15 /* DetailTableViewCell.swift */,
+				1B2E73BA220D3E1200392289 /* DetailViewController.swift */,
+			);
+			path = DetailTableView;
 			sourceTree = "<group>";
 		};
 		1B68D253213DA25F00524220 /* Model */ = {
@@ -195,11 +225,8 @@
 		1B73F98821AAF35100A17E0F /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */,
-				1B73F98621AAF2FD00A17E0F /* CellView.swift */,
-				1BEB1734220C1689000FDA15 /* DetailTableViewCell.swift */,
-				1BEB1735220C1689000FDA15 /* DetailTableViewCell.xib */,
-				1B2E73BA220D3E1200392289 /* DetailViewController.swift */,
+				1B3293DB2215332B003679BB /* CalendarView */,
+				1B3293DC22153333003679BB /* DetailTableView */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -212,6 +239,7 @@
 				1B5660742111654500DA3980 /* MyTeamCollectionViewCell.swift */,
 				1B905A242109A2200032F3B5 /* SelectTeamViewController.swift */,
 				1B115ECA2113C237008092D0 /* TeamCollectionViewCell.swift */,
+				1B33829822153A5200CCF91E /* Settings.storyboard */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -342,9 +370,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B0031A0202A09A900FF5A0B /* LaunchScreen.storyboard in Resources */,
+				1B3382952215390C00CCF91E /* Ranking.storyboard in Resources */,
 				1B00319D202A09A900FF5A0B /* Assets.xcassets in Resources */,
+				1B33829922153A5200CCF91E /* Settings.storyboard in Resources */,
 				1BEB1737220C1689000FDA15 /* DetailTableViewCell.xib in Resources */,
 				1B003198202A09A900FF5A0B /* Main.storyboard in Resources */,
+				1B3293D922153167003679BB /* DetailView.storyboard in Resources */,
+				1B3382972215397400CCF91E /* Calendar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
