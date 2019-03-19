@@ -11,20 +11,18 @@ import Realm
 import RealmSwift
 
 class Team: Object {
-    @objc dynamic var id = 0
     @objc dynamic var name: String = ""
     @objc dynamic var heart: Bool = false
     
     //primary key 설정
     override static func primaryKey() -> String? {
-        return "id"
+        return "name"
     }
     
-    static func add(_ id: Int, _ name: String, _ heart: Bool) {
+    static func add(_ name: String, _ heart: Bool) {
         let realm = try! Realm()
         let team = Team()
         
-        team.id = id
         team.name = name
         team.heart = heart
         
@@ -33,10 +31,10 @@ class Team: Object {
         }
     }
     
-    static func updateHeart(_ id: Int, _ heart: Bool) {
+    static func updateHeart(_ name: String, _ heart: Bool) {
         let realm = try! Realm()
         try! realm.write {
-            realm.create(Team.self, value: ["id": id, "heart": heart], update: true)
+            realm.create(Team.self, value: ["name": name, "heart": heart], update: true)
         }
     }
 }
