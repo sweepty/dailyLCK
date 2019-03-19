@@ -17,71 +17,50 @@ class Requests {
     let dateFormatter = DateFormatter()
     var notificationToken: NotificationToken!
 
-    func getMatchInfo(completion: @escaping (Bool, [Matches]) -> Void) {
+    func getMatchInfo(completion: @escaping ([Matches]?) -> Void) {
         // ????
         Alamofire.request(API.baseURL).validate().responseJSON { response in
             print("Result: \(response.result)")
             switch response.result {
             case .success:
-                print("성공쓰")
-            case .failure(let error):
-                print("실패쓰")
-                print(error)
-            }
-            
-            if String(response.result.description) == "FAILURE" {
-                DispatchQueue.main.async {
-                    completion(false, CalendarViewController.matchList)
-                }
-            } else {
+                print("성공")
                 let decoder = JSONDecoder()
                 self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
                 decoder.dateDecodingStrategy = .formatted(self.dateFormatter)
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                
+
                 if let data = response.data, let matches = try? decoder.decode([Matches].self, from: data) {
-                    CalendarViewController.matchList = matches
-                    DispatchQueue.main.async {
-                        completion(true, CalendarViewController.matchList)
-                    }
+                    completion(matches)
                 }
+            case .failure(let error):
+                print("실패")
+                print(error)
+                completion(nil)
             }
         }
         print("ㄴ넘어감")
     }
     
-    func insertTeams() {
-        var request = URLRequest(url: URL(string: "http://127.0.0.1:3000/teams")!)
-        request.httpMethod = "GET"
-        
-        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            if let data = data, let teamList = try? decoder.decode([Teams].self, from: data) {
+    func insertTeams(_ completion: @escaping(Bool, [Teams]?) -> Void) {
+        let teamURL = API.baseURL + "teams"
+        Alamofire.request(teamURL).validate().responseJSON { response in
+            print("Result: \(response.result)")
+            switch response.result {
+            case .success:
+                print("성공쓰")
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
-                DispatchQueue(label: "background").async {
-                    autoreleasepool {
-                        let realm = try! Realm()
-                        
-                        for t in teamList {
-                            realm.beginWrite()
-                            
-                            let teamItem = Team()
-                            teamItem.id = t.teamId
-                            teamItem.name = t.teamName
-                            teamItem.heart = false
-                            
-                            
-                            realm.create(Team.self, value: teamItem)
-                            try! realm.commitWrite()
-                        }
-                    }
+                if let data = response.data, let teams = try? decoder.decode([Teams].self, from: data) {
+                    completion(true, teams)
                 }
-                
+            case .failure(let error):
+                print("실패쓰")
+                print(error)
+                completion(false, nil)
             }
         }
-        task.resume()
+        print("ㄴ넘어감")
     }
 }
 
