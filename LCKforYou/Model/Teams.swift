@@ -8,7 +8,6 @@
 
 import Foundation
 
-struct Teams: Codable {
-    var teamId: Int
-    var teamName: String
+struct Teams: Decodable {
+    public var name: String
 }
