@@ -14,6 +14,8 @@ class RankingViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     struct Ranking {
         let rank: String
         let logoURL: String
@@ -42,21 +44,35 @@ class RankingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.sizeToFit()
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.allowsSelection = false
         parsePage()
+        
+        if rankingList.count == 0 {
+            let alert = UIAlertController(title: "오류", message: "서버가 점검중이거나 다른 이유로 접근할 수 없습니다.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            
+            self.tableView.isHidden = true
+            titleLabel.text = "ERROR"
+        }
 
     }
     
     func parsePage() {
+        spinner.startAnimating()
         guard let main = URL(string: baseURL) else {
             print("Error: \(baseURL) URL이 잘못됨")
             return
         }
         do {
+            
             let lolMain = try String(contentsOf: main, encoding: .utf8)
             let doc = try HTML(html: lolMain, encoding: .utf8)
             if let titlePath = doc.at_xpath("//header[@class='esports-header']//h2//strong")?.text {
                 self.titleLabel.text = setLeagueTitle(titlePath)
+            } else {
+                return
             }
             
             let info = doc.xpath("//div[@class='esports-body']//tbody//tr//td")
@@ -71,9 +87,9 @@ class RankingViewController: UIViewController {
                 let loseIndex = index * 6 + 3
                 let differenceIndex = index * 6 + 5
                 
-                let rank = info[teamIndex].parent?.at_xpath("th")?.text ?? "?"
-                let logo = info[teamIndex].at_xpath("img")!["src"] ?? "?"
-                let team = info[teamIndex].text ?? "?"
+                let rank = info[teamIndex].parent?.at_xpath("th")?.text ?? ""
+                let logo = info[teamIndex].at_xpath("img")!["src"] ?? ""
+                let team = info[teamIndex].text ?? ""
                 let all = info[allIndex].text ?? "0"
                 let win = info[winIndex].text ?? "0"
                 let lose = info[loseIndex].text ?? "0"
@@ -86,9 +102,11 @@ class RankingViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+
         } catch let error {
             print("Error: \(error)")
         }
+        spinner.stopAnimating()
     }
     
     func setLeagueTitle(_ title: String) -> String {
@@ -114,50 +132,59 @@ extension RankingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.row != 0) {
-            
+        if rankingList.count == 0 {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "네트워크 오류", message: "네트워크 연결상태를 확인해주세요.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
             let rankCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            if let cell = rankCell as? RankingTableViewCell {
-                cell.rankLabel.text = rankingList[indexPath.row - 1].rank
-                cell.teamLabel.text = rankingList[indexPath.row - 1].team
-                cell.allLabel.text = rankingList[indexPath.row - 1].all
-                cell.winLabel.text = rankingList[indexPath.row - 1].win
-                cell.loseLabel.text = rankingList[indexPath.row - 1].lose
-                cell.differenceLabel.text = rankingList[indexPath.row - 1].difference
+            return rankCell
+        } else {
+            if (indexPath.row != 0) {
                 
-                cell.rankLabel.textAlignment = .center
-                
-                // 포스트시즌 안정권 (1위 ~ 5위)
-                if indexPath.row < 6 {
-                    cell.top5View.isHidden = false
-                    cell.top5View.layer.cornerRadius = 15
-                    cell.top5View.clipsToBounds = true
-//                    cell.rankLabel.backgroundColor = UIColor.blue
-//                    cell.rankLabel.textColor = UIColor.white
-//                    cell.rankLabel.clipsToBounds = true
-//                    cell.rankLabel.layer.cornerRadius = 9
+                let rankCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+                if let cell = rankCell as? RankingTableViewCell {
+                    cell.rankLabel.adjustsFontSizeToFitWidth = true
+                    cell.teamLabel.adjustsFontSizeToFitWidth = true
+                    cell.winLabel.adjustsFontSizeToFitWidth = true
+                    cell.loseLabel.adjustsFontSizeToFitWidth = true
+                    cell.differenceLabel.adjustsFontSizeToFitWidth = true
                     
-                } else {
-                    cell.top5View.isHidden = true
-//                    cell.rankLabel.textColor = UIColor.black
-                }
-                
-                let urlString = URL(string: imageBaseURL + rankingList[indexPath.row - 1].logoURL)
-                
-                DispatchQueue.global().async {
-                    if let url =  urlString, let data = try? Data(contentsOf: url) {
-                        DispatchQueue.main.async {
-                            cell.logoImageView.image = UIImage(data: data)
+                    cell.rankLabel.text = rankingList[indexPath.row - 1].rank
+                    cell.teamLabel.text = changeShortName(rankingList[indexPath.row - 1].team)
+                    cell.winLabel.text = rankingList[indexPath.row - 1].win
+                    cell.loseLabel.text = rankingList[indexPath.row - 1].lose
+                    
+                    cell.differenceLabel.text = Int(rankingList[indexPath.row - 1].difference)! > 0 ? "+\(rankingList[indexPath.row - 1].difference)" : rankingList[indexPath.row - 1].difference
+                    
+                    cell.rankLabel.textAlignment = .center
+                    
+                    // 포스트시즌 안정권 (1위 ~ 5위)
+                    if indexPath.row < 6 {
+                        cell.top5View.isHidden = false
+                        cell.top5View.layer.cornerRadius = 15
+                        cell.top5View.clipsToBounds = true
+                    } else {
+                        cell.top5View.isHidden = true
+                    }
+                    
+                    let urlString = URL(string: imageBaseURL + rankingList[indexPath.row - 1].logoURL)
+                    
+                    DispatchQueue.global().async {
+                        if let url =  urlString, let data = try? Data(contentsOf: url) {
+                            DispatchQueue.main.async {
+                                cell.logoImageView.image = UIImage(data: data)
+                            }
                         }
                     }
                 }
+                return rankCell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath)
+                return cell
             }
-            return rankCell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath)
-            return cell
         }
-        
     }
 }
 extension RankingViewController: UICollectionViewDelegate {
