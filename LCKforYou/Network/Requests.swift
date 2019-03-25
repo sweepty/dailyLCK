@@ -12,55 +12,50 @@ import Realm
 import RealmSwift
 import Alamofire
 
-class Requests {
-    var realm: Realm!
-    let dateFormatter = DateFormatter()
-    var notificationToken: NotificationToken!
+var realm: Realm!
+var notificationToken: NotificationToken!
 
-    func getMatchInfo(completion: @escaping ([Matches]?) -> Void) {
-        // ????
-        Alamofire.request(API.baseURL).validate().responseJSON { response in
-            print("Result: \(response.result)")
-            switch response.result {
-            case .success:
-                print("성공")
-                let decoder = JSONDecoder()
-                self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-                decoder.dateDecodingStrategy = .formatted(self.dateFormatter)
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
+let formatter = DateFormatter()
+let decoder = JSONDecoder()
 
-                if let data = response.data, let matches = try? decoder.decode([Matches].self, from: data) {
-                    completion(matches)
-                }
-            case .failure(let error):
-                print("실패")
-                print(error)
-                completion(nil)
-            }
-        }
-        print("ㄴ넘어감")
-    }
+func getMatchInfo(completion: @escaping ([Matches]?) -> Void) {
+    var urlRequest = URLRequest(url: URL(string: API.baseURL)!)
+    urlRequest.cachePolicy = .reloadIgnoringCacheData
     
-    func insertTeams(_ completion: @escaping(Bool, [Teams]?) -> Void) {
-        let teamURL = API.baseURL + "teams"
-        Alamofire.request(teamURL).validate().responseJSON { response in
-            print("Result: \(response.result)")
-            switch response.result {
-            case .success:
-                print("성공쓰")
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                if let data = response.data, let teams = try? decoder.decode([Teams].self, from: data) {
-                    completion(true, teams)
-                }
-            case .failure(let error):
-                print("실패쓰")
-                print(error)
-                completion(false, nil)
+    Alamofire.request(urlRequest).validate().responseJSON { response in
+        switch response.result {
+        case .success:
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            formatter.timeZone = Calendar.current.timeZone
+            decoder.dateDecodingStrategy = .formatted(formatter)
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            if let data = response.data, let matches = try? decoder.decode([Matches].self, from: data) {
+                completion(matches)
             }
+        case .failure(let error):
+            Log.error(error.localizedDescription)
+            completion(nil)
         }
-        print("ㄴ넘어감")
+    }
+}
+
+func insertTeams(_ completion: @escaping(Bool, [Teams]?) -> Void) {
+    let teamURL = API.baseURL + "teams"
+    var urlRequest = URLRequest(url: URL(string: teamURL)!)
+    urlRequest.cachePolicy = .reloadIgnoringCacheData
+    
+    Alamofire.request(urlRequest).validate().responseJSON { response in
+        switch response.result {
+        case .success:
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            if let data = response.data, let teams = try? decoder.decode([Teams].self, from: data) {
+                completion(true, teams)
+            }
+        case .failure(let error):
+            Log.error(error.localizedDescription)
+            completion(false, nil)
+        }
     }
 }
 
