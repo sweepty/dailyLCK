@@ -18,3 +18,15 @@ struct Matches: Codable {
     var isplayoff: Bool
     var season: String
 }
+
+struct NotificationInfo {
+    var blue: String
+    var red: String
+    var date: Date
+    
+    init(blue: String, red: String, date: Date) {
+        self.blue = blue
+        self.red = red
+        self.date = date
+    }
+}
