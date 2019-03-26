@@ -661,7 +661,7 @@
 				DEVELOPMENT_TEAM = BX5JP2585T;
 				INFOPLIST_FILE = LCKforYou/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kr.ac.mju.seungyeonlee.LCKforYou;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.sweepty.LCKforYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -678,7 +678,7 @@
 				DEVELOPMENT_TEAM = BX5JP2585T;
 				INFOPLIST_FILE = LCKforYou/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kr.ac.mju.seungyeonlee.LCKforYou;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.sweepty.LCKforYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
