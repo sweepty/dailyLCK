@@ -421,7 +421,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
@@ -442,7 +442,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		30FAC745028B7D5BD914D1B4 /* [CP] Check Pods Manifest.lock */ = {
