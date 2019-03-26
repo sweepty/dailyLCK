@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class DetailViewController: UIViewController {
     
@@ -28,7 +29,6 @@ class DetailViewController: UIViewController {
     @IBAction func ticketAlarmButton(_ sender: UIButton) {
         
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +56,112 @@ class DetailViewController: UIViewController {
         stadiumLabel.sizeToFit()
         matchDateLabel.sizeToFit()
         ticketDateLabel.sizeToFit()
+    }
+    
+    /// 티켓팅 알람을 등록한다.
+    ///
+    /// - Parameters:
+    ///   - time: 사용자가 설정한 시간.
+    func registerTicketing(time: Double) {
+        guard let info = self.info else {
+            return
+        }
+        let ticketInfo = NotificationInfo.init(blue: info.blue, red: info.red, date: info.tDate)
+        addRequest(time, ticketInfo, .ticket)
+    }
+    
+    func showTicketNotificationActionSheet(_ tag: Int, _ sender: UIButton, _ usage: String) {
+        //Creating UIAlertController and
+        //Setting title and message for the alert dialog
+        let alertController = UIAlertController()
+        
+        //the confirm action taking the inputs
+        let oclockAction = UIAlertAction(title: "정시", style: .default) { (_) in
+            let time = TimeChoicer.M0.time
+            self.registerTicketing(time: time)
+        }
+        
+        let fiveAction = UIAlertAction(title: "5분 전", style: .default) { (_) in
+            let time = TimeChoicer.M5.time
+            self.registerTicketing(time: time)
+        }
+        
+        let tenAction = UIAlertAction(title: "10분 전", style: .default) { (_) in
+            let time = TimeChoicer.M10.time
+            self.registerTicketing(time: time)
+        }
+        
+        let twentyAction = UIAlertAction(title: "20분 전", style: .default) { (_) in
+            let time = TimeChoicer.M20.time
+            self.registerTicketing(time: time)
+        }
+        
+        let thirtyAction = UIAlertAction(title: "30분 전", style: .default) { (_) in
+            let time = TimeChoicer.M30.time
+            self.registerTicketing(time: time)
+        }
+        
+        let oneHourAction = UIAlertAction(title: "1시간 전", style: .default) { (_) in
+            let time = TimeChoicer.H60.time
+            self.registerTicketing(time: time)
+        }
+        
+        // 알람이 설정되어 있는 경우 삭제하기
+        let deleteAlarmAction = UIAlertAction(title: "삭제", style: .destructive) { (_) in
+            let center = UNUserNotificationCenter.current()
+            
+            guard let selectedInfo = self.info?.tDate else {
+                return
+            }
+            let changeLocal = selectedInfo.toCorrectTime()
+            self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
+            let id = self.formatter.string(from: changeLocal)
+            center.removePendingNotificationRequests(withIdentifiers: ["\(id)"])
+            DispatchQueue.main.async {
+                sender.setImage(UIImage(named: "alarm_nonactivate"), for: UIControl.State.normal)
+            }
+
+        }
+        
+        //the cancel action doing nothing
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        guard let selectedCellDate = self.info?.tDate else {
+            return
+        }
+        let changeLocal = selectedCellDate.toCorrectTime()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
+        let hour = formatter.string(from: changeLocal)
+        
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+            var nextTriggerDates: [String] = []
+            for request in requests {
+                nextTriggerDates.append(request.identifier)
+            }
+            if nextTriggerDates.contains(hour) {
+                alertController.title = "알림 삭제"
+                alertController.message = "알림을 삭제하시겠습니까?"
+                
+                alertController.addAction(deleteAlarmAction)
+                alertController.addAction(cancelAction)
+            } else {
+                alertController.title = "알림 설정"
+                alertController.message = "언제 푸시알림을 드릴까요?"
+                
+                alertController.addAction(oclockAction)
+                alertController.addAction(fiveAction)
+                alertController.addAction(tenAction)
+                alertController.addAction(twentyAction)
+                alertController.addAction(thirtyAction)
+                alertController.addAction(oneHourAction)
+                alertController.addAction(cancelAction)
+            }
+        }
+        
+        //finally presenting the dialog box
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
 
