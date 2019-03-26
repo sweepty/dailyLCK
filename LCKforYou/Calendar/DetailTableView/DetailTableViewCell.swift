@@ -18,10 +18,8 @@ class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var blueScoreLabel: UILabel!
     @IBOutlet weak var redScoreLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var alarmButton: UIButton!
     
-    @IBAction func alarmButton(_ sender: UIButton) {
-        
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
