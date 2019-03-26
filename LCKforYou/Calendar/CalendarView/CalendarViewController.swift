@@ -57,7 +57,7 @@ class CalendarViewController: UIViewController {
         let nibName = UINib(nibName: "DetailTableViewCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "detailCell")
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 55
         
         // 현재 날짜로 스크롤
@@ -262,11 +262,11 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
                 let date = self.formatter.string(from: timeInfo)
                 if request.identifier == date {
                     DispatchQueue.main.async {
-                        cell.alarmButton.setImage(UIImage(named: "alarm_activate"), for: UIControlState.normal)
+                        cell.alarmButton.setImage(UIImage(named: "alarm_activate"), for: UIControl.State.normal)
                     }
                 } else {
                     DispatchQueue.main.async {
-                        cell.alarmButton.setImage(UIImage(named: "alarm_nonactivate"), for: UIControlState.normal)
+                        cell.alarmButton.setImage(UIImage(named: "alarm_nonactivate"), for: UIControl.State.normal)
                     }
                 }
             }
@@ -358,7 +358,7 @@ extension CalendarViewController: UITableViewDataSource {
             let id = self.formatter.string(from: changeLocal)
             center.removePendingNotificationRequests(withIdentifiers: ["\(id)"])
             DispatchQueue.main.async {
-                sender.setImage(UIImage(named: "alarm_nonactivate"), for: UIControlState.normal)
+                sender.setImage(UIImage(named: "alarm_nonactivate"), for: UIControl.State.normal)
             }
         }
         

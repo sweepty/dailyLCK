@@ -108,14 +108,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             // 사용자가 트위터 앱을 설치한 경우 앱에서 열음
             if UIApplication.shared.canOpenURL(appURL as URL) {
                 if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(appURL as URL, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(appURL as URL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                 } else {
                     UIApplication.shared.openURL(appURL as URL)
                 }
             } else {
                 // 사용자가 트위터 앱이 없는 경우 사파리로 리다이렉트
                 if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(webURL as URL, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(webURL as URL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                 } else {
                     UIApplication.shared.openURL(webURL as URL)
                 }
@@ -128,7 +128,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if indexPath.section == 0 {
             return 150
         } else {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
