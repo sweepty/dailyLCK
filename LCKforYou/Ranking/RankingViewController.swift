@@ -16,30 +16,7 @@ class RankingViewController: UIViewController {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    struct Ranking {
-        let rank: String
-        let logoURL: String
-        let team: String
-        let all: String
-        let win: String
-        let lose: String
-        let difference: String
-        
-        init(rank: String, logoURL: String, team: String, all: String, win: String, lose: String, difference: String) {
-            self.rank = rank
-            self.logoURL = logoURL
-            self.team = team
-            self.all = all
-            self.win = win
-            self.lose = lose
-            self.difference = difference
-        }
-    }
-    
     var rankingList = [Ranking]()
-    
-    let baseURL = "http://www.leagueoflegends.co.kr/?m=esports&mod=chams_rank&cate=1"
-    let imageBaseURL = "http://www.leagueoflegends.co.kr"
     
     override func viewDidLoad() {
         super.viewDidLoad()
