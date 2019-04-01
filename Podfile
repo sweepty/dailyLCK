@@ -2,7 +2,6 @@
 platform :ios, '9.0'
 
 target 'LCKforYou' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   pod 'FSCalendar'
   pod 'RealmSwift'
@@ -10,6 +9,9 @@ target 'LCKforYou' do
   pod 'Alamofire', '~> 4.7'
   pod 'JTAppleCalendar', '~> 7.0'
   pod 'Kanna', '~> 4.0.0'
-  # Pods for LCKforYou
+end
 
+target 'LCKTarget' do
+  use_frameworks!
+  pod 'Kanna', '~> 4.0.0'
 end
