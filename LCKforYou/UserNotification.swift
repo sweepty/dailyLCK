@@ -46,18 +46,24 @@ private let notiFormatter = DateFormatter()
 func addRequest(_ time: Double, _ info: NotificationInfo, _ type: Usage) {
     
     notiFormatter.dateFormat = "a h:mm"
-    // 몽고디비 시간대 변경하고 유저가 설정한 시간으로 맞춤.
-    let settingTime = info.date.convertToSettingTime(time: time)
-    let hour = notiFormatter.string(from: settingTime)
-    let interval = settingTime.timeIntervalSince(Date())
+    notiFormatter.timeZone = TimeZone(identifier: "ko")
+    let ticketDate = info.date.toCorrectTime()
+    let hour = notiFormatter.string(from: ticketDate)
     
     // Setting content of the notification
     let content = UNMutableNotificationContent()
     content.title = "\(type.emoji) \(info.blue) vs \(info.red)"
-    content.body = "오늘 \(hour)에 \(info.blue) vs \(info.red) \(type.rawValue)가 있습니다."
     
-    Log.info("노티 들어간닷 \(hour) \(info.blue) vs \(info.red)")
+    switch type {
+    case .match:
+        content.body = "오늘 \(hour)에 \(info.blue) vs \(info.red) \(type.rawValue)가 있습니다."
+    case .ticket:
+        content.body = "오늘 \(hour)에 \(info.blue) vs \(info.red) \(type.rawValue)이 있습니다."
+    }
     
+    // 몽고디비 시간대 변경하고 유저가 설정한 시간으로 맞춤.
+    let settingTime = info.date.convertToSettingTime(time: time)
+    let interval = settingTime.timeIntervalSince(Date())
     let date = Date(timeIntervalSinceNow: interval)
     let dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
     
@@ -70,7 +76,6 @@ func addRequest(_ time: Double, _ info: NotificationInfo, _ type: Usage) {
     //Adding Request
     notiFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
     let id = notiFormatter.string(from: settingTime)
-    print("날 짜 \(id)")
     
     let request = UNNotificationRequest(identifier: "\(id)", content: content, trigger: calendartrigger)
     
