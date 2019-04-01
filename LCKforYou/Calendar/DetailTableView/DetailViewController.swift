@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var ticketDateLabel: UILabel!
     
     @IBAction func ticketAlarmButton(_ sender: UIButton) {
-        
+        showTicketNotificationActionSheet()
     }
     
     override func viewDidLoad() {
@@ -70,11 +70,7 @@ class DetailViewController: UIViewController {
         addRequest(time, ticketInfo, .ticket)
     }
     
-    func showTicketNotificationActionSheet(_ tag: Int, _ sender: UIButton, _ usage: String) {
-        //Creating UIAlertController and
-        //Setting title and message for the alert dialog
-        let alertController = UIAlertController()
-        
+    func showTicketNotificationActionSheet() {
         //the confirm action taking the inputs
         let oclockAction = UIAlertAction(title: "정시", style: .default) { (_) in
             let time = TimeChoicer.M0.time
@@ -117,10 +113,9 @@ class DetailViewController: UIViewController {
             self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
             let id = self.formatter.string(from: changeLocal)
             center.removePendingNotificationRequests(withIdentifiers: ["\(id)"])
-            DispatchQueue.main.async {
-                sender.setImage(UIImage(named: "alarm_nonactivate"), for: UIControl.State.normal)
-            }
-
+//            DispatchQueue.main.async {
+//                sender.setImage(UIImage(named: "alarm_nonactivate"), for: UIControl.State.normal)
+//            }
         }
         
         //the cancel action doing nothing
@@ -134,6 +129,10 @@ class DetailViewController: UIViewController {
         let hour = formatter.string(from: changeLocal)
         
         UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+            //Creating UIAlertController and
+            //Setting title and message for the alert dialog
+            let alertController = UIAlertController()
+            
             var nextTriggerDates: [String] = []
             for request in requests {
                 nextTriggerDates.append(request.identifier)
@@ -156,11 +155,10 @@ class DetailViewController: UIViewController {
                 alertController.addAction(oneHourAction)
                 alertController.addAction(cancelAction)
             }
-        }
-        
-        //finally presenting the dialog box
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true, completion: nil)
+            //finally presenting the dialog box
+            DispatchQueue.main.async {
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
     
