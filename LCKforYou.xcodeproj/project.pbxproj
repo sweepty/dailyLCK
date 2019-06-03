@@ -26,8 +26,6 @@
 		1B3D110A2249413B0085C344 /* MyTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D11092249413B0085C344 /* MyTeamCollectionViewCell.swift */; };
 		1B5423B520F7C92E0088C3E5 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5423B420F7C92E0088C3E5 /* Team.swift */; };
 		1B5423B720F7CEE90088C3E5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */; };
-		1B60DD98223FD5A400CBCCE1 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B60DD97223FD5A400CBCCE1 /* Filter.storyboard */; };
-		1B60DD9A223FD5D400CBCCE1 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B60DD99223FD5D400CBCCE1 /* FilterViewController.swift */; };
 		1B60DD9C223FF9D800CBCCE1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B60DD9B223FF9D800CBCCE1 /* Converter.swift */; };
 		1B61461D214FE98B00B1A208 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B61461C214FE98B00B1A208 /* Teams.swift */; };
 		1B68D252213D54BE00524220 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68D251213D54BE00524220 /* Matches.swift */; };
@@ -42,6 +40,7 @@
 		1B8F15502113605B00F1FDB3 /* MyTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */; };
 		1BB2417B2203476E00EA57F2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2417A2203476E00EA57F2 /* API.swift */; };
 		1BB466D022074DF600908317 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB466CF22074DF600908317 /* Requests.swift */; };
+		1BE88E4A227B1CBC00F667D9 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE88E49227B1CBC00F667D9 /* CalendarViewModel.swift */; };
 		1BEB1736220C1689000FDA15 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB1734220C1689000FDA15 /* DetailTableViewCell.swift */; };
 		1BEB1737220C1689000FDA15 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEB1735220C1689000FDA15 /* DetailTableViewCell.xib */; };
 		1BEFED20224DA21300CCDD1F /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B60DD9B223FF9D800CBCCE1 /* Converter.swift */; };
@@ -111,8 +110,6 @@
 		1B3D11092249413B0085C344 /* MyTeamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		1B5423B420F7C92E0088C3E5 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		1B5423B620F7CEE90088C3E5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		1B60DD97223FD5A400CBCCE1 /* Filter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
-		1B60DD99223FD5D400CBCCE1 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		1B60DD9B223FF9D800CBCCE1 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		1B61461C214FE98B00B1A208 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		1B68D251213D54BE00524220 /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
@@ -130,6 +127,7 @@
 		1B8F154F2113605B00F1FDB3 /* MyTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamTableViewCell.swift; sourceTree = "<group>"; };
 		1BB2417A2203476E00EA57F2 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1BB466CF22074DF600908317 /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
+		1BE88E49227B1CBC00F667D9 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		1BEB1734220C1689000FDA15 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		1BEB1735220C1689000FDA15 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -216,8 +214,9 @@
 				1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */,
 				1B73F98621AAF2FD00A17E0F /* CellView.swift */,
 				1B3382962215397400CCF91E /* Calendar.storyboard */,
-				1B60DD97223FD5A400CBCCE1 /* Filter.storyboard */,
-				1B60DD99223FD5D400CBCCE1 /* FilterViewController.swift */,
+				1BE88E49227B1CBC00F667D9 /* CalendarViewModel.swift */,
+				1BEB1735220C1689000FDA15 /* DetailTableViewCell.xib */,
+				1BEB1734220C1689000FDA15 /* DetailTableViewCell.swift */,
 			);
 			path = CalendarView;
 			sourceTree = "<group>";
@@ -225,9 +224,7 @@
 		1B3293DC22153333003679BB /* DetailTableView */ = {
 			isa = PBXGroup;
 			children = (
-				1BEB1735220C1689000FDA15 /* DetailTableViewCell.xib */,
 				1B3293D822153167003679BB /* DetailView.storyboard */,
-				1BEB1734220C1689000FDA15 /* DetailTableViewCell.swift */,
 				1B2E73BA220D3E1200392289 /* DetailViewController.swift */,
 			);
 			path = DetailTableView;
@@ -429,7 +426,6 @@
 			files = (
 				1B0031A0202A09A900FF5A0B /* LaunchScreen.storyboard in Resources */,
 				1B3382952215390C00CCF91E /* Ranking.storyboard in Resources */,
-				1B60DD98223FD5A400CBCCE1 /* Filter.storyboard in Resources */,
 				1B00319D202A09A900FF5A0B /* Assets.xcassets in Resources */,
 				1B33829922153A5200CCF91E /* Settings.storyboard in Resources */,
 				1BEB1737220C1689000FDA15 /* DetailTableViewCell.xib in Resources */,
@@ -536,6 +532,7 @@
 				1B7EC61E22491EBC00DB7A40 /* Log.swift in Sources */,
 				1B2E73BB220D3E1200392289 /* DetailViewController.swift in Sources */,
 				1B090069220875F300E17832 /* RankingTableViewCell.swift in Sources */,
+				1BE88E4A227B1CBC00F667D9 /* CalendarViewModel.swift in Sources */,
 				1B5423B720F7CEE90088C3E5 /* ProfileViewController.swift in Sources */,
 				1BB466D022074DF600908317 /* Requests.swift in Sources */,
 				1B7EC617224914A000DB7A40 /* Date+.swift in Sources */,
@@ -548,7 +545,6 @@
 				1B73F98721AAF2FD00A17E0F /* CellView.swift in Sources */,
 				1B3D110A2249413B0085C344 /* MyTeamCollectionViewCell.swift in Sources */,
 				1BEB1736220C1689000FDA15 /* DetailTableViewCell.swift in Sources */,
-				1B60DD9A223FD5D400CBCCE1 /* FilterViewController.swift in Sources */,
 				1B09006B2208762A00E17832 /* RankingViewController.swift in Sources */,
 				1B68D252213D54BE00524220 /* Matches.swift in Sources */,
 				1BF66A3921AAE8600075E6FF /* CalendarViewController.swift in Sources */,
