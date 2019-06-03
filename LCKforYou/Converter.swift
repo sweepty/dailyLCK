@@ -53,7 +53,7 @@ func changeShortName(_ name: String) -> String {
         return "JIN AIR"
     case "KT Rolster":
         return "KT"
-    case "King-Zone Dragon X":
+    case "KING-ZONE DragonX":
         return "King-Zone"
     case "SANDBOX Gaming":
         return "SANDBOX"
