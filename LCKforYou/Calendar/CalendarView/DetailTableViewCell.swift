@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var blueLogoImageView: UIImageView!
@@ -19,6 +21,8 @@ class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var redScoreLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var alarmButton: UIButton!
+    
+    let cellBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()

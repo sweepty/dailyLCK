@@ -18,14 +18,6 @@
             </objects>
             <point key="canvasLocation" x="1006" y="-312"/>
         </scene>
-        <!--Filter-->
-        <scene sceneID="53p-Ap-OVv">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Filter" id="fBQ-Ys-rtJ" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MoX-uJ-j9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="975" y="-571"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="OW2-ei-ygl">
             <objects>
@@ -134,10 +126,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t0a-Wd-SCt">
                                 <rect key="frame" x="0.0" y="536.66666666666663" width="375" height="241.33333333333337"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="ZDW-dX-BSp" id="EDD-AM-eel"/>
-                                    <outlet property="delegate" destination="ZDW-dX-BSp" id="yHY-RV-xSp"/>
-                                </connections>
                             </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KOn-EP-Tp6">
                                 <rect key="frame" x="177.66666666666666" y="396" width="20" height="20"/>
@@ -241,13 +229,7 @@
                         <viewLayoutGuide key="safeArea" id="whu-Mu-e0T"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="history" id="f4O-5j-5dU"/>
-                    <navigationItem key="navigationItem" id="fxX-pG-MvE">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="RfY-Vv-4Vb">
-                            <connections>
-                                <segue destination="fBQ-Ys-rtJ" kind="show" id="03U-fu-3Mv"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="fxX-pG-MvE"/>
                     <connections>
                         <outlet property="calendarView" destination="FHI-SY-N1p" id="dPn-ku-Jjz"/>
                         <outlet property="monthLabel" destination="n2C-qo-Y1q" id="zAJ-aQ-kDI"/>
