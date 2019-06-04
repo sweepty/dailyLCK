@@ -9,6 +9,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import UserNotifications
+import RxDataSources
 
 class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var blueLogoImageView: UIImageView!
@@ -34,4 +36,16 @@ class DetailTableViewCell: UITableViewCell {
         
     }
     
+}
+
+// RxDataSources
+struct SectionOfCustomData {
+    var items: [Matches]
+}
+
+extension SectionOfCustomData: SectionModelType {
+    init(original: SectionOfCustomData, items: [Matches]) {
+        self = original
+        self.items = items
+    }
 }

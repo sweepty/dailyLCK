@@ -33,6 +33,7 @@ enum TimeChoicer: Double {
     case M20 = 20
     case M30 = 30
     case H60 = 60
+    case H120 = 120
 }
 
 extension TimeChoicer {
@@ -43,8 +44,19 @@ extension TimeChoicer {
 
 private let notiFormatter = DateFormatter()
 
-func addRequest(_ time: Double, _ info: NotificationInfo, _ type: Usage) {
-    
+// notification 등록
+func registerNotification(time: Double, match: Matches, type: Usage) -> Void {
+    var notiDate = Date()
+
+    switch type {
+    case .match:
+        notiDate = match.mDate
+    case .ticket:
+        notiDate = match.tDate
+    }
+
+    let info: NotificationInfo = NotificationInfo.init(blue: match.blue, red: match.red, date: notiDate)
+//    addRequest(time, info, type)
     notiFormatter.dateFormat = "a h:mm"
     notiFormatter.timeZone = TimeZone(identifier: "ko")
     let ticketDate = info.date.toCorrectTime()
@@ -68,14 +80,14 @@ func addRequest(_ time: Double, _ info: NotificationInfo, _ type: Usage) {
     let dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
     
     // 실전
-    let calendartrigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
+    //    let calendartrigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
     
     // 테스트용
-//    let calendartrigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(1), repeats: false)
+    let calendartrigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(5), repeats: false)
     
     //Adding Request
     notiFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-    let id = notiFormatter.string(from: settingTime)
+    let id = notiFormatter.string(from: ticketDate)
     
     let request = UNNotificationRequest(identifier: "\(id)", content: content, trigger: calendartrigger)
     
@@ -91,4 +103,3 @@ func addRequest(_ time: Double, _ info: NotificationInfo, _ type: Usage) {
     
     UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 }
-

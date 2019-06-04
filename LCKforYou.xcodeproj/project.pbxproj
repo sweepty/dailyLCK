@@ -33,6 +33,8 @@
 		1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7351E72031F1D100BD0C71 /* TodayViewController.swift */; };
 		1B7351EB2031F1D100BD0C71 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7351E92031F1D100BD0C71 /* MainInterface.storyboard */; };
 		1B7351EF2031F1D100BD0C71 /* LCKTarget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B7351E42031F1D100BD0C71 /* LCKTarget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B7359B522A5F5EF0061149C /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7359B422A5F5EF0061149C /* AlarmViewController.swift */; };
+		1B7359B722A64D9C0061149C /* DesignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7359B622A64D9C0061149C /* DesignModel.swift */; };
 		1B73F98721AAF2FD00A17E0F /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73F98621AAF2FD00A17E0F /* CellView.swift */; };
 		1B7EC617224914A000DB7A40 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EC616224914A000DB7A40 /* Date+.swift */; };
 		1B7EC61A2249157100DB7A40 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EC6192249157100DB7A40 /* UserNotification.swift */; };
@@ -118,6 +120,8 @@
 		1B7351E72031F1D100BD0C71 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		1B7351EA2031F1D100BD0C71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		1B7351EC2031F1D100BD0C71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B7359B422A5F5EF0061149C /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		1B7359B622A64D9C0061149C /* DesignModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignModel.swift; sourceTree = "<group>"; };
 		1B73F98621AAF2FD00A17E0F /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		1B747437205D55CC00DDC7C0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		1B747438205D55CC00DDC7C0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
@@ -213,19 +217,22 @@
 			children = (
 				1B3382962215397400CCF91E /* Calendar.storyboard */,
 				1BE88E49227B1CBC00F667D9 /* CalendarViewModel.swift */,
-				1BEB1735220C1689000FDA15 /* DetailTableViewCell.xib */,
+				1B73F98621AAF2FD00A17E0F /* CellView.swift */,
 				1BEB1734220C1689000FDA15 /* DetailTableViewCell.swift */,
+				1BEB1735220C1689000FDA15 /* DetailTableViewCell.xib */,
+				1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */,
+				1B7359B422A5F5EF0061149C /* AlarmViewController.swift */,
 			);
 			path = CalendarView;
 			sourceTree = "<group>";
 		};
-		1B3293DC22153333003679BB /* DetailTableView */ = {
+		1B3293DC22153333003679BB /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
 				1B3293D822153167003679BB /* DetailView.storyboard */,
 				1B2E73BA220D3E1200392289 /* DetailViewController.swift */,
 			);
-			path = DetailTableView;
+			path = DetailView;
 			sourceTree = "<group>";
 		};
 		1B68D253213DA25F00524220 /* Model */ = {
@@ -235,6 +242,7 @@
 				1B68D251213D54BE00524220 /* Matches.swift */,
 				1B61461C214FE98B00B1A208 /* Teams.swift */,
 				1B244E9E224CB86300415791 /* Ranking.swift */,
+				1B7359B622A64D9C0061149C /* DesignModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,7 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				1B3293DB2215332B003679BB /* CalendarView */,
-				1B3293DC22153333003679BB /* DetailTableView */,
+				1B3293DC22153333003679BB /* DetailView */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -550,6 +558,7 @@
 				1B68D252213D54BE00524220 /* Matches.swift in Sources */,
 				1BF66A3921AAE8600075E6FF /* CalendarViewController.swift in Sources */,
 				1BB2417B2203476E00EA57F2 /* API.swift in Sources */,
+				1B7359B722A64D9C0061149C /* DesignModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

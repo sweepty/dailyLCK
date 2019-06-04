@@ -11,12 +11,12 @@ import RxSwift
 import RxCocoa
 
 class CalendarViewModel {
-    let detail: PublishSubject<[Matches]>
+    var detail: PublishSubject<[SectionOfCustomData]>
     
     let disposeBag = DisposeBag()
     
     init(request: Requests = Requests()) {
-        self.detail = PublishSubject<[Matches]>()
-        
+        self.detail = PublishSubject<[SectionOfCustomData]>()
+
     }
 }

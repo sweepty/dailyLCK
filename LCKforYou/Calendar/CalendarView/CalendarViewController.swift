@@ -10,35 +10,28 @@ import Foundation
 import JTAppleCalendar
 import Realm
 import RealmSwift
-import Alamofire
 import UserNotifications
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class CalendarViewController: UIViewController {
     
     @IBOutlet weak var calendarView: JTAppleCalendarView!
-    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    
     @IBOutlet weak var monthLabel: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var topConstraints: NSLayoutConstraint!
-    
     private var formatter = DateFormatter()
-    
     private let request = Requests()
     
     // 경기 정보 담을 객체
     public var matchList = [Matches]()
     
-    // 테이블뷰 정보
     let calendarViewModel = CalendarViewModel()
     
     var disposeBag = DisposeBag()
-
+    
     // 설정되어 있는 알림 확인
     var notifications: [String] = []
     
@@ -61,9 +54,6 @@ class CalendarViewController: UIViewController {
         
         setupBind()
         
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.estimatedRowHeight = 55
-        
         // 현재 날짜로 스크롤
         calendarView.scrollToDate(Date(), triggerScrollToDateDelegate: false, animateScroll: false, preferredScrollPosition: nil, extraAddedOffset: 0, completionHandler: nil)
         
@@ -76,14 +66,13 @@ class CalendarViewController: UIViewController {
     }
     
     private func setupBind() {
-        // 테이블뷰 데이터 넣기
-        calendarViewModel.detail
-            .observeOn(MainScheduler.instance)
-            .bind(to: tableView.rx.items(cellIdentifier: "detailCell", cellType: DetailTableViewCell.self)) { (index, match, cell) in
+        // RxDataSources
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionOfCustomData>(
+            configureCell: { dataSource, tableView, indexPath, match in
+                let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! DetailTableViewCell
 
                 cell.blueLogoImageView.image = UIImage(named: "\(match.blue)")
                 cell.redLogoImageView.image = UIImage(named: "\(match.red)")
-                
                 cell.blueLabel.text = match.blue
                 cell.redLabel.text = match.red
                 
@@ -106,12 +95,66 @@ class CalendarViewController: UIViewController {
                 // 버튼 이미지 설정
                 self.setBtnImage(timeInfo, cell)
                 
-                cell.alarmButton.tag = index
                 cell.alarmButton.rx.tap
+                    .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { (_) in
-                        print("눌렀다! 추후 popup을 추가하시오")
+                        let center = UNUserNotificationCenter.current()
+                        
+                        let selectedDate: Date = dataSource[indexPath.section].items[indexPath.row].mDate
+                        let changeLocal = selectedDate.toCorrectTime()
+                        self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
+                        let hour = self.formatter.string(from: changeLocal)
+                        
+                        var nextTrigger = String()
+                        
+                        let semaphore = DispatchSemaphore(value: 0)
+                        
+                        center.getPendingNotificationRequests { (notifiations) in
+                            for noti in notifiations {
+                                // 알람이 설정되어 있는 경우
+                                if noti.identifier == hour {
+                                    nextTrigger = noti.identifier
+                                    break
+                                }
+                            }
+                            semaphore.signal()
+                        }
+                        semaphore.wait()
+                        
+                        if nextTrigger.isEmpty {
+                            let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "Alarm") as! AlarmViewController
+                            nextVC.modalTransitionStyle = .crossDissolve
+                            nextVC.modalPresentationStyle = .overCurrentContext
+                            nextVC.match = match
+                            self.present(nextVC, animated: true, completion: nil)
+                            
+                        } else {
+                            let alertController = UIAlertController()
+                            alertController.title = "알림 삭제"
+                            alertController.message = "이미 경기 0분 전으로 알람이 설정되어있습니다.\n삭제하시겠습니까?"
+                            
+                            let deleteAlarmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { (_) in
+                                Log.info("삭제합니다")
+                                center.removePendingNotificationRequests(withIdentifiers: ["\(nextTrigger)"])
+                            })
+                            
+                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+                            
+                            alertController.addAction(deleteAlarmAction)
+                            alertController.addAction(cancelAction)
+                            
+                            self.present(alertController, animated: true, completion: nil)
+                        }
                     }).disposed(by: cell.cellBag)
-            }.disposed(by: disposeBag)
+                
+                return cell
+        })
+        
+        // tableview bind
+        calendarViewModel.detail
+            .observeOn(MainScheduler.instance)
+            .bind(to: self.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
         
         // 테이블 뷰 셀 선택시
         tableView.rx.modelSelected(Matches.self)
@@ -194,12 +237,11 @@ class CalendarViewController: UIViewController {
             }
             
             self.matchList = matches
-            
             // 시간 정렬
             self.matchList.sort { $0.mDate < $1.mDate }
             
             // 오늘의 경기를 찾아서 테이블뷰에 넣습니다.
-            self.calendarViewModel.detail.onNext(self.todaysMatch(selectedDate: Date()))
+            self.calendarViewModel.detail.onNext([SectionOfCustomData(items: self.todaysMatch(selectedDate: Date()))])
             
             // update UI
             DispatchQueue.main.async {
@@ -219,7 +261,6 @@ class CalendarViewController: UIViewController {
                 todaysMatches.append(i)
             }
         }
-        
         return todaysMatches
     }
     
@@ -311,7 +352,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         
         let selectedDate = cellState.date
         
-        self.calendarViewModel.detail.onNext(todaysMatch(selectedDate: selectedDate))
+        self.calendarViewModel.detail.onNext([SectionOfCustomData(items: todaysMatch(selectedDate: selectedDate))])
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -369,114 +410,13 @@ extension CalendarViewController: UITableViewDelegate {
 //        }
 //        return self.detailList.count
 //    }
-//
-//    /// match 노티를 등록합니다.
-//    ///
-//    /// 자매품! registerTicket 곧 만들어질 예정
-//    func registerMatch(time: Double, tag: Int) -> Void {
-//        let tmp = self.matchList[tag]
-//        let info: NotificationInfo = NotificationInfo.init(blue: tmp.blue, red: tmp.red, date: tmp.mDate)
-//
-//        addRequest(time, info, .match)
-//    }
-//
-//    func showInputDialog(_ tag: Int, _ sender: UIButton, _ usage: String) {
-//        //Creating UIAlertController and
-//        //Setting title and message for the alert dialog
-//        let alertController = UIAlertController()
-//
-//        //the confirm action taking the inputs
-//        let oclockAction = UIAlertAction(title: "정시", style: .default) { (_) in
-//            let time = TimeChoicer.M0.time
-//            self.registerMatch(time: time, tag: tag)
-//        }
-//
-//        let fiveAction = UIAlertAction(title: "5분 전", style: .default) { (_) in
-//            let time = TimeChoicer.M5.time
-//            self.registerMatch(time: time, tag: tag)
-//        }
-//
-//        let tenAction = UIAlertAction(title: "10분 전", style: .default) { (_) in
-//            let time = TimeChoicer.M10.time
-//            self.registerMatch(time: time, tag: tag)
-//        }
-//
-//        let twentyAction = UIAlertAction(title: "20분 전", style: .default) { (_) in
-//            let time = TimeChoicer.M20.time
-//            self.registerMatch(time: time, tag: tag)
-//        }
-//
-//        let thirtyAction = UIAlertAction(title: "30분 전", style: .default) { (_) in
-//            let time = TimeChoicer.M30.time
-//            self.registerMatch(time: time, tag: tag)
-//        }
-//
-//        let oneHourAction = UIAlertAction(title: "1시간 전", style: .default) { (_) in
-//            let time = TimeChoicer.H60.time
-//            self.registerMatch(time: time, tag: tag)
-//        }
-//
-//        // 알람이 설정되어 있는 경우 삭제하기
-//        let deleteAlarmAction = UIAlertAction(title: "삭제", style: .destructive) { (_) in
-//            let center = UNUserNotificationCenter.current()
-//            let info = self.matchList[tag].mDate
-//
-//            let changeLocal = info.toCorrectTime()
-//            self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-//            let id = self.formatter.string(from: changeLocal)
-//            center.removePendingNotificationRequests(withIdentifiers: ["\(id)"])
-//            DispatchQueue.main.async {
-//                sender.setImage(UIImage(named: "alarm_nonactivate"), for: UIControl.State.normal)
-//            }
-//        }
-//
-//        //the cancel action doing nothing
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-//
-//        // 알람 설정 여부에 따라 actionsheet을 다르게 보여줌.
-//        let selectedCellDate = self.matchList[tag].mDate
-//        let changeLocal = selectedCellDate.toCorrectTime()
-//        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-//        let hour = formatter.string(from: changeLocal)
-//
-//        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
-//            var nextTriggerDates: [String] = []
-//            for request in requests {
-//                nextTriggerDates.append(request.identifier)
-//            }
-//            if nextTriggerDates.contains(hour) {
-//                alertController.title = "알림 삭제"
-//                alertController.message = "알림을 삭제하시겠습니까?"
-//
-//                alertController.addAction(deleteAlarmAction)
-//                alertController.addAction(cancelAction)
-//            } else {
-//                alertController.title = "알림 설정"
-//                alertController.message = "언제 푸시알림을 드릴까요?"
-//
-//                alertController.addAction(oclockAction)
-//                alertController.addAction(fiveAction)
-//                alertController.addAction(tenAction)
-////                alertController.addAction(fifteenAction)
-//                alertController.addAction(twentyAction)
-//                alertController.addAction(thirtyAction)
-//                alertController.addAction(oneHourAction)
-//                alertController.addAction(cancelAction)
-//            }
-//        }
-//
-//        //finally presenting the dialog box
-//        DispatchQueue.main.async {
-//            self.present(alertController, animated: true, completion: nil)
-//        }
-//    }
-//    // 시간 계산
-//    func calculateTimeInterval(startDate: Date, endDate: Date) -> TimeInterval {
-//        let interval = endDate.timeIntervalSince(startDate)
-//        return interval
-//    }
-//}
-//
+    // 시간 계산
+    func calculateTimeInterval(startDate: Date, endDate: Date) -> TimeInterval {
+        let interval = endDate.timeIntervalSince(startDate)
+        return interval
+    }
+// }
+
 
 extension CalendarViewController: UNUserNotificationCenterDelegate {
     // foreground에 있을 때에도 알림이 오게 함
