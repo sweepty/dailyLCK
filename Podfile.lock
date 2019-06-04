@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
+  - Differentiator (4.0.1)
   - JTAppleCalendar (7.1.7)
   - Kanna (4.0.3)
   - Realm (3.14.2):
@@ -10,10 +11,13 @@ PODS:
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
-  - SnapKit (4.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -21,32 +25,34 @@ DEPENDENCIES:
   - Kanna (~> 4.0.0)
   - RealmSwift
   - RxCocoa (~> 5)
+  - RxDataSources (~> 4.0)
   - RxSwift (~> 5)
-  - SnapKit (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Differentiator
     - JTAppleCalendar
     - Kanna
     - Realm
     - RealmSwift
     - RxCocoa
+    - RxDataSources
     - RxRelay
     - RxSwift
-    - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   JTAppleCalendar: 96da4d8388fa6dc82d6a60d41ef36a015e167e2f
   Kanna: 0ebbdd0e7e3308f0aafbd569e79c8cadc5eb877c
   Realm: 179c6706e3a49dbfe112e572fd3c03d3169bea35
   RealmSwift: 1797f272fb51c555b764fada32e82159a2c65247
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
-  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 6c4878482b81a76893f3c19f24a6c9cc6d7355da
+PODFILE CHECKSUM: e51e25de7df6f0aefc1f1cf035a0cd2d17091ff3
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.5.3

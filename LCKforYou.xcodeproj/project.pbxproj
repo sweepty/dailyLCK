@@ -211,8 +211,6 @@
 		1B3293DB2215332B003679BB /* CalendarView */ = {
 			isa = PBXGroup;
 			children = (
-				1BF66A3821AAE8600075E6FF /* CalendarViewController.swift */,
-				1B73F98621AAF2FD00A17E0F /* CellView.swift */,
 				1B3382962215397400CCF91E /* Calendar.storyboard */,
 				1BE88E49227B1CBC00F667D9 /* CalendarViewModel.swift */,
 				1BEB1735220C1689000FDA15 /* DetailTableViewCell.xib */,
@@ -452,32 +450,34 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		30FAC745028B7D5BD914D1B4 /* [CP] Check Pods Manifest.lock */ = {
@@ -530,6 +530,7 @@
 				1B60DD9C223FF9D800CBCCE1 /* Converter.swift in Sources */,
 				1B8F15502113605B00F1FDB3 /* MyTeamTableViewCell.swift in Sources */,
 				1B7EC61E22491EBC00DB7A40 /* Log.swift in Sources */,
+				1B7359B522A5F5EF0061149C /* AlarmViewController.swift in Sources */,
 				1B2E73BB220D3E1200392289 /* DetailViewController.swift in Sources */,
 				1B090069220875F300E17832 /* RankingTableViewCell.swift in Sources */,
 				1BE88E4A227B1CBC00F667D9 /* CalendarViewModel.swift in Sources */,
