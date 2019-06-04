@@ -7,16 +7,11 @@
 //
 
 import Foundation
-import UIKit
-import Realm
-import RealmSwift
 import Alamofire
 import RxSwift
 import RxCocoa
 
 class Requests {
-    var realm: Realm!
-    var notificationToken: NotificationToken!
     
     let formatter = DateFormatter()
     let decoder = JSONDecoder()
@@ -56,26 +51,6 @@ class Requests {
             }
         }
     }
-    
-//    func getMatches() -> Observable<[Matches]> {
-//
-//        let urlRequest = URLRequest(url: URL(string: API.baseURL)! , cachePolicy: .reloadIgnoringCacheData)
-//
-//        return session.rx.data(request: urlRequest)
-//            .flatMap({ (matches) -> Observable<[Matches]> in
-//                self.formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-//                self.formatter.timeZone = Calendar.current.timeZone
-//                self.decoder.dateDecodingStrategy = .formatted(self.formatter)
-//                self.decoder.keyDecodingStrategy = .convertFromSnakeCase
-//
-//                do {
-//                    let matchList = try self.decoder.decode([Matches].self, from: matches)
-//                    return Observable.just(matchList)
-//                } catch {
-//                    return Observable.error(error)
-//                }
-//            })
-//    }
     
     public func insertTeams(_ completion: @escaping(Bool, [Teams]?) -> Void) {
         let teamURL = API.baseURL + "teams"
