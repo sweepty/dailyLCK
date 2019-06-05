@@ -31,8 +31,14 @@ class AlarmViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.presentingViewController?.tabBarController?.tabBar.isHidden = true
+        
         setupUI()
         setupBind()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.presentingViewController?.tabBarController?.tabBar.isHidden = false
     }
     
     private func setupUI() {
