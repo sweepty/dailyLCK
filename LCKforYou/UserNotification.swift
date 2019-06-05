@@ -93,34 +93,23 @@ func registerNotification(time: Int, match: Matches, type: Type) -> Void {
     }
     
     // 사용자가 설정한 시간
-//    var timeSet = Double()
-//    var timeString = String()
     var myTime: TimeChoicer
     switch time {
     case 0:
-//        timeSet = TimeChoicer.M0.time
-//        timeString = TimeChoicer.M0.name
         myTime = TimeChoicer.M0
     case 1:
-//        timeSet = TimeChoicer.M5.time
         myTime = TimeChoicer.M5
     case 2:
-//        timeSet = TimeChoicer.M10.time
         myTime = TimeChoicer.M10
     case 3:
-//        timeSet = TimeChoicer.M20.time
         myTime = TimeChoicer.M20
     case 4:
-//        timeSet = TimeChoicer.M30.time
         myTime = TimeChoicer.M30
     case 5:
-//        timeSet = TimeChoicer.M60.time
         myTime = TimeChoicer.M60
     case 6:
-//        timeSet = TimeChoicer.M120.time
         myTime = TimeChoicer.M120
     default:
-//        timeSet = TimeChoicer.M0.time
         myTime = TimeChoicer.M0
     }
     
