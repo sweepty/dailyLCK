@@ -154,10 +154,33 @@ class CalendarViewController: UIViewController {
         })
         
         // tableview bind
-        calendarViewModel.detail
+        let detailModel = calendarViewModel.detail.share(replay: 1)
+        
+        detailModel
             .observeOn(MainScheduler.instance)
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        detailModel
+            .subscribe(onNext: { (sectionData) in
+                if sectionData.first!.items.count == 0 {
+                    let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+                    let messageLabel = UILabel(frame: rect)
+                    messageLabel.text = "이 날은 열리는 경기가 없어요 🏆"
+                    messageLabel.textColor = UIColor.black
+                    messageLabel.numberOfLines = 0;
+                    messageLabel.textAlignment = .center;
+                    messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+                    messageLabel.sizeToFit()
+                    
+                    self.tableView.backgroundView = messageLabel
+                    self.tableView.separatorStyle = .none
+                    
+                } else {
+                    self.tableView.backgroundView = nil
+                    self.tableView.separatorStyle = .singleLine
+                }
+            }).disposed(by: disposeBag)
         
         // 테이블 뷰 셀 선택시
         tableView.rx.modelSelected(Matches.self)
@@ -391,30 +414,6 @@ extension CalendarViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-//extension CalendarViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-////        self.adjustCalendarViewHeight()
-//        if self.detailList.count == 0 {
-//            let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
-//            let messageLabel = UILabel(frame: rect)
-//            messageLabel.text = "이 날은 열리는 경기가 없어요 🏆"
-//            messageLabel.textColor = UIColor.black
-//            messageLabel.numberOfLines = 0;
-//            messageLabel.textAlignment = .center;
-//            messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
-//            messageLabel.sizeToFit()
-//
-//            tableView.backgroundView = messageLabel;
-//            tableView.separatorStyle = .none;
-//        } else {
-//            tableView.backgroundView = nil
-//            tableView.separatorStyle = .singleLine
-//        }
-//        return self.detailList.count
-//    }
-// }
-
 
 extension CalendarViewController: UNUserNotificationCenterDelegate {
     // foreground에 있을 때에도 알림이 오게 함
