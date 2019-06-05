@@ -221,12 +221,15 @@
                         <viewLayoutGuide key="safeArea" id="whu-Mu-e0T"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="history" id="f4O-5j-5dU"/>
-                    <navigationItem key="navigationItem" id="fxX-pG-MvE"/>
+                    <navigationItem key="navigationItem" id="fxX-pG-MvE">
+                        <barButtonItem key="leftBarButtonItem" title="Today" id="Xia-6d-3sX"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="calendarView" destination="FHI-SY-N1p" id="dPn-ku-Jjz"/>
                         <outlet property="monthLabel" destination="n2C-qo-Y1q" id="zAJ-aQ-kDI"/>
                         <outlet property="spinner" destination="KOn-EP-Tp6" id="DxU-8O-tfx"/>
                         <outlet property="tableView" destination="t0a-Wd-SCt" id="pjz-hb-KHL"/>
+                        <outlet property="todayButton" destination="Xia-6d-3sX" id="1eV-m6-BzG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kff-ey-Uvd" userLabel="First Responder" sceneMemberID="firstResponder"/>

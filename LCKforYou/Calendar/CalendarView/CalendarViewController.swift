@@ -17,6 +17,7 @@ import RxDataSources
 
 class CalendarViewController: UIViewController {
     
+    @IBOutlet weak var todayButton: UIBarButtonItem!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var monthLabel: UILabel!
@@ -191,6 +192,12 @@ class CalendarViewController: UIViewController {
                 vc?.info = matches
                 self.navigationController?.pushViewController(vc!, animated: true)
             }).disposed(by: disposeBag)
+        
+        // 오늘 날짜로 이동
+        todayButton.rx.tap
+            .subscribe { (_) in
+                self.calendarView.scrollToDate(Date())
+        }.disposed(by: disposeBag)
     }
     
     func setupCalendarView() {
@@ -359,10 +366,20 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupCalendarView()
         
-        // 스크롤 하면 다음달 1일을 선택한 셀로 만들기
-        if let firstDate = visibleDates.monthDates.first?.date {
-            self.calendarView.selectDates([firstDate])
+        guard let selectedDate = calendar.selectedDates.first else {
+            return
         }
+        
+        let _ = visibleDates.monthDates.contains(where: { (date, indexPath) -> Bool in
+            if date == selectedDate {
+                self.calendarView.selectDates([selectedDate])
+                return true
+            } else {
+                self.calendarView.selectDates([visibleDates.monthDates.first!.date])
+                return false
+            }
+        })
+       
         
         view.layoutIfNeeded()
         UIView.animate(withDuration: 0.5) { [unowned self] in
@@ -374,7 +391,6 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         guard let validCell = cell as? CellView else { return }
         
         validCell.selectedView.isHidden = false
-        self.tableView.isHidden = false
         
         let selectedDate = cellState.date
         
@@ -385,7 +401,6 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         guard let validCell = cell as? CellView else { return }
         
         validCell.selectedView.isHidden = true
-        self.tableView.isHidden = true
         
     }
     
