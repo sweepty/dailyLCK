@@ -9,18 +9,16 @@
 import Foundation
 import UserNotifications
 
-enum Usage: String {
+enum Type: String {
     case match = "경기"
     case ticket = "티켓팅"
 }
 
-extension Usage {
+extension Type {
     var emoji: String {
         switch self {
-        case .match:
-            return "🏆"
-        case .ticket:
-            return "🎟"
+        case .match: return "🏆"
+        case .ticket: return "🎟"
         }
     }
 }
@@ -32,20 +30,40 @@ enum TimeChoicer: Double {
     case M15 = 15
     case M20 = 20
     case M30 = 30
-    case H60 = 60
-    case H120 = 120
+    case M60 = 60
+    case M120 = 120
 }
 
 extension TimeChoicer {
     var time: Double {
         return self.rawValue * -60.0
     }
+    var name: String {
+        switch self {
+        case .M0:
+            return "정각"
+        case .M5:
+            return "5분 전"
+        case .M10:
+            return "10분 전"
+        case .M15:
+            return "15분 전"
+        case .M20:
+            return "20분 전"
+        case .M30:
+            return "30분 전"
+        case .M60:
+            return "1시간 전"
+        case .M120:
+            return "2시간 전"
+        }
+    }
 }
 
 private let notiFormatter = DateFormatter()
 
 // notification 등록
-func registerNotification(time: Double, match: Matches, type: Usage) -> Void {
+func registerNotification(time: Int, match: Matches, type: Type) -> Void {
     var notiDate = Date()
 
     switch type {
@@ -54,9 +72,10 @@ func registerNotification(time: Double, match: Matches, type: Usage) -> Void {
     case .ticket:
         notiDate = match.tDate
     }
-
+    
+    // 노티 객체
     let info: NotificationInfo = NotificationInfo.init(blue: match.blue, red: match.red, date: notiDate)
-//    addRequest(time, info, type)
+    
     notiFormatter.dateFormat = "a h:mm"
     notiFormatter.timeZone = TimeZone(identifier: "ko")
     let ticketDate = info.date.toCorrectTime()
@@ -73,8 +92,40 @@ func registerNotification(time: Double, match: Matches, type: Usage) -> Void {
         content.body = "오늘 \(hour)에 \(info.blue) vs \(info.red) \(type.rawValue)이 있습니다."
     }
     
+    // 사용자가 설정한 시간
+//    var timeSet = Double()
+//    var timeString = String()
+    var myTime: TimeChoicer
+    switch time {
+    case 0:
+//        timeSet = TimeChoicer.M0.time
+//        timeString = TimeChoicer.M0.name
+        myTime = TimeChoicer.M0
+    case 1:
+//        timeSet = TimeChoicer.M5.time
+        myTime = TimeChoicer.M5
+    case 2:
+//        timeSet = TimeChoicer.M10.time
+        myTime = TimeChoicer.M10
+    case 3:
+//        timeSet = TimeChoicer.M20.time
+        myTime = TimeChoicer.M20
+    case 4:
+//        timeSet = TimeChoicer.M30.time
+        myTime = TimeChoicer.M30
+    case 5:
+//        timeSet = TimeChoicer.M60.time
+        myTime = TimeChoicer.M60
+    case 6:
+//        timeSet = TimeChoicer.M120.time
+        myTime = TimeChoicer.M120
+    default:
+//        timeSet = TimeChoicer.M0.time
+        myTime = TimeChoicer.M0
+    }
+    
     // 몽고디비 시간대 변경하고 유저가 설정한 시간으로 맞춤.
-    let settingTime = info.date.convertToSettingTime(time: time)
+    let settingTime = info.date.convertToSettingTime(time: myTime.time)
     let interval = settingTime.timeIntervalSince(Date())
     let date = Date(timeIntervalSinceNow: interval)
     let dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
@@ -87,7 +138,14 @@ func registerNotification(time: Double, match: Matches, type: Usage) -> Void {
     
     //Adding Request
     notiFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-    let id = notiFormatter.string(from: ticketDate)
+    var id = notiFormatter.string(from: ticketDate)
+    
+    switch type {
+    case .match:
+        id.append("m|\(myTime.name)")
+    case .ticket:
+        id.append("t|\(myTime.name)")
+    }
     
     let request = UNNotificationRequest(identifier: "\(id)", content: content, trigger: calendartrigger)
     
@@ -100,6 +158,9 @@ func registerNotification(time: Double, match: Matches, type: Usage) -> Void {
 //            }
 //        }
 //    }
-    
-    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    UNUserNotificationCenter.current().add(request) { (error) in
+        if let err = error {
+            print(err)
+        }
+    }
 }

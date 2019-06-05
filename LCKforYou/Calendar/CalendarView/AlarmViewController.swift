@@ -23,7 +23,8 @@ class AlarmViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    var match: Matches? = nil
+    var match: Matches?
+    var type: Type?
     
     var time: Int = Int()
 
@@ -50,7 +51,7 @@ class AlarmViewController: UIViewController {
         
         
         // timepickerView
-        let titleItems = Observable.just(["정시", "5분 전", "10분 전", "20분 전", "30분 전", "1시간 전", "2시간 전"])
+        let titleItems = Observable.just(["정각", "5분 전", "10분 전", "20분 전", "30분 전", "1시간 전", "2시간 전"])
 
         titleItems.bind(to: self.timePickerView.rx.itemTitles) { (row, element) in
             return element
@@ -71,29 +72,11 @@ class AlarmViewController: UIViewController {
         // confirm button
         okButton.rx.tap
             .subscribe { [unowned self] (_) in
-                var timeSet = Double()
-                
-                switch self.time {
-                case 0:
-                    timeSet = TimeChoicer.M0.time
-                case 1:
-                    timeSet = TimeChoicer.M5.time
-                case 2:
-                    timeSet = TimeChoicer.M10.time
-                case 3:
-                    timeSet = TimeChoicer.M20.time
-                case 4:
-                    timeSet = TimeChoicer.M30.time
-                case 5:
-                    timeSet = TimeChoicer.H60.time
-                case 6:
-                    timeSet = TimeChoicer.H120.time
-                default:
-                    timeSet = TimeChoicer.M0.time
+                guard let match = self.match, let type = self.type else {
+                    return
                 }
-                
                 // 노티 등록
-                registerNotification(time: timeSet, match: self.match!, type: .match)
+                registerNotification(time: self.time, match: match, type: type)
                 
                 self.dismiss(animated: true, completion: nil)
                 

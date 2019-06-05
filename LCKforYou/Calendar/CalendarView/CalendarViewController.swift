@@ -103,7 +103,8 @@ class CalendarViewController: UIViewController {
                         let selectedDate: Date = dataSource[indexPath.section].items[indexPath.row].mDate
                         let changeLocal = selectedDate.toCorrectTime()
                         self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-                        let hour = self.formatter.string(from: changeLocal)
+                        var hour = self.formatter.string(from: changeLocal)
+                        hour.append("m")
                         
                         var nextTrigger = String()
                         
@@ -112,7 +113,7 @@ class CalendarViewController: UIViewController {
                         center.getPendingNotificationRequests { (notifiations) in
                             for noti in notifiations {
                                 // 알람이 설정되어 있는 경우
-                                if noti.identifier == hour {
+                                if noti.identifier.contains(hour) {
                                     nextTrigger = noti.identifier
                                     break
                                 }
@@ -126,12 +127,14 @@ class CalendarViewController: UIViewController {
                             nextVC.modalTransitionStyle = .crossDissolve
                             nextVC.modalPresentationStyle = .overCurrentContext
                             nextVC.match = match
+                            nextVC.type = .match
                             self.present(nextVC, animated: true, completion: nil)
                             
                         } else {
                             let alertController = UIAlertController()
                             alertController.title = "알림 삭제"
-                            alertController.message = "이미 경기 0분 전으로 알람이 설정되어있습니다.\n삭제하시겠습니까?"
+                            let time: String = String(nextTrigger.split(separator: "|")[1])
+                            alertController.message = "이미 경기 \(time)에 알람이 설정되어있습니다.\n삭제하시겠습니까?"
                             
                             let deleteAlarmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { (_) in
                                 Log.info("삭제합니다")
@@ -410,11 +413,6 @@ extension CalendarViewController: UITableViewDelegate {
 //        }
 //        return self.detailList.count
 //    }
-    // 시간 계산
-    func calculateTimeInterval(startDate: Date, endDate: Date) -> TimeInterval {
-        let interval = endDate.timeIntervalSince(startDate)
-        return interval
-    }
 // }
 
 

@@ -100,9 +100,6 @@
                                                     <constraint firstAttribute="width" constant="25" id="ged-G7-w3P"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="alarm_nonactivate"/>
-                                                <connections>
-                                                    <action selector="ticketAlarmButton:" destination="7rq-QG-3jo" eventType="touchUpInside" id="Kei-yp-xCL"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -146,6 +143,7 @@
                         <outlet property="redImageView" destination="v6D-bh-5Qa" id="8Ob-hE-bgg"/>
                         <outlet property="redLabel" destination="8Xh-Hw-p1k" id="t6K-RR-tEf"/>
                         <outlet property="stadiumLabel" destination="5Fx-Sj-rzZ" id="BCF-XS-wHq"/>
+                        <outlet property="ticketAlarmButton" destination="HeB-1N-QmE" id="GTV-kW-6eF"/>
                         <outlet property="ticketDateLabel" destination="gjU-QG-l1f" id="A59-Cm-4rU"/>
                     </connections>
                 </viewController>
