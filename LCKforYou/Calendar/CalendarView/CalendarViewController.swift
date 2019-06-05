@@ -22,7 +22,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var topConstraints: NSLayoutConstraint!
+    
     private var formatter = DateFormatter()
     private let request = Requests()
     
@@ -100,8 +100,8 @@ class CalendarViewController: UIViewController {
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { (_) in
                         let center = UNUserNotificationCenter.current()
-                        
-                        let selectedDate: Date = dataSource[indexPath.section].items[indexPath.row].mDate
+                        let matchInfo = dataSource[indexPath.section].items[indexPath.row]
+                        let selectedDate: Date = matchInfo.mDate
                         let changeLocal = selectedDate.toCorrectTime()
                         self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
                         var hour = self.formatter.string(from: changeLocal)
@@ -127,7 +127,7 @@ class CalendarViewController: UIViewController {
                             let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "Alarm") as! AlarmViewController
                             nextVC.modalTransitionStyle = .crossDissolve
                             nextVC.modalPresentationStyle = .overCurrentContext
-                            nextVC.match = match
+                            nextVC.match = matchInfo
                             nextVC.type = .match
                             self.present(nextVC, animated: true, completion: nil)
                             
@@ -169,9 +169,9 @@ class CalendarViewController: UIViewController {
                     let messageLabel = UILabel(frame: rect)
                     messageLabel.text = "이 날은 열리는 경기가 없어요 🏆"
                     messageLabel.textColor = UIColor.black
-                    messageLabel.numberOfLines = 0;
-                    messageLabel.textAlignment = .center;
-                    messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+                    messageLabel.numberOfLines = 0
+                    messageLabel.textAlignment = .center
+                    messageLabel.font = UIFont(name: "System", size: 15)
                     messageLabel.sizeToFit()
                     
                     self.tableView.backgroundView = messageLabel
@@ -403,15 +403,23 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         validCell.selectedView.isHidden = true
         
     }
+}
+
+extension CalendarViewController: UITableViewDelegate {
+    // 셀 선택시 해제
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     func setBtnImage(_ timeInfo: Date, _ cell: DetailTableViewCell) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
             for request in requests {
                 self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
                 let date = self.formatter.string(from: timeInfo)
-                if request.identifier == date {
+                if request.identifier.contains(date+"m") {
                     DispatchQueue.main.async {
-                        cell.alarmButton.setImage(UIImage(named: "alarm_activate"), for: UIControl.State.normal)
+//                        cell.alarmButton.setImage(UIImage(named: "alarm_activate"), for: UIControl.State.normal)
+//                        cell.alarmButton.isSelected = true
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -420,13 +428,6 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
                 }
             }
         }
-    }
-}
-
-extension CalendarViewController: UITableViewDelegate {
-    // 셀 선택시 해제
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
