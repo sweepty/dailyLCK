@@ -41,6 +41,8 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        
         // 알림 설정
         UNUserNotificationCenter.current().delegate = self
         
@@ -350,7 +352,6 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
                 let textLabel = UILabel()
                 textLabel.adjustsFontSizeToFitWidth = true
                 textLabel.backgroundColor = UIColor.lightGray
-                textLabel.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
                 textLabel.text = "\(element.blue) : \(element.red)"
                 textLabel.font = textLabel.font.withSize(9)
                 textLabel.textColor = UIColor.black
