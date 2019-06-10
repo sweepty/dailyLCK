@@ -13,27 +13,47 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     var ranks = [Ranking]()
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func refreshButton(_ sender: UIButton) {
+        self.spinner.startAnimating()
+        requestData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view from its nib.
         
         self.tableView.estimatedRowHeight = 35
         self.tableView.rowHeight = 35
         
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         
-        if let parsedData = parsePage() {
-            ranks = parsedData
-        } else {
-            print("파싱 못함.")
-        }
+        requestData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func requestData() {
+        if let parsedData = parsePage() {
+            ranks = parsedData
+
+            self.tableView.backgroundView = nil
+            self.tableView.separatorStyle = .singleLine
+        } else {
+            let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            let messageLabel = UILabel(frame: rect)
+            messageLabel.text = "네트워크 연결 상태를 확인해주세요😣"
+            messageLabel.textColor = UIColor.black
+            messageLabel.numberOfLines = 0
+            messageLabel.textAlignment = .center
+            messageLabel.sizeToFit()
+            
+            self.tableView.backgroundView = messageLabel
+            self.tableView.separatorStyle = .none
+        }
+        spinner.stopAnimating()
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -51,14 +71,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.preferredContentSize = maxSize
         } else if activeDisplayMode == .expanded {
             
-            self.preferredContentSize = CGSize(width: maxSize.width, height: self.tableView.rowHeight * 11)
+            self.preferredContentSize = CGSize(width: maxSize.width, height: self.tableView.rowHeight * 12)
         }
     }
     
 }
 extension TodayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+        if ranks.count == 0 {
+            return ranks.count
+        } else {
+            return ranks.count+1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

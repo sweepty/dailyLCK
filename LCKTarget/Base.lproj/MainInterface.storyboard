@@ -21,9 +21,32 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UFd-1V-PAh">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="VaW-OJ-gWI">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gs0-Cd-ScF">
+                                            <rect key="frame" x="15" y="7.5" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="4c7-Jp-6Uw"/>
+                                                <constraint firstAttribute="width" constant="20" id="x1C-ms-c4g"/>
+                                            </constraints>
+                                            <viewLayoutGuide key="safeArea" id="dos-XI-1Xk"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" image="Refresh"/>
+                                            <connections>
+                                                <action selector="refreshButton:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="c1f-Rc-lZa"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gs0-Cd-ScF" firstAttribute="centerY" secondItem="VaW-OJ-gWI" secondAttribute="centerY" id="0CD-qO-e8G"/>
+                                        <constraint firstItem="gs0-Cd-ScF" firstAttribute="leading" secondItem="VaW-OJ-gWI" secondAttribute="leading" constant="15" id="73g-6z-782"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contentCell" rowHeight="35" id="1E5-4L-ZTz" customClass="TodayRankingTableViewCell" customModule="LCKTarget" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="35"/>
+                                        <rect key="frame" x="0.0" y="63" width="320" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1E5-4L-ZTz" id="04a-l1-2hC">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="34.5"/>
@@ -100,10 +123,16 @@
                                     <outlet property="delegate" destination="M4Y-Lb-cyx" id="99i-JY-Iib"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0uB-Jf-Edm">
+                                <rect key="frame" x="150" y="140" width="20" height="20"/>
+                                <color key="color" red="0.72941176470000002" green="0.0" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="UFd-1V-PAh" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" id="CuN-EO-rut"/>
+                            <constraint firstItem="0uB-Jf-Edm" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="0ma-UV-Vci"/>
+                            <constraint firstItem="UFd-1V-PAh" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" id="B3R-2n-sz7"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="UFd-1V-PAh" secondAttribute="trailing" id="Ggv-7f-tqD"/>
+                            <constraint firstItem="0uB-Jf-Edm" firstAttribute="centerY" secondItem="UFd-1V-PAh" secondAttribute="centerY" id="JtY-lg-kvB"/>
                             <constraint firstItem="UFd-1V-PAh" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="Uv7-RA-CRw"/>
                             <constraint firstAttribute="bottom" secondItem="UFd-1V-PAh" secondAttribute="bottom" id="o7e-op-IRL"/>
                         </constraints>
@@ -113,6 +142,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="300"/>
                     <connections>
+                        <outlet property="spinner" destination="0uB-Jf-Edm" id="hkL-Iz-eLk"/>
                         <outlet property="tableView" destination="UFd-1V-PAh" id="5lJ-bE-3xh"/>
                     </connections>
                 </viewController>
@@ -121,4 +151,7 @@
             <point key="canvasLocation" x="86.400000000000006" y="26.986506746626688"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Refresh" width="25" height="25"/>
+    </resources>
 </document>
