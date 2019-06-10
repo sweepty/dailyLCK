@@ -13,6 +13,7 @@ PODS:
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
+  - VTAcknowledgementsViewController (1.5.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - RxCocoa (~> 5)
   - RxDataSources (~> 4.0)
   - RxSwift (~> 5)
+  - VTAcknowledgementsViewController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -32,6 +34,7 @@ SPEC REPOS:
     - RxDataSources
     - RxRelay
     - RxSwift
+    - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -42,7 +45,8 @@ SPEC CHECKSUMS:
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  VTAcknowledgementsViewController: 3bb742da852a5161dc9f4b017e52f926a41ef5d3
 
-PODFILE CHECKSUM: 613d3587a02585091c22e67d07ee04936c7e1f17
+PODFILE CHECKSUM: deda7a4af19ba21c0766d1e33d0a496f50124eb0
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.1

@@ -9,6 +9,7 @@ target 'LCKforYou' do
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
   pod 'RxDataSources', '~> 4.0'
+  pod 'VTAcknowledgementsViewController'
 end
 
 target 'LCKTarget' do

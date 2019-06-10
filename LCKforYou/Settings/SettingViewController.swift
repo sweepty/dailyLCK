@@ -12,6 +12,7 @@ import UserNotifications
 import RxSwift
 import RxCocoa
 import RxDataSources
+import VTAcknowledgementsViewController
 
 class SettingViewController: UIViewController {
 
@@ -94,6 +95,10 @@ class SettingViewController: UIViewController {
                             UIApplication.shared.openURL(webURL as URL)
                         }
                     }
+                } else if indexPath.section == 2 {
+                    let acknowledgementsViewController = VTAcknowledgementsViewController.acknowledgementsViewController()
+                    acknowledgementsViewController?.headerText = "We love open source software ❤️"
+                    self.navigationController?.pushViewController(acknowledgementsViewController!, animated: true)
                 }
 
             }).disposed(by: disposeBag)
