@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import RealmSwift
 import UserNotifications
-
-var uiRealm  = try! Realm()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
