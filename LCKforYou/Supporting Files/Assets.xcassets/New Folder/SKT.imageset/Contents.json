@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "SKT.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-alarm-clock-filled-60.png",
+      "filename" : "SKT_2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-alarm-clock-filled-90.png",
+      "filename" : "SKT_3x.png",
       "scale" : "3x"
     }
   ],
