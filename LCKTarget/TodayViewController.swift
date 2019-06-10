@@ -67,9 +67,15 @@ extension TodayViewController: UITableViewDataSource {
             if indexPath.row == 0 {
                 contentCell.rankLabel.text = "순위"
                 contentCell.teamLabel.text = "팀"
-                contentCell.winLabel.text = "W"
-                contentCell.loseLabel.text = "L"
+                contentCell.winLabel.text = "승"
+                contentCell.loseLabel.text = "패"
                 contentCell.differenceLabel.text = "승점"
+                
+                contentCell.rankLabel.font = .boldSystemFont(ofSize: 15.0)
+                contentCell.teamLabel.font = .boldSystemFont(ofSize: 15.0)
+                contentCell.winLabel.font = .boldSystemFont(ofSize: 15.0)
+                contentCell.loseLabel.font = .boldSystemFont(ofSize: 15.0)
+                contentCell.differenceLabel.font = .boldSystemFont(ofSize: 15.0)
             } else {
                 contentCell.rankLabel.text = ranks[indexPath.row - 1].rank
                 let teamName = ranks[indexPath.row - 1].team
