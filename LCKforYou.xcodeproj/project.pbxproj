@@ -19,6 +19,7 @@
 		1B244EA2224CB8A900415791 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B244EA1224CB8A900415791 /* Parser.swift */; };
 		1B244EA3224CB8A900415791 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B244EA1224CB8A900415791 /* Parser.swift */; };
 		1B2E73BB220D3E1200392289 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2E73BA220D3E1200392289 /* DetailViewController.swift */; };
+		1B32827022AE2B6F00D8F881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B00319C202A09A900FF5A0B /* Assets.xcassets */; };
 		1B3293D922153167003679BB /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3293D822153167003679BB /* DetailView.storyboard */; };
 		1B3382952215390C00CCF91E /* Ranking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3382942215390C00CCF91E /* Ranking.storyboard */; };
 		1B3382972215397400CCF91E /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3382962215397400CCF91E /* Calendar.storyboard */; };
@@ -434,6 +435,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B32827022AE2B6F00D8F881 /* Assets.xcassets in Resources */,
 				1B7351EB2031F1D100BD0C71 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
