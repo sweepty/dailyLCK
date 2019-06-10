@@ -9,18 +9,14 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import UserNotifications
 import RxDataSources
 
 class DetailTableViewCell: UITableViewCell {
+    @IBOutlet weak var roundView: RoundView!
     @IBOutlet weak var blueLogoImageView: UIImageView!
     @IBOutlet weak var blueLabel: UILabel!
-    
     @IBOutlet weak var redLogoImageView: UIImageView!
     @IBOutlet weak var redLabel: UILabel!
-    
-    @IBOutlet weak var blueScoreLabel: UILabel!
-    @IBOutlet weak var redScoreLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var alarmButton: UIButton!
     
@@ -34,6 +30,11 @@ class DetailTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        alarmButton.tintColor = .lightGray
     }
     
 }

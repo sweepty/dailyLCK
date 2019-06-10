@@ -25,6 +25,7 @@ class AlarmViewController: UIViewController {
     
     var match: Matches?
     var type: Type?
+    var indexRow = Int()
     
     var time: Int = Int()
 
@@ -84,7 +85,9 @@ class AlarmViewController: UIViewController {
                 // 노티 등록
                 registerNotification(time: self.time, match: match, type: type)
                 
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "setAlarm"), object: nil)
+                })
                 
             }.disposed(by: disposeBag)
     }
