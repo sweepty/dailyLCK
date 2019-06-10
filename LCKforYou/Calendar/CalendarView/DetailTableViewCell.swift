@@ -34,6 +34,7 @@ class DetailTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        alarmButton.isHidden = false
         alarmButton.tintColor = .lightGray
     }
     

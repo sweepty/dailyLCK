@@ -45,9 +45,8 @@ class DetailViewController: UIViewController {
         blueLabel.text = changeFullName(name: (info?.blue)!)
         redLabel.text = changeFullName(name: (info?.red)!)
         
-        formatter.dateFormat = "yyyy년 M월 dd일 EEE a h:mm"
-        formatter.locale = Calendar.current.locale
-        
+        formatter.dateFormat = "yyyy년 M월 dd일 (EEE) a h:mm"
+        formatter.locale = Locale.init(identifier: "ko_KR")
         let matchDateLocaltime = info?.mDate.toCorrectTime()
         let matchDate = formatter.string(from: matchDateLocaltime!)
         matchDateLabel.text = matchDate
@@ -63,6 +62,10 @@ class DetailViewController: UIViewController {
         stadiumLabel.sizeToFit()
         matchDateLabel.sizeToFit()
         ticketDateLabel.sizeToFit()
+        
+        if let matchInfo = self.info, matchInfo.tDate.toCorrectTime() < Date() {
+            ticketAlarmButton.isHidden = true
+        }
     }
     
     private func setupBind() {

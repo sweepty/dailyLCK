@@ -102,11 +102,10 @@ class CalendarViewController: UIViewController {
                 let startingTime: String = self.formatter.string(from: timeInfo)
                 cell.timeLabel.text = startingTime
                 
-                // 경기 날짜가 현재 시간보다 이전이면 버튼 안보이게 테스트 중이라 잠시 주석 처리
-//                guard self.matchList[self.matchListFlag ?? 0 + indexPath.row].mDate >= Date() else {
-//                    cell.alarmButton.isHidden = true
-//                    return cell
-//                }
+                 // 경기 날짜가 현재 시간보다 이전이면 버튼 안보이게
+                if dataSource[indexPath.section].items[indexPath.row].mDate.toCorrectTime() < Date() {
+                    cell.alarmButton.isHidden = true
+                }
                 
                 // 버튼 이미지 설정
                 self.setBtnImage(timeInfo, cell)
