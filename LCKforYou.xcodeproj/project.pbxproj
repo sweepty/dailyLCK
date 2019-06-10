@@ -23,10 +23,8 @@
 		1B3382952215390C00CCF91E /* Ranking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3382942215390C00CCF91E /* Ranking.storyboard */; };
 		1B3382972215397400CCF91E /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3382962215397400CCF91E /* Calendar.storyboard */; };
 		1B33829922153A5200CCF91E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B33829822153A5200CCF91E /* Settings.storyboard */; };
-		1B5423B520F7C92E0088C3E5 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5423B420F7C92E0088C3E5 /* Team.swift */; };
 		1B5423B720F7CEE90088C3E5 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5423B620F7CEE90088C3E5 /* SettingViewController.swift */; };
 		1B60DD9C223FF9D800CBCCE1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B60DD9B223FF9D800CBCCE1 /* Converter.swift */; };
-		1B61461D214FE98B00B1A208 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B61461C214FE98B00B1A208 /* Teams.swift */; };
 		1B68D252213D54BE00524220 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68D251213D54BE00524220 /* Matches.swift */; };
 		1B7351E52031F1D100BD0C71 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */; };
 		1B7351E82031F1D100BD0C71 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7351E72031F1D100BD0C71 /* TodayViewController.swift */; };
@@ -35,6 +33,7 @@
 		1B7359B522A5F5EF0061149C /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7359B422A5F5EF0061149C /* AlarmViewController.swift */; };
 		1B7359B722A64D9C0061149C /* DesignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7359B622A64D9C0061149C /* DesignModel.swift */; };
 		1B73F98721AAF2FD00A17E0F /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73F98621AAF2FD00A17E0F /* CellView.swift */; };
+		1B7C25D822AA024300EC937D /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C25D722AA024300EC937D /* UIColor+.swift */; };
 		1B7EC617224914A000DB7A40 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EC616224914A000DB7A40 /* Date+.swift */; };
 		1B7EC61A2249157100DB7A40 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EC6192249157100DB7A40 /* UserNotification.swift */; };
 		1B7EC61E22491EBC00DB7A40 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EC61D22491EBC00DB7A40 /* Log.swift */; };
@@ -107,10 +106,8 @@
 		1B3AB8602081F0470011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		1B3AB8612081F0470011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1B3AB8622081F0480011ADA8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainInterface.strings; sourceTree = "<group>"; };
-		1B5423B420F7C92E0088C3E5 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		1B5423B620F7CEE90088C3E5 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		1B60DD9B223FF9D800CBCCE1 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
-		1B61461C214FE98B00B1A208 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		1B68D251213D54BE00524220 /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		1B7351D02031EE6A00BD0C71 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		1B7351E42031F1D100BD0C71 /* LCKTarget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LCKTarget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +119,7 @@
 		1B73F98621AAF2FD00A17E0F /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		1B747437205D55CC00DDC7C0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		1B747438205D55CC00DDC7C0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/LCKforYou-dtgkzrzvglxzakeloqozlpmaqruo/Build/Products/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
+		1B7C25D722AA024300EC937D /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		1B7EC616224914A000DB7A40 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		1B7EC6192249157100DB7A40 /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
 		1B7EC61D22491EBC00DB7A40 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -234,9 +232,7 @@
 		1B68D253213DA25F00524220 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1B5423B420F7C92E0088C3E5 /* Team.swift */,
 				1B68D251213D54BE00524220 /* Matches.swift */,
-				1B61461C214FE98B00B1A208 /* Teams.swift */,
 				1B244E9E224CB86300415791 /* Ranking.swift */,
 				1B7359B622A64D9C0061149C /* DesignModel.swift */,
 			);
@@ -297,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				1B7EC616224914A000DB7A40 /* Date+.swift */,
+				1B7C25D722AA024300EC937D /* UIColor+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -539,13 +536,12 @@
 				1BB466D022074DF600908317 /* Requests.swift in Sources */,
 				1B7EC617224914A000DB7A40 /* Date+.swift in Sources */,
 				1B7EC61A2249157100DB7A40 /* UserNotification.swift in Sources */,
-				1B5423B520F7C92E0088C3E5 /* Team.swift in Sources */,
 				1B244E9F224CB86300415791 /* Ranking.swift in Sources */,
 				1B003193202A09A900FF5A0B /* AppDelegate.swift in Sources */,
 				1B244EA2224CB8A900415791 /* Parser.swift in Sources */,
-				1B61461D214FE98B00B1A208 /* Teams.swift in Sources */,
 				1B73F98721AAF2FD00A17E0F /* CellView.swift in Sources */,
 				1BEB1736220C1689000FDA15 /* DetailTableViewCell.swift in Sources */,
+				1B7C25D822AA024300EC937D /* UIColor+.swift in Sources */,
 				1B09006B2208762A00E17832 /* RankingViewController.swift in Sources */,
 				1B68D252213D54BE00524220 /* Matches.swift in Sources */,
 				1BF66A3921AAE8600075E6FF /* CalendarViewController.swift in Sources */,

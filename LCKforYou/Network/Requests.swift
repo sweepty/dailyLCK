@@ -51,24 +51,5 @@ class Requests {
             }
         }
     }
-    
-    public func insertTeams(_ completion: @escaping(Bool, [Teams]?) -> Void) {
-        let teamURL = API.baseURL + "teams"
-        var urlRequest = URLRequest(url: URL(string: teamURL)!)
-        urlRequest.cachePolicy = .reloadIgnoringCacheData
-        
-        Alamofire.request(urlRequest).validate().responseJSON { response in
-            switch response.result {
-            case .success:
-                self.decoder.keyDecodingStrategy = .convertFromSnakeCase
-                if let data = response.data, let teams = try? self.decoder.decode([Teams].self, from: data) {
-                    completion(true, teams)
-                }
-            case .failure(let error):
-                Log.error(error.localizedDescription)
-                completion(false, nil)
-            }
-        }
-    }
 }
 
