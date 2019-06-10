@@ -10,11 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Calendar-->
         <scene sceneID="OW2-ei-ygl">
             <objects>
                 <navigationController storyboardIdentifier="Calendar" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2HQ-ZM-qcP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="history" id="5W9-cc-2u6"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="Calendar" selectedImage="Calendar" id="5W9-cc-2u6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="scx-AR-s6M">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -345,6 +345,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Calendar" width="25" height="25"/>
         <image name="Today" width="25" height="25"/>
     </resources>
 </document>

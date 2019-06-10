@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Ranking View Controller-->
+        <!--Ranking-->
         <scene sceneID="5q5-t0-MLg">
             <objects>
                 <viewController id="MhO-qR-FYz" customClass="RankingViewController" customModule="LCKforYou" customModuleProvider="target" sceneMemberID="viewController">
@@ -203,7 +203,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PNa-gT-ZmD"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="eFr-8J-TpT"/>
+                    <tabBarItem key="tabBarItem" title="Ranking" image="LeaderBoard" selectedImage="LeaderBoard" id="eFr-8J-TpT"/>
                     <connections>
                         <outlet property="spinner" destination="HCN-rt-BkM" id="eOc-Gy-YCP"/>
                         <outlet property="tableView" destination="hvJ-Cb-0zm" id="IgY-Ci-Tap"/>
@@ -215,4 +215,7 @@
             <point key="canvasLocation" x="-90" y="195"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LeaderBoard" width="25" height="25"/>
+    </resources>
 </document>
