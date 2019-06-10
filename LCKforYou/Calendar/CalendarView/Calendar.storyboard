@@ -128,7 +128,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FHI-SY-N1p" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="5" y="169.33333333333334" width="365" height="405.66666666666663"/>
+                                <rect key="frame" x="5" y="169.33333333333337" width="365" height="430"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XKn-28-524">
                                     <size key="itemSize" width="58" height="61"/>
@@ -145,7 +145,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OsT-Es-COu" customClass="CircleView" customModule="LCKforYou" customModuleProvider="target">
-                                                    <rect key="frame" x="19" y="1" width="20" height="20.333333333333332"/>
+                                                    <rect key="frame" x="18.666666666666664" y="1" width="20.666666666666664" height="20.666666666666668"/>
                                                     <color key="backgroundColor" red="0.72941176470588232" green="0.0" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="OsT-Es-COu" secondAttribute="height" multiplier="1:1" id="Ghz-Qa-Agd"/>
@@ -169,7 +169,7 @@
                                                     </variation>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pV4-4q-rPc">
-                                                    <rect key="frame" x="1" y="23.333333333333332" width="56" height="37.666666666666671"/>
+                                                    <rect key="frame" x="1" y="23.666666666666668" width="56" height="37.333333333333329"/>
                                                 </stackView>
                                             </subviews>
                                         </view>
@@ -199,7 +199,7 @@
                                 </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t0a-Wd-SCt">
-                                <rect key="frame" x="0.0" y="575" width="375" height="203"/>
+                                <rect key="frame" x="0.0" y="599.33333333333337" width="375" height="178.66666666666663"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KOn-EP-Tp6">
@@ -212,7 +212,7 @@
                         <constraints>
                             <constraint firstItem="t0a-Wd-SCt" firstAttribute="top" secondItem="FHI-SY-N1p" secondAttribute="bottom" id="4Bs-WA-n5n"/>
                             <constraint firstItem="whu-Mu-e0T" firstAttribute="trailing" secondItem="FHI-SY-N1p" secondAttribute="trailing" constant="5" id="IfT-3u-iYQ"/>
-                            <constraint firstItem="t0a-Wd-SCt" firstAttribute="height" secondItem="soh-oE-obG" secondAttribute="height" multiplier="0.25" id="Ir0-qd-sio"/>
+                            <constraint firstItem="t0a-Wd-SCt" firstAttribute="height" secondItem="soh-oE-obG" secondAttribute="height" multiplier="0.22" id="Ir0-qd-sio"/>
                             <constraint firstItem="t0a-Wd-SCt" firstAttribute="leading" secondItem="whu-Mu-e0T" secondAttribute="leading" id="J5g-p3-xLh"/>
                             <constraint firstItem="whu-Mu-e0T" firstAttribute="bottom" secondItem="t0a-Wd-SCt" secondAttribute="bottom" id="MCE-4t-Fmv"/>
                             <constraint firstItem="FHI-SY-N1p" firstAttribute="top" secondItem="RHI-mU-OuS" secondAttribute="bottom" id="NSs-iz-49B"/>

@@ -140,7 +140,6 @@ extension RankingViewController: UITableViewDataSource {
                     // 포스트시즌 안정권 (1위 ~ 5위)
                     if indexPath.row < 6 {
                         cell.top5View.isHidden = false
-                        cell.top5View.layer.cornerRadius = 15
                         cell.top5View.clipsToBounds = true
                     } else {
                         cell.top5View.isHidden = true
