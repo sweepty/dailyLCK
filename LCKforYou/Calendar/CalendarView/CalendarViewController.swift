@@ -8,8 +8,6 @@
 
 import Foundation
 import JTAppleCalendar
-import Realm
-import RealmSwift
 import UserNotifications
 import RxSwift
 import RxCocoa
@@ -38,6 +36,8 @@ class CalendarViewController: UIViewController {
     
     let numOfRowsInCalendar = 6
     
+    var selectedRow: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +45,12 @@ class CalendarViewController: UIViewController {
         
         // 알림 설정
         UNUserNotificationCenter.current().delegate = self
+        
+        // notification observer
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(setAlarmButtonTintColor),
+                                               name: NSNotification.Name(rawValue: "setAlarm"),
+                                               object: nil)
         
         // 설정된 알림 리스트
         checkNotifications()
@@ -65,6 +71,13 @@ class CalendarViewController: UIViewController {
             spinner.startAnimating()
             
             requestMatches()
+        }
+    }
+    
+    @objc func setAlarmButtonTintColor() {
+        if let selectRow = selectedRow {
+            let cell = self.tableView.cellForRow(at: IndexPath(row: selectRow, section: 0)) as! DetailTableViewCell
+            cell.alarmButton.tintColor = .darkGray
         }
     }
     
@@ -98,7 +111,7 @@ class CalendarViewController: UIViewController {
                 // 버튼 이미지 설정
                 self.setBtnImage(timeInfo, cell)
                 
-                cell.alarmButton.rx.tap
+                cell.alarmButton.rx.tap.asControlEvent()
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { (_) in
                         let center = UNUserNotificationCenter.current()
@@ -126,6 +139,7 @@ class CalendarViewController: UIViewController {
                         semaphore.wait()
                         
                         if nextTrigger.isEmpty {
+                            self.selectedRow = indexPath.row
                             let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "Alarm") as! AlarmViewController
                             nextVC.modalTransitionStyle = .crossDissolve
                             nextVC.modalPresentationStyle = .overCurrentContext
@@ -237,16 +251,9 @@ class CalendarViewController: UIViewController {
     }
     
     func handleCellTextColor(cell: CellView, cellState: CellState) {
-        let todaysDate = Date()
-        
-        self.formatter.dateFormat = "yyyy MM dd"
-        
-        let todaysDateString = self.formatter.string(from: todaysDate)
-        let monthsDateString = self.formatter.string(from: cellState.date)
-        
-        // 오늘 날짜에 색깔 넣기
-        if todaysDateString == monthsDateString {
-            cell.dayLabel.textColor = UIColor.red
+        if Calendar.current.isDateInToday(cellState.date) {
+            cell.selectedView.backgroundColor = .veryRed
+            cell.dayLabel.textColor = UIColor.white
         } else {
             cell.dayLabel.textColor = UIColor.black
         }
@@ -351,10 +358,10 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
             if Calendar.current.isDate(eDate, inSameDayAs: date) == true {
                 let textLabel = UILabel()
                 textLabel.adjustsFontSizeToFitWidth = true
-                textLabel.backgroundColor = UIColor.lightGray
+                textLabel.backgroundColor = UIColor.grayBlack
                 textLabel.text = "\(element.blue) : \(element.red)"
                 textLabel.font = textLabel.font.withSize(9)
-                textLabel.textColor = UIColor.black
+                textLabel.textColor = UIColor.white
                 textLabel.textAlignment = .center
                 textLabel.clipsToBounds = true
                 textLabel.layer.cornerRadius = 3
@@ -393,16 +400,24 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         
         validCell.selectedView.isHidden = false
         
-        let selectedDate = cellState.date
+        if Calendar.current.isDateInToday(date) {
+            validCell.selectedView.backgroundColor = .veryRed
+            validCell.dayLabel.textColor = UIColor.white
+        } else {
+            validCell.selectedView.backgroundColor = .coolGray
+            validCell.dayLabel.textColor = UIColor.white
+        }
         
-        self.calendarViewModel.detail.onNext([SectionOfCustomData(items: todaysMatch(selectedDate: selectedDate))])
+        self.calendarViewModel.detail.onNext([SectionOfCustomData(items: todaysMatch(selectedDate: date))])
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         guard let validCell = cell as? CellView else { return }
         
-        validCell.selectedView.isHidden = true
-        
+        if !Calendar.current.isDateInToday(date) {
+            validCell.selectedView.isHidden = true
+            validCell.dayLabel.textColor = UIColor.black
+        }
     }
 }
 
@@ -419,12 +434,7 @@ extension CalendarViewController: UITableViewDelegate {
                 let date = self.formatter.string(from: timeInfo)
                 if request.identifier.contains(date+"m") {
                     DispatchQueue.main.async {
-//                        cell.alarmButton.setImage(UIImage(named: "alarm_activate"), for: UIControl.State.normal)
-//                        cell.alarmButton.isSelected = true
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        cell.alarmButton.setImage(UIImage(named: "alarm_nonactivate"), for: UIControl.State.normal)
+                        cell.alarmButton.tintColor = .grayBlack
                     }
                 }
             }

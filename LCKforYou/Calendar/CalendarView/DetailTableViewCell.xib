@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,48 +19,87 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="54.666666666666664"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tas-hz-waL">
-                        <rect key="frame" x="107" y="5" width="40" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihW-Qx-Dmz">
-                        <rect key="frame" x="181" y="5" width="40" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZj-JC-BUK">
-                        <rect key="frame" x="9" y="7" width="39" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WWW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ba2-8I-8I5">
-                        <rect key="frame" x="56" y="17" width="43" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ueo-he-Cml">
-                        <rect key="frame" x="287" y="13" width="25" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button" image="alarm_nonactivate"/>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cr-U7-pLa">
-                        <rect key="frame" x="155" y="17" width="18" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WWW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3z-9r-8US">
-                        <rect key="frame" x="229" y="17" width="41" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gN-r2-GwP" customClass="RoundView" customModule="LCKforYou" customModuleProvider="target">
+                        <rect key="frame" x="1.6666666666666572" y="1.3333333333333321" width="316.66666666666674" height="52"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ihW-Qx-Dmz">
+                                <rect key="frame" x="177" y="7.6666666666666679" width="36.333333333333343" height="36.666666666666657"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ihW-Qx-Dmz" secondAttribute="height" multiplier="1:1" id="JI6-Nr-12m"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cr-U7-pLa">
+                                <rect key="frame" x="150" y="18.666666666666668" width="17" height="15.000000000000004"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tas-hz-waL">
+                                <rect key="frame" x="103.33333333333333" y="7.6666666666666679" width="36.666666666666671" height="36.666666666666657"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tas-hz-waL" secondAttribute="height" multiplier="1:1" id="5Av-uj-O7K"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ba2-8I-8I5">
+                                <rect key="frame" x="55.333333333333343" y="17" width="43" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ueo-he-Cml">
+                                <rect key="frame" x="276" y="15.666666666666666" width="20.666666666666686" height="20.666666666666671"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ueo-he-Cml" secondAttribute="height" multiplier="1:1" id="5AP-tm-JbM"/>
+                                </constraints>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button" image="alarm_nonactivate"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3z-9r-8US">
+                                <rect key="frame" x="221" y="17" width="43" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZj-JC-BUK">
+                                <rect key="frame" x="8" y="4" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2Cr-U7-pLa" firstAttribute="centerY" secondItem="tas-hz-waL" secondAttribute="centerY" id="1V3-YW-F5a"/>
+                            <constraint firstItem="2Cr-U7-pLa" firstAttribute="centerX" secondItem="2gN-r2-GwP" secondAttribute="centerX" id="884-v6-sgK"/>
+                            <constraint firstItem="ueo-he-Cml" firstAttribute="centerY" secondItem="2gN-r2-GwP" secondAttribute="centerY" id="8Fo-Yo-Kr7"/>
+                            <constraint firstItem="w3z-9r-8US" firstAttribute="leading" secondItem="ihW-Qx-Dmz" secondAttribute="trailing" constant="7.6666666666666572" id="CJ3-17-1Pi"/>
+                            <constraint firstItem="tas-hz-waL" firstAttribute="height" secondItem="2gN-r2-GwP" secondAttribute="height" multiplier="0.7" id="Edl-sJ-wRN"/>
+                            <constraint firstItem="w3z-9r-8US" firstAttribute="centerY" secondItem="ihW-Qx-Dmz" secondAttribute="centerY" id="KWp-1p-wMO"/>
+                            <constraint firstItem="ihW-Qx-Dmz" firstAttribute="leading" secondItem="2Cr-U7-pLa" secondAttribute="trailing" constant="10" id="YLq-W4-aPA"/>
+                            <constraint firstItem="ihW-Qx-Dmz" firstAttribute="centerY" secondItem="2Cr-U7-pLa" secondAttribute="centerY" id="bxz-Ao-Gi7"/>
+                            <constraint firstItem="ihW-Qx-Dmz" firstAttribute="height" secondItem="2gN-r2-GwP" secondAttribute="height" multiplier="0.7" id="cGa-UY-xOl"/>
+                            <constraint firstAttribute="trailing" secondItem="ueo-he-Cml" secondAttribute="trailing" constant="20" id="dBa-HR-eru"/>
+                            <constraint firstItem="2Cr-U7-pLa" firstAttribute="centerY" secondItem="2gN-r2-GwP" secondAttribute="centerY" id="dii-ye-qFk"/>
+                            <constraint firstItem="tas-hz-waL" firstAttribute="leading" secondItem="ba2-8I-8I5" secondAttribute="trailing" constant="5" id="es1-jB-kYn"/>
+                            <constraint firstItem="ba2-8I-8I5" firstAttribute="centerY" secondItem="ueo-he-Cml" secondAttribute="centerY" id="k7a-SN-516"/>
+                            <constraint firstItem="ueo-he-Cml" firstAttribute="height" secondItem="2gN-r2-GwP" secondAttribute="height" multiplier="0.4" id="ncP-lK-AYR"/>
+                            <constraint firstItem="tas-hz-waL" firstAttribute="centerY" secondItem="ba2-8I-8I5" secondAttribute="centerY" id="nh8-i9-HCf"/>
+                            <constraint firstItem="2Cr-U7-pLa" firstAttribute="leading" secondItem="tas-hz-waL" secondAttribute="trailing" constant="10" id="u59-RH-ubx"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="XZj-JC-BUK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9.6666666666666572" id="117-fN-Atn"/>
+                    <constraint firstItem="2gN-r2-GwP" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.95" id="3Th-qR-lhz"/>
+                    <constraint firstItem="2gN-r2-GwP" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="40H-u4-38W"/>
+                    <constraint firstItem="XZj-JC-BUK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5.3333333333333321" id="a6R-gZ-9hu"/>
+                    <constraint firstItem="2gN-r2-GwP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rvh-bE-rza"/>
+                    <constraint firstItem="2gN-r2-GwP" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.99" id="xau-Z3-YCB"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
@@ -69,12 +108,13 @@
                 <outlet property="blueLogoImageView" destination="tas-hz-waL" id="Vgn-24-qHi"/>
                 <outlet property="redLabel" destination="w3z-9r-8US" id="r1v-oe-mWg"/>
                 <outlet property="redLogoImageView" destination="ihW-Qx-Dmz" id="a2I-L5-D13"/>
+                <outlet property="roundView" destination="2gN-r2-GwP" id="qDZ-ey-Jep"/>
                 <outlet property="timeLabel" destination="XZj-JC-BUK" id="xM4-zx-bOp"/>
             </connections>
             <point key="canvasLocation" x="-282" y="-6"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="alarm_nonactivate" width="96" height="96"/>
+        <image name="alarm_nonactivate" width="64" height="64"/>
     </resources>
 </document>

@@ -30,3 +30,14 @@ class CircleView: UIView {
         }
     }
 }
+
+@IBDesignable
+class RoundButton: UIButton {
+    @IBInspectable var cornerRadius: Double {
+        get {
+            return Double(self.layer.cornerRadius)
+        } set {
+            self.layer.cornerRadius = self.frame.height/5
+        }
+    }
+}
