@@ -115,10 +115,9 @@ class CalendarViewController: UIViewController {
                     .subscribe(onNext: { (_) in
                         let center = UNUserNotificationCenter.current()
                         let matchInfo = dataSource[indexPath.section].items[indexPath.row]
-                        let selectedDate: Date = matchInfo.mDate
-                        let changeLocal = selectedDate.toCorrectTime()
+                        
                         self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-                        var hour = self.formatter.string(from: changeLocal)
+                        var hour = self.formatter.string(from: matchInfo.mDate)
                         hour.append("m")
                         
                         var nextTrigger = String()

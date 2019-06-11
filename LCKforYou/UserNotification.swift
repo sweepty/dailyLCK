@@ -120,14 +120,14 @@ func registerNotification(time: Int, match: Matches, type: Type) -> Void {
     let dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
     
     // 실전
-    //    let calendartrigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
+    let calendartrigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
     
     // 테스트용
-    let calendartrigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(5), repeats: false)
+//    let calendartrigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(5), repeats: false)
     
     //Adding Request
     notiFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-    var id = notiFormatter.string(from: ticketDate)
+    var id = notiFormatter.string(from: match.mDate)
     
     switch type {
     case .match:
@@ -139,14 +139,14 @@ func registerNotification(time: Int, match: Matches, type: Type) -> Void {
     let request = UNNotificationRequest(identifier: "\(id)", content: content, trigger: calendartrigger)
     
     // 노티 확인용
-//    DispatchQueue.main.async {
-//        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
-//            Log.info("총 개수 \(requests.count)")
-//            for request in requests {
-//                Log.info("id \(request.identifier)")
-//            }
-//        }
-//    }
+    DispatchQueue.main.async {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+            Log.info("총 개수 \(requests.count)")
+            for request in requests {
+                Log.info("id \(request.identifier)")
+            }
+        }
+    }
     UNUserNotificationCenter.current().add(request) { (error) in
         if let err = error {
             print(err)

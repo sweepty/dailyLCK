@@ -76,9 +76,9 @@ class DetailViewController: UIViewController {
                 guard let matchInfo = self.info else {
                     return
                 }
-                let changeLocal = matchInfo.tDate.toCorrectTime()
+                
                 self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-                var hour = self.formatter.string(from: changeLocal)
+                var hour = self.formatter.string(from: matchInfo.mDate)
                 hour.append("t")
                 
                 var nextTrigger = String()
@@ -88,6 +88,7 @@ class DetailViewController: UIViewController {
                 center.getPendingNotificationRequests { (notifiations) in
                     for noti in notifiations {
                         // 알람이 설정되어 있는 경우
+                        print("noti: \(noti.identifier)\nhour: \(hour)")
                         if noti.identifier.contains(hour) {
                             nextTrigger = noti.identifier
                             break
