@@ -1,4 +1,5 @@
 PODS:
+  - AcknowList (1.9)
   - Alamofire (4.8.2)
   - Differentiator (4.0.1)
   - JTAppleCalendar (7.1.7)
@@ -13,19 +14,19 @@ PODS:
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
-  - VTAcknowledgementsViewController (1.5.1)
 
 DEPENDENCIES:
+  - AcknowList
   - Alamofire (~> 4.7)
   - JTAppleCalendar (~> 7.0)
   - Kanna (~> 4.0.0)
   - RxCocoa (~> 5)
   - RxDataSources (~> 4.0)
   - RxSwift (~> 5)
-  - VTAcknowledgementsViewController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AcknowList
     - Alamofire
     - Differentiator
     - JTAppleCalendar
@@ -34,9 +35,9 @@ SPEC REPOS:
     - RxDataSources
     - RxRelay
     - RxSwift
-    - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
+  AcknowList: 06fde3319971dfd517ea1b1c194d78eb8cd774a2
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   JTAppleCalendar: 96da4d8388fa6dc82d6a60d41ef36a015e167e2f
@@ -45,8 +46,7 @@ SPEC CHECKSUMS:
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
-  VTAcknowledgementsViewController: 3bb742da852a5161dc9f4b017e52f926a41ef5d3
 
-PODFILE CHECKSUM: deda7a4af19ba21c0766d1e33d0a496f50124eb0
+PODFILE CHECKSUM: c69c7b89b2ebb8ee7f8075b9122b1b7ff377c6b0
 
 COCOAPODS: 1.7.1

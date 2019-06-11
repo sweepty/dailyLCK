@@ -12,7 +12,7 @@ import UserNotifications
 import RxSwift
 import RxCocoa
 import RxDataSources
-import VTAcknowledgementsViewController
+import AcknowList
 
 class SettingViewController: UIViewController {
 
@@ -77,28 +77,29 @@ class SettingViewController: UIViewController {
                     
                 } else if indexPath.section == 1 && indexPath.row == 1 {
                     let screenName =  "dailylck"
-                    let appURL = NSURL(string: "twitter://user?screen_name=\(screenName)")!
-                    let webURL = NSURL(string: "https://twitter.com/\(screenName)")!
+                    let appURL = URL(string: "twitter://user?screen_name=\(screenName)")!
+                    let webURL = URL(string: "https://twitter.com/\(screenName)")!
                     
                     // 사용자가 트위터 앱을 설치한 경우 앱에서 열음
-                    if UIApplication.shared.canOpenURL(appURL as URL) {
+                    if UIApplication.shared.canOpenURL(appURL) {
                         if #available(iOS 10.0, *) {
-                            UIApplication.shared.open(appURL as URL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                            UIApplication.shared.open(appURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                         } else {
-                            UIApplication.shared.openURL(appURL as URL)
+                            UIApplication.shared.openURL(appURL)
                         }
                     } else {
                         // 사용자가 트위터 앱이 없는 경우 사파리로 리다이렉트
                         if #available(iOS 10.0, *) {
-                            UIApplication.shared.open(webURL as URL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                            UIApplication.shared.open(webURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                         } else {
-                            UIApplication.shared.openURL(webURL as URL)
+                            UIApplication.shared.openURL(webURL)
                         }
                     }
                 } else if indexPath.section == 2 {
-                    let acknowledgementsViewController = VTAcknowledgementsViewController.acknowledgementsViewController()
-                    acknowledgementsViewController?.headerText = "We love open source software ❤️"
-                    self.navigationController?.pushViewController(acknowledgementsViewController!, animated: true)
+                    let acknowListViewController = AcknowListViewController()
+                    acknowListViewController.title = "오픈소스 라이센스"
+                    acknowListViewController.footerText = ""
+                    self.navigationController?.pushViewController(acknowListViewController, animated: true)
                 }
 
             }).disposed(by: disposeBag)

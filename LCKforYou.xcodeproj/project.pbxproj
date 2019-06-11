@@ -13,7 +13,7 @@
 		1B0031A0202A09A900FF5A0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B00319E202A09A900FF5A0B /* LaunchScreen.storyboard */; };
 		1B090069220875F300E17832 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B090068220875F300E17832 /* RankingTableViewCell.swift */; };
 		1B09006B2208762A00E17832 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B09006A2208762A00E17832 /* RankingViewController.swift */; };
-		1B11FD3822AE9A400002A3FC /* Pods-LCKforYou-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B11FD3722AE9A400002A3FC /* Pods-LCKforYou-acknowledgements.plist */; };
+		1B2291EA22AF46D70099F6B1 /* Pods-LCKforYou-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B2291E922AF46D70099F6B1 /* Pods-LCKforYou-acknowledgements.plist */; };
 		1B244E98224CACD200415791 /* TodayRankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B244E97224CACD200415791 /* TodayRankingTableViewCell.swift */; };
 		1B244E9F224CB86300415791 /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B244E9E224CB86300415791 /* Ranking.swift */; };
 		1B244EA0224CB86300415791 /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B244E9E224CB86300415791 /* Ranking.swift */; };
@@ -95,7 +95,7 @@
 		1B0031A1202A09A900FF5A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B090068220875F300E17832 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
 		1B09006A2208762A00E17832 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
-		1B11FD3722AE9A400002A3FC /* Pods-LCKforYou-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-LCKforYou-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
+		1B2291E922AF46D70099F6B1 /* Pods-LCKforYou-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-LCKforYou-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		1B244E97224CACD200415791 /* TodayRankingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRankingTableViewCell.swift; sourceTree = "<group>"; };
 		1B244E99224CAFD000415791 /* LCKforYou.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LCKforYou.entitlements; sourceTree = "<group>"; };
 		1B244E9A224CB00800415791 /* LCKTarget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LCKTarget.entitlements; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		1B003191202A09A900FF5A0B /* LCKforYou */ = {
 			isa = PBXGroup;
 			children = (
-				1B11FD3722AE9A400002A3FC /* Pods-LCKforYou-acknowledgements.plist */,
+				1B2291E922AF46D70099F6B1 /* Pods-LCKforYou-acknowledgements.plist */,
 				1B244E99224CAFD000415791 /* LCKforYou.entitlements */,
 				1B0031A1202A09A900FF5A0B /* Info.plist */,
 				1B7EC6152249149100DB7A40 /* Extension */,
@@ -423,7 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B0031A0202A09A900FF5A0B /* LaunchScreen.storyboard in Resources */,
-				1B11FD3822AE9A400002A3FC /* Pods-LCKforYou-acknowledgements.plist in Resources */,
+				1B2291EA22AF46D70099F6B1 /* Pods-LCKforYou-acknowledgements.plist in Resources */,
 				1B3382952215390C00CCF91E /* Ranking.storyboard in Resources */,
 				1B00319D202A09A900FF5A0B /* Assets.xcassets in Resources */,
 				1B33829922153A5200CCF91E /* Settings.storyboard in Resources */,
@@ -453,6 +453,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LCKforYou/Pods-LCKforYou-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AcknowList/AcknowList.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
@@ -461,10 +462,10 @@
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/VTAcknowledgementsViewController/VTAcknowledgementsViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AcknowList.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
@@ -473,7 +474,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VTAcknowledgementsViewController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
