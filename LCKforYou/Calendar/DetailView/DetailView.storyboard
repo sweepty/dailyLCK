@@ -99,13 +99,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeB-1N-QmE">
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeB-1N-QmE">
                                                 <rect key="frame" x="201" y="0.0" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="bJz-jX-A2d"/>
                                                     <constraint firstAttribute="width" constant="25" id="ged-G7-w3P"/>
                                                 </constraints>
-                                                <state key="normal" title="Button" image="alarm_nonactivate"/>
+                                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="clock"/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -160,6 +161,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="alarm_nonactivate" width="64" height="64"/>
+        <image name="clock" width="30" height="30"/>
     </resources>
 </document>
