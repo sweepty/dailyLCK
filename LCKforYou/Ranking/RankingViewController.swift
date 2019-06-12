@@ -21,7 +21,7 @@ class RankingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.sizeToFit()
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.rowHeight = 43
         tableView.allowsSelection = false
         parsePage()
         
