@@ -127,7 +127,7 @@ func registerNotification(time: Int, match: Matches, type: Type) -> Void {
     
     //Adding Request
     notiFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-    var id = notiFormatter.string(from: match.mDate)
+    var id = notiFormatter.string(from: match.mDate.toCorrectTime())
     
     switch type {
     case .match:

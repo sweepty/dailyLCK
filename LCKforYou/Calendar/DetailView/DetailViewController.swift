@@ -34,8 +34,25 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // button tintcolor notification
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(setAlarmButtonTintColor),
+                                               name: NSNotification.Name(rawValue: "setAlarm"),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(deleteAlarmButtonTintColor),
+                                               name: NSNotification.Name(rawValue: "deleteAlarm"),
+                                               object: nil)
+        
         setupUI()
         setupBind()
+    }
+    @objc func setAlarmButtonTintColor() {
+        self.ticketAlarmButton.tintColor = .veryRed
+    }
+    
+    @objc func deleteAlarmButtonTintColor() {
+        self.ticketAlarmButton.tintColor = .lightGray
     }
     
     private func setupUI() {
@@ -65,6 +82,22 @@ class DetailViewController: UIViewController {
         
         if let matchInfo = self.info, matchInfo.tDate.toCorrectTime() < Date() {
             ticketAlarmButton.isHidden = true
+        } else {
+            UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+                for request in requests {
+                    self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
+                    
+                    guard let matchDate = self.info?.mDate else {
+                        return
+                    }
+                    let date = self.formatter.string(from: matchDate.toCorrectTime())
+                    if request.identifier.contains(date+"t") {
+                        DispatchQueue.main.async {
+                            self.ticketAlarmButton.tintColor = .veryRed
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -78,7 +111,7 @@ class DetailViewController: UIViewController {
                 }
                 
                 self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-                var hour = self.formatter.string(from: matchInfo.mDate)
+                var hour = self.formatter.string(from: matchInfo.mDate.toCorrectTime())
                 hour.append("t")
                 
                 var nextTrigger = String()
@@ -114,8 +147,8 @@ class DetailViewController: UIViewController {
                     alertController.message = "이미 티켓팅 \(time)에 알람이 설정되어있습니다.\n삭제하시겠습니까?"
                     
                     let deleteAlarmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { (_) in
-                        Log.info("삭제합니다")
                         center.removePendingNotificationRequests(withIdentifiers: ["\(nextTrigger)"])
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "deleteAlarm"), object: nil)
                     })
                     
                     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }

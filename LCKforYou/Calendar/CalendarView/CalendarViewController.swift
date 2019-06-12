@@ -52,6 +52,11 @@ class CalendarViewController: UIViewController {
                                                name: NSNotification.Name(rawValue: "setAlarm"),
                                                object: nil)
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(deleteAlarmButtonTintColor),
+                                               name: NSNotification.Name(rawValue: "deleteAlarm"),
+                                               object: nil)
+        
         // 설정된 알림 리스트
         checkNotifications()
         
@@ -77,7 +82,14 @@ class CalendarViewController: UIViewController {
     @objc func setAlarmButtonTintColor() {
         if let selectRow = selectedRow {
             let cell = self.tableView.cellForRow(at: IndexPath(row: selectRow, section: 0)) as! DetailTableViewCell
-            cell.alarmButton.tintColor = .darkGray
+            cell.alarmButton.tintColor = .veryRed
+        }
+    }
+    
+    @objc func deleteAlarmButtonTintColor() {
+        if let selectRow = selectedRow {
+            let cell = self.tableView.cellForRow(at: IndexPath(row: selectRow, section: 0)) as! DetailTableViewCell
+            cell.alarmButton.tintColor = .lightGray
         }
     }
     
@@ -115,9 +127,10 @@ class CalendarViewController: UIViewController {
                     .subscribe(onNext: { (_) in
                         let center = UNUserNotificationCenter.current()
                         let matchInfo = dataSource[indexPath.section].items[indexPath.row]
-                        
+                        let selectedDate: Date = matchInfo.mDate
+                        let changeLocal = selectedDate.toCorrectTime()
                         self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
-                        var hour = self.formatter.string(from: matchInfo.mDate)
+                        var hour = self.formatter.string(from: changeLocal)
                         hour.append("m")
                         
                         var nextTrigger = String()
@@ -152,8 +165,8 @@ class CalendarViewController: UIViewController {
                             alertController.message = "이미 경기 \(time)에 알람이 설정되어있습니다.\n삭제하시겠습니까?"
                             
                             let deleteAlarmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { (_) in
-                                Log.info("삭제합니다")
                                 center.removePendingNotificationRequests(withIdentifiers: ["\(nextTrigger)"])
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "deleteAlarm"), object: nil)
                             })
                             
                             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
@@ -432,7 +445,7 @@ extension CalendarViewController: UITableViewDelegate {
                 let date = self.formatter.string(from: timeInfo)
                 if request.identifier.contains(date+"m") {
                     DispatchQueue.main.async {
-                        cell.alarmButton.tintColor = .grayBlack
+                        cell.alarmButton.tintColor = .veryRed
                     }
                 }
             }
