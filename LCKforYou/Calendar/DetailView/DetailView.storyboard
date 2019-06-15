@@ -112,7 +112,7 @@
                                                     <constraint firstAttribute="width" constant="25" id="ged-G7-w3P"/>
                                                 </constraints>
                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="clock"/>
+                                                <state key="normal" image="Clock"/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -165,6 +165,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clock" width="30" height="30"/>
+        <image name="Clock" width="30" height="30"/>
     </resources>
 </document>

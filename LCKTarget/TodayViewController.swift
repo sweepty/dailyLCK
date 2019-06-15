@@ -102,6 +102,7 @@ extension TodayViewController: UITableViewDataSource {
                 contentCell.differenceLabel.font = .boldSystemFont(ofSize: 15.0)
             } else {
                 contentCell.rankLabel.text = ranks[indexPath.row - 1].rank
+                contentCell.rankLabel.font = .boldSystemFont(ofSize: 15.0)
                 let teamName = ranks[indexPath.row - 1].team
                 contentCell.teamLabel.text = changeShortName(teamName)
                 contentCell.winLabel.text = ranks[indexPath.row - 1].win

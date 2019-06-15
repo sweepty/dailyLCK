@@ -52,7 +52,7 @@
                                     <constraint firstAttribute="width" secondItem="ueo-he-Cml" secondAttribute="height" multiplier="1:1" id="5AP-tm-JbM"/>
                                 </constraints>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="clock"/>
+                                <state key="normal" image="Clock"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3z-9r-8US">
                                 <rect key="frame" x="221" y="17" width="43" height="18"/>
@@ -115,6 +115,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="clock" width="30" height="30"/>
+        <image name="Clock" width="30" height="30"/>
     </resources>
 </document>
